@@ -2,25 +2,41 @@
     pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
-<div class="">
-
-<nav class="navbar navbar-expand-xl navbar-light bg-light">
+<div class="d-flex justify-content-between border-bottom">
+<a class="navbar-brand font-weight-bold font-italic text-dark m-2 ml-4" href="/main_view"><h1>Logo</h1></a>
+<nav class="navbar navbar-expand-sm font-weight-bold navbar-light col-8">
   <div class="container-fluid">
-    <a class="navbar-brand font-weight-bold font-italic" href="/main_view"><h1>로고</h1></a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+  
+  &nbsp;
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse ">
+    <div class="collapse navbar-collapse nav-fill" id="navbarHeader">
       <ul class="navbar-nav w-100 ">
-      <li class="nav-item"><a class="nav-link" href="#">Store</a> </li>
-        <li class="nav-item"><a class="nav-link" href="#">Community</a> </li>
+      	<li class="nav-item dropdown">
+      		<a class="nav-link dropdown-toggle" data-toggle="dropdown" id="navbarDropdown" role="button">Store</a>
+      			<ul class="dropdown-menu"  aria-labelledby="navbarDropdown">
+      				 <li><a class="dropdown-item" href="#">New arrivals</a></li>
+      				 <li><a class="dropdown-item" href="#">Outwear</a></li>  <!-- 카테고리 숫자로 넘김 -->
+		            <li><a class="dropdown-item" href="#">Tops</a></li>
+		            <li><a class="dropdown-item" href="#">Bottoms</a></li>
+		            <li><a class="dropdown-item" href="#">Accessories</a></li>
+      			</ul> 
+      	</li>
+      	      	<li class="nav-item dropdown">
+      		<a class="nav-link dropdown-toggle" data-toggle="dropdown" id="navbarDropdown" role="button">Community</a>
+      			<ul class="dropdown-menu"  aria-labelledby="navbarDropdown">
+      				 <li><a class="dropdown-item" href="#">Q&A</a></li>
+		            <li><a class="dropdown-item" href="#">Review</a></li>
+      			</ul> 
+      	</li>
         <li class="nav-item"><a class="nav-link" href="#"> Account</a> </li>
         <li class="nav-item"> <a class="nav-link" href="#"> Cart</a> </li>
       </ul>
     </div>
   </div>
 </nav>
+
 </div>
