@@ -18,7 +18,7 @@
 <body>
 <div class="container">
 	<div class="mt-5">
-		<h2><b>제품 관리</b></h2>
+		<h2><b>상품 관리</b></h2>
 		<table class="table text-center">
 			<thead>
 				<tr>
@@ -33,11 +33,22 @@
 			</hbody>
 		</table>
 		<div>
-			<button class="btn btn-secondary text-white m-3" onclick="location.href='/admin/main_view';">뒤로</button>
-			<button class="btn btn-block btn-primary text-white m-3">상품 등록</button>  
+			<button class="btn btn-secondary text-white m-3" id="backToListBtn">뒤로</button>
+			<button class="btn btn-block btn-primary text-white m-3" id="productCreateViewBtn">상품 등록</button>  
 		</div>
 	</div>
 
 </div>
+<script>
+$(document).ready(function() {
+	$('#backToListBtn').on('click', function(){  // 뒤로가기 버튼
+		location.href='/admin/main_view';
+	});
+	$('#productCreateViewBtn').on('click', function(){  // 뒤로가기 버튼
+		location.href='/admin/product/create_view';
+	});
+	
+}); //ready -end
+</script>
 </body>
 </html>

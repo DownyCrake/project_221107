@@ -9,3 +9,5 @@ spring:
     url: jdbc:mysql://localhost:3306/project_221107?&characterEncoding=UTF-8
     username: root
     password: root
+server:
+  port: 80
