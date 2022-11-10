@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,7 +20,7 @@ public class AdminProductRestController {
 	@Autowired
 	private ProductBO productBO;
 	
-	@RequestMapping("/create")
+	@PostMapping("/create")
 	public Map<String, Object> create (
 			@RequestParam("productName") String productName
 			, @RequestParam("price") int price
@@ -34,7 +36,24 @@ public class AdminProductRestController {
 			result.put("errorMessamge", "업로드에 실패했습니다. 관리자에세 문의해주세요.");
 		}
 		
+		return result;
+	}
+
+	@PutMapping("/update")
+	public Map<String, Object> update (
+			@RequestParam("productName") String productName
+			, @RequestParam("price") int price
+			, @RequestParam("category") int category
+			, @RequestParam("file") MultipartFile file){
 		
+		int row =       
+		Map<String, Object> result = new HashMap<>();
+		
+		if (row >0 ) {
+			result.put("code", 100);
+		}else {
+			result.put("errorMessamge", "업로드에 실패했습니다. 관리자에세 문의해주세요.");
+		}
 		
 		return result;
 	}

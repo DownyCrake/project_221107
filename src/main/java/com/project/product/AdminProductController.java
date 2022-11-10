@@ -20,4 +20,11 @@ public class AdminProductController {
 		
 		return "admin/product/productCreate";
 	}
+	
+	@RequestMapping("detail_view")
+	public String productDetailView(Model model) {
+		
+		return "admin/product/productDetail";
+	}
+	
 }
