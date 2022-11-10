@@ -25,4 +25,65 @@
 		, NOW()
  	)
  </insert>
+ 
+ <select id="selectProductList" resultType="com.project.product.model.Product">
+ 	SELECT 
+	 	`id`
+	 	, `productName`
+		, `price`
+		, `category`
+		, `imagePath`
+	FROM
+		`product`
+		<if test="direction == null">
+			ORDER BY `id` DESC 
+		</if>
+		<if test="direction == 'next'">
+			<![CDATA[
+			AND `id` < #{standardId}
+			]]>
+			ORDER BY `id` DESC 
+		</if>
+		<if test="direction == 'prev'">
+			<![CDATA[
+			AND `id` > #{standardId}
+			ORDER BY `id` ASC 
+			]]>
+		</if>
+		 LIMIT ${limit}
+ </select>
+ 
+ <select id="selectProductIdBySort" resultType="int">
+ 	SELECT
+ 		`id`
+ 	FROM
+ 		`product`
+ 	ORDER BY `id` ${sort} 
+ 	LIMIT 1
+ </select>
+ 
+ <select id="selectProduct" resultType="com.project.product.model.Product">
+ 	SELECT 
+ 		`id`
+		, `productName`
+		, `price`
+		, `category`
+		, `imagePath`
+ 	FROM
+ 		`product`
+ 	WHERE
+ 		`id` = #{id}
+ </select>
+ 
+ <update id="updateProductById" parameterType="map">
+ 	UPDATE `product`
+ 	SET
+	 	`productName` = #{productName}
+		, `price` = #{price}
+		, `category` = #{category}
+		, `updatedAt` = NOW()
+		<if test="imagePath != null">, `imagePath` = #{imagePath}</if>
+	WHERE
+		`id` = #{productId}
+  </update>
  </mapper>

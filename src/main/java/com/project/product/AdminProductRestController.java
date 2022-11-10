@@ -41,12 +41,13 @@ public class AdminProductRestController {
 
 	@PutMapping("/update")
 	public Map<String, Object> update (
-			@RequestParam("productName") String productName
+			@RequestParam("productId") int productId
+			, @RequestParam("productName") String productName
 			, @RequestParam("price") int price
 			, @RequestParam("category") int category
-			, @RequestParam("file") MultipartFile file){
+			, @RequestParam(value="file", required=false) MultipartFile file){
 		
-		int row =       
+		int row = productBO.updateProductById(productId, productName, price, category, file) ;
 		Map<String, Object> result = new HashMap<>();
 		
 		if (row >0 ) {

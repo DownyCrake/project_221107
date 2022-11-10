@@ -20,54 +20,37 @@
 <body>
 <div class="container">
 	<div class="mt-5">
-		<h2><b>상품 관리</b></h2>
+		<h2><b>재고 관리</b></h2>
 		<table class="table text-center">
 			<thead>
 				<tr>
-					<td>id</td>
-					<td>상품명</td>
+					<td>사이즈</td>
+					<td>수량</td>
 					<td></td>
 				</tr>
 			</thead>
 			<tbody>
-			<c:forEach items="${productList}" var="product">
+			<c:forEach items="${stocktList}" var="stock">
 				<tr>
-					<td>${product.id }</td>
-					<td><a href="/admin/product/detail_view?productId=${product.id }">${product.productName }</a></td>
-					<td><button class="btn stock-list-btn" data-product-id="${product.id}">재고 수정</button></td>
+					<td>${stock.size }</td>
+					<td><a href="/admin/product/detail_view?productId=${stock.quantity }">${stock.quantity }</a></td>
+					<td><button class="btn" data-product-id="${stock.id}">재고 수정</button></td>
 				</tr>
 			</c:forEach>
 			</tbody>
 		</table>
-				<div class="d-flex justify-content-center">
-			<c:if test="${prevId ne 0 }">
-				<a href="/post/post_list_view?prevId=${prevId}" class="mr-5"> &lt;&lt;이전 </a>
-			</c:if>
-			<c:if test="${nextId ne 0 }">
-				<a href="/post/post_list_view?nextId=${nextId}"> 다음&gt;&gt; </a>
-			</c:if>
-		</div>
 		<div>
 			<button class="btn btn-secondary text-white m-3" id="backToListBtn">뒤로</button>
-			<button class="btn btn-block btn-primary text-white m-3" id="productCreateViewBtn">상품 등록</button>  
+			<button class="btn btn-block btn-primary text-white m-3" id="stockCreateViewBtn">추가</button>  
 		</div>
 	</div>
 
 </div>
 <script>
 $(document).ready(function() {
-	$('#backToListBtn').on('click', function(){  // 뒤로가기 버튼
-		location.href='/admin/main_view';
-	});
-	$('#productCreateViewBtn').on('click', function(){  // 뒤로가기 버튼
-		location.href='/admin/product/create_view';
-	});
-	$('.stock-list-btn').on('click', function(){  // 재고
-		let productId = $(this).data('product-id');
-		location.href='/admin/stock/list_view?productId='+productId;
-	});
 	
-}); //ready -end
+});// ready -end
+
 </script>
 </body>
 </html>

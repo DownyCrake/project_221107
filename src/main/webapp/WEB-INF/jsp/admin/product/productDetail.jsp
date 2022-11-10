@@ -20,9 +20,9 @@
 	<div class="mt-5">
 		<h2><b>상품 등록</b></h2>
 		<div class="mt-5">
-			<div class="d-flex m-3"><span class="col-3"><h3>상품명</h3></span><input type="text" id="productName" class="form-control"></div>
-			<div class="d-flex m-3"><span class="col-3"><h3>가격</h3></span><input type="number" id="price" class="form-control"></div>
-			<div class="d-flex m-3"><span class="col-3"><h3>카테고리 넘버</h3></span><input type="number" id="category" class="form-control" placeholder="아우터:1 상의:2 바지:3 악세사리:4"></div>
+			<div class="d-flex m-3"><span class="col-3"><h3>상품명</h3></span><input type="text" id="productName" class="form-control" value="${product.productName}"></div>
+			<div class="d-flex m-3"><span class="col-3"><h3>가격</h3></span><input type="number" id="price" class="form-control" value="${product.price}"></div>
+			<div class="d-flex m-3"><span class="col-3"><h3>카테고리 넘버</h3></span><input type="number" id="category" class="form-control" placeholder="아우터:1 상의:2 바지:3 악세사리:4" value="${product.category}"></div>
 			<div class="d-flex justify-content-end my-3">
 				<input type="file" id="file" accept=".jpg,.jpeg,.png,.gif">
 			</div>
@@ -31,7 +31,7 @@
 					<button class="btn btn-secondary text-white m-3" id="backToList">목록</button>
 				</div>
 				<div>
-					<button class="btn btn-primary text-white m-3" id="createProduct" >상품 등록</button>
+					<button class="btn btn-primary text-white m-3" id="createProduct" data-product-id="${product.id}">상품 수정</button>
 				</div>
 			</div>
 		</div>
@@ -72,15 +72,17 @@ $(document).ready(function() {
 				return;
 			}
 		}
+		let productId = $(this).data('product-id');
 		
 		let formData = new FormData();
-		formData.append('productName',productName);  // from태그에 name 으로 넣는것과 같음
+		formData.append('productId',productId);  
+		formData.append('productName',productName); 
 		formData.append('price', price);
 		formData.append('category', category);
 		formData.append('file', $('#file')[0].files[0]);		
 		
 		$.ajax({
-			type:'POST'
+			type:'PUT'
 			, url:'/admin/product/update'
 			, data:formData
 			, enctype:"multipart/form-data"  // 파일 업로드를 위한 필수 설정
