@@ -15,7 +15,19 @@ public class StockBO {
 	private StockDAO stockDAO;
 	
 	public List<Stock> getStockListByProductId(int productId) {
-		List<Stock> stockList = stockDAO.selectStockListByProductId(productId);
-		return stockList;
+		return stockDAO.selectStockListByProductId(productId);
 	}
+	
+	public int addStockByProductId(int productId, String size, int quantity) {
+		return stockDAO.insertStockByProductId(productId, size, quantity);
+	}
+	
+	public int updateStockByStockId(int stockId, int quantity) {
+		return stockDAO.updateStockByStockId(stockId, quantity);
+	}
+	
+	public int deleteStockByStockId(int stockId) {
+		return stockDAO.deleteStockByStockId(stockId);
+	}
+	
 }

@@ -18,13 +18,13 @@ public class AdminStockController {
 	@Autowired
 	private StockBO stockBO;
 	
-	@RequestMapping("/list_view")
+	@RequestMapping("/detail_view")
 	public String stockView(
 			@RequestParam("productId") int productId
 			, Model model) {
 		List<Stock> stockList = stockBO.getStockListByProductId(productId); 
 		model.addAttribute("stockList",stockList);
-		return "admin/stock/stockList"; 
+		return "admin/stock/stockDetail"; 
 	}
 	
 }

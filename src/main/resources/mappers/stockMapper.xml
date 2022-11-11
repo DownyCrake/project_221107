@@ -18,5 +18,40 @@
 	ORDER BY `id` DESC 
  </select>
  
+ <insert id="insertStockByProductId" parameterType="map">
+ 	INSERT 
+ 	INTO
+ 		`stock``
+ 	(
+ 		`productId`
+		, `size`
+		, `quantity`
+		, `createdAt`
+		, `updatedAt`
+ 	)
+ 	VALUES
+ 	( 
+ 		#{productId}
+		, #{size}
+		, #{quantity}
+		, NOW()
+		, NOW()
+ 	)
+ 
+ </insert>
+ 
+ <update id="updateStockByStockId" parameterType="map">
+ 	UPDATE `stock`
+ 	SET
+ 		`quantity` = #{quantity}
+ 	WHERE
+ 		`id` = #{stockId}
+ </update>
+ 
+ <delete id="deleteStockByStockId" parameterType="int">
+ 	DELETE `stock`
+ 	WHERE 
+ 		`id` = #{stockId}
+ </delete>
  
  </mapper>

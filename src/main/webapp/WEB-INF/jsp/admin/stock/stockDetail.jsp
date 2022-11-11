@@ -27,6 +27,7 @@
 					<td>사이즈</td>
 					<td>수량</td>
 					<td></td>
+					<td></td>
 				</tr>
 			</thead>
 			<tbody>
@@ -34,13 +35,18 @@
 				<tr>
 					<td>${stock.size }</td>
 					<td><a href="/admin/product/detail_view?productId=${stock.quantity }">${stock.quantity }</a></td>
-					<td><button class="btn" data-product-id="${stock.id}">재고 수정</button></td>
+					<td><button class="btn" data-product-id="${stock.id}">수정</button></td>
+					<td><button class="btn" data-product-id="${stock.id}">삭제</button></td>
 				</tr>
 			</c:forEach>
 			</tbody>
 		</table>
 		<div>
-			<button class="btn btn-secondary text-white m-3" id="backToListBtn">뒤로</button>
+			<a href="/admin/product/list_view">
+				<button class="btn btn-secondary text-white m-3" id="backToListBtn">뒤로</button>
+			</a>
+			사이즈<input type="text" class="form-control" id="sizeInput">
+			수량<input type="int" class="form-control" id="quantityInput">
 			<button class="btn btn-block btn-primary text-white m-3" id="stockCreateViewBtn">추가</button>  
 		</div>
 	</div>
@@ -48,6 +54,8 @@
 </div>
 <script>
 $(document).ready(function() {
+	
+	
 	
 });// ready -end
 
