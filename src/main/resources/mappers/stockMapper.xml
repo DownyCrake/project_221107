@@ -21,7 +21,7 @@
  <insert id="insertStockByProductId" parameterType="map">
  	INSERT 
  	INTO
- 		`stock``
+ 		`stock`
  	(
  		`productId`
 		, `size`
@@ -49,7 +49,7 @@
  </update>
  
  <delete id="deleteStockByStockId" parameterType="int">
- 	DELETE `stock`
+ 	DELETE FROM `stock`
  	WHERE 
  		`id` = #{stockId}
  </delete>

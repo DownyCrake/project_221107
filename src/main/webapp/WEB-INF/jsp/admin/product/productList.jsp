@@ -64,7 +64,7 @@ $(document).ready(function() {
 	});
 	$('.stock-list-btn').on('click', function(){  // 재고
 		let productId = $(this).data('product-id');
-		location.href='/admin/stock/list_view?productId='+productId;
+		location.href='/admin/stock/detail_view?productId='+productId;
 	});
 	
 }); //ready -end

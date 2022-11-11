@@ -86,4 +86,14 @@
 	WHERE
 		`id` = #{productId}
   </update>
+  
+  <select id="selectProductNameByProductId" parameterType="int" resultType="String">
+  	SELECT
+  		`productName`
+  	FROM
+  		`product`
+  	WHERE
+  		`id` = #{productId}
+  
+  </select>
  </mapper>

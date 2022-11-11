@@ -83,4 +83,8 @@ public class ProductBO {
 		
 		return productDAO.updateProductById(productId, productName, price, category, imagePath);
 	}
+	
+	public String getProductNameByProductId(int productId) {
+		return productDAO.selectProductNameByProductId(productId);
+	}
 }
