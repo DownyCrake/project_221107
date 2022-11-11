@@ -21,7 +21,7 @@
 		<jsp:include page="../include/header.jsp"></jsp:include>
 	</header>
 	<main>
-		<jsp:include page="../main/mainView.jsp"></jsp:include>
+		<jsp:include page="../${viewName}.jsp"></jsp:include>
 	</main>
 	<footer>
 		<jsp:include page="../include/footer.jsp"></jsp:include>
