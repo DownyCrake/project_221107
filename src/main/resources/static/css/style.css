@@ -11,3 +11,9 @@ main {min-height:500px;}
 
 .navbar {font-size:20px;}
 .dropdown-item {font-size:20px;}
+
+.sign-up-box {width:700px;}
+
+.sign-up-box input {  border: none;
+    border-bottom: 1px solid #aaaaaa;
+    border-radius: 0;}
