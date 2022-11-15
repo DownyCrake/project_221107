@@ -13,5 +13,31 @@
 		`loginId` = #{loginId}
 </select>
 
+<insert id="insertUser" parameterType="map">
+	INSERT
+		INTO `user`
+	(
+		`loginId`,
+		`password`,
+		`name`,
+		`phoneNumber`,
+		`email`,
+		`address`,
+		`createdAt`,
+		`updatedAt`
+	)
+	VALUES
+		(
+		#{loginId},
+		#{password},
+		#{name},
+		#{phoneNumber},
+		#{email},
+		#{address},
+		NOW(),
+		NOW()
+	)
+
+</insert>
 
 </mapper>

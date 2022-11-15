@@ -13,7 +13,15 @@ main {min-height:500px;}
 .dropdown-item {font-size:20px;}
 
 .sign-up-box {width:700px;}
-
 .sign-up-box input {  border: none;
     border-bottom: 1px solid #aaaaaa;
     border-radius: 0;}
+.sign-up-box .btn-block {border:1px solid;
+	border-radius: 0;}
+    
+.sign-in-box {width:400px;}
+.sign-in-box input {  border: none;
+    border-bottom: 1px solid #aaaaaa;
+    border-radius: 0;}
+.sign-in-box .btn-block {border:1px solid;
+	border-radius: 0;}
