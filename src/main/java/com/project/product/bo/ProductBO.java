@@ -87,4 +87,9 @@ public class ProductBO {
 	public String getProductNameByProductId(int productId) {
 		return productDAO.selectProductNameByProductId(productId);
 	}
+	
+	public List<Product> getProductByCategory(Integer category) {
+		return productDAO.selectProductByCategory(category);
+	}
+	
 }

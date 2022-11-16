@@ -33,4 +33,5 @@ public interface ProductDAO {
 	
 	public String selectProductNameByProductId(int productId);
 		
+	public List<Product> selectProductByCategory(Integer category);
 }
