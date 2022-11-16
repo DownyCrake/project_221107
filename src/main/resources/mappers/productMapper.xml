@@ -96,4 +96,23 @@
   		`id` = #{productId}
   
   </select>
+  
+  <select id="selectProductByCategory" parameterType="int" resultType="com.project.product.model.Product">
+ 	SELECT
+ 		`id`
+ 		,`productName`
+		,`price`
+		,`category`
+		,`imagePath`
+		,`createdAt`
+		,`updatedAt`
+	FROM
+		`product`
+	<if test="category != null">
+		WHERE category = #{category}
+	</if>
+	ORDER BY `id` DESC
+ 	 
+  </select>
+ 
  </mapper>
