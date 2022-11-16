@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.project.common.EncryptUtils;
 import com.project.user.bo.UserBO;
+import com.project.user.model.User;
 
 @RestController
 
@@ -68,9 +69,19 @@ public class UserRestController {
 			@RequestParam("password") String password,
 			HttpSession session){
 		String encryptPassword = EncryptUtils.SHA256(password); // 암호화
+		User user = userBO.getUserByLoginIdAndPassword(loginId, encryptPassword);
 
 		Map<String, Object> result = new HashMap<>();
-		
+		if (user != null ) {
+			result.put("code", 100);
+			result.put("result", "success");
+
+			session.setAttribute("userName", user.getName());
+			session.setAttribute("userLoginId", user.getLoginId());
+			session.setAttribute("userId", user.getId());
+		} else {
+			result.put("errorMessage", "존재하지 않는 사용자입니다");
+		}
 		
 		return result;
 	}

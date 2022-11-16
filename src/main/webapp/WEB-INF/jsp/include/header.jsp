@@ -32,7 +32,14 @@
 		            <li><a class="dropdown-item" href="#">Review</a></li>
       			</ul> 
       	</li>
-        <li class="nav-item"><a class="nav-link" href="#"> Account</a> </li>
+        <c:choose>
+			<c:when test="${empty userId}">
+	        	<li class="nav-item"><a class="nav-link" href="/user/sign_in_view"> Account</a> </li>
+			</c:when>
+			<c:otherwise>
+	        	<li class="nav-item"><a class="nav-link" href="#"> Account</a> </li>
+	        </c:otherwise>
+        </c:choose>
         <li class="nav-item"> <a class="nav-link" href="#"> Cart</a> </li>
       </ul>
     </div>

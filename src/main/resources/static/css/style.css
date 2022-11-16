@@ -25,3 +25,8 @@ main {min-height:500px;}
     border-radius: 0;}
 .sign-in-box .btn-block {border:1px solid;
 	border-radius: 0;}
+	
+.my-page-box {width:400px;}
+.my-page-box button{border:1px solid;
+	border-radius: 0;
+	background-color:white;}

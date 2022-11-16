@@ -12,13 +12,23 @@ public class UserController {
 
 	@RequestMapping("/sign_up_view")
 	public String signUpView(HttpSession session, Model model) {
-
+		
+		Integer userId = (Integer)session.getAttribute("userId");
+		if (userId != null) {
+			return "redirect:/main_view";
+		}
+		
 		model.addAttribute("viewName", "user/signUp");
 		return "template/layout";
 	}
 	
 	@RequestMapping("/sign_in_view")
 	public String signInView(HttpSession session, Model model) {
+		
+		Integer userId = (Integer)session.getAttribute("userId");
+		if (userId != null) {
+			return "redirect:/main_view";
+		}
 		
 		model.addAttribute("viewName", "user/signIn");
 		return "template/layout";
