@@ -31,4 +31,18 @@ public class UserBO {
 			,String password) {
 		return userDAO.selectUserByLoginIdAndPassword(loginId, password);
 	}
+	
+	public User getUserByuserId(int userId) {
+		return userDAO.selectUserByuserId(userId);
+	}
+	
+	public int updateUserByUserId(
+			int userId,
+			String password,
+			String name,
+			String phoneNumber,
+			String email,
+			String address) {
+		return userDAO.updateUser(userId, password, name, phoneNumber, email, address);
+	}
 }

@@ -7,26 +7,28 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.project.store.bo.StoreBO;
-import com.project.store.model.Store;
+import com.project.introduction.bo.IntroductionBO;
+import com.project.introduction.model.Introduction;
 
 @RequestMapping("/store")
 @Controller
 public class StoreController {
 	
 	@Autowired
-	private StoreBO storeBO;
+	private IntroductionBO storeBO;
 	
 	@RequestMapping("/product_detail")
 	public String StoreDetailView(int productId,
 			HttpSession session,
 			Model model) {
 		
-		Store store = storeBO.getStoreByProductId(productId);
+		Introduction store = storeBO.getStoreByProductId(productId);
 		
 		model.addAttribute("store",store);
 		model.addAttribute("viewName", "/store/detailView");
 		return "/template/layout";
 	}
+	
+
 	
 }

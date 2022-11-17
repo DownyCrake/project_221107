@@ -10,13 +10,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class UserController {
 
+
 	@RequestMapping("/sign_up_view")
 	public String signUpView(HttpSession session, Model model) {
 		
-		Integer userId = (Integer)session.getAttribute("userId");
-		if (userId != null) {
-			return "redirect:/main_view";
-		}
+//		Integer userId = (Integer)session.getAttribute("userId");
+//		if (userId != null) {
+//			return "redirect:/main_view";
+//		}
 		
 		model.addAttribute("viewName", "user/signUp");
 		return "template/layout";
@@ -25,10 +26,10 @@ public class UserController {
 	@RequestMapping("/sign_in_view")
 	public String signInView(HttpSession session, Model model) {
 		
-		Integer userId = (Integer)session.getAttribute("userId");
-		if (userId != null) {
-			return "redirect:/main_view";
-		}
+//		Integer userId = (Integer)session.getAttribute("userId");
+//		if (userId != null) {
+//			return "redirect:/main_view";
+//		}
 		
 		model.addAttribute("viewName", "user/signIn");
 		return "template/layout";
@@ -44,10 +45,5 @@ public class UserController {
 		return "redirect:/main_view";
 	}
 
-	@RequestMapping("/profile_view")
-	public String profileView(HttpSession session, Model model) {
-		
-		model.addAttribute("viewName", "user/profile");
-		return "template/layout";
-	}
+
 }

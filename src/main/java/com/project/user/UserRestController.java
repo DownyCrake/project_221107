@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -85,5 +86,29 @@ public class UserRestController {
 		
 		return result;
 	}
+	
+	@PutMapping("/update")
+	public Map<String, Object> updateUser(
+			@RequestParam("userId") int userId,
+			@RequestParam(value="password", required=false) String password,
+			@RequestParam("name") String name,
+			@RequestParam("phoneNumber") String phoneNumber,
+			@RequestParam("email") String email,
+			@RequestParam(value="address", required=false) String address){
+		String encryptPassword = null;
+		if (password != null) {
+			encryptPassword = EncryptUtils.SHA256(password); // 암호화
+			}
+		Map<String, Object> result = new HashMap<>();
+		int row = userBO.updateUserByUserId(userId, encryptPassword, name, phoneNumber, email, address);
+		if (row > 0) {
+			result.put("code", 100); 
+		} else {
+			result.put("errorMessage", "저장에 실패했습니다. 관리자에게 문의해주세요.");
+		}
+
+		return result;
+	}
+	
 	
 }

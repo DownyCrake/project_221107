@@ -17,7 +17,7 @@
 $(document).ready(function() {
 	
 	$('#profileBtn').on('click', function() {
-		location.href="/user/profile_view";
+		location.href="/account/profile_view";
 		return;
 	}); // profile btn- click - end
 	

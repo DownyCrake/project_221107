@@ -1,12 +1,11 @@
-package com.project.store.model;
+package com.project.introduction.model;
 
 import java.util.Date;
 
-public class Store {
+public class Introduction {
 	private int id;
 	private int productId;
 	private String content;
-	private String imagePath;
 	private Date createdAt;
 	private Date updatedAt;
 	
@@ -27,12 +26,6 @@ public class Store {
 	}
 	public void setContent(String content) {
 		this.content = content;
-	}
-	public String getImagePath() {
-		return imagePath;
-	}
-	public void setImagePath(String imagePath) {
-		this.imagePath = imagePath;
 	}
 	public Date getCreatedAt() {
 		return createdAt;
