@@ -44,4 +44,10 @@ public class UserController {
 		return "redirect:/main_view";
 	}
 
+	@RequestMapping("/profile_view")
+	public String profileView(HttpSession session, Model model) {
+		
+		model.addAttribute("viewName", "user/profile");
+		return "template/layout";
+	}
 }
