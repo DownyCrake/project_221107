@@ -26,12 +26,10 @@ main {min-height:500px;}
 .sign-in-box .btn-block {border:1px solid;
 	border-radius: 0;}
 	
-<<<<<<< HEAD
 .my-page-box {width:400px;}
 .my-page-box button{border:1px solid;
 	border-radius: 0;
 	background-color:white;}
-=======
+	
 .product-list-items-div {border:1px solid #aaaaaa;  
 	  aspect-ratio: 16 / 9; }
->>>>>>> origin/develop

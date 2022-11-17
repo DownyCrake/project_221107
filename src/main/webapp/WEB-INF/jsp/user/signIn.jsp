@@ -5,7 +5,7 @@
 	<div id="signInDiv" class="sign-in-box mt-5">
 		<h3 class="text-secondary mb-5">Login</h3>
 		<input type="text" id="loginId" name="loginId" maxlength='16' class="form-control mb-5" placeholder="아이디 입력">
-		<input type="text" id="password" name="password" maxlength='24' class="form-control mb-5" placeholder="비밀번호 입력">
+		<input type="password" id="password" name="password" maxlength='24' class="form-control mb-5" placeholder="비밀번호 입력">
 		<button type="button" id="signInBtn" class="btn btn-block btn-secondary mb-3">로그인</button>
 		<button type="button" id="signUpViewBtn" class="btn btn-block btn-light ">회원가입</button>
 	</div>

@@ -33,4 +33,15 @@ public class UserController {
 		model.addAttribute("viewName", "user/signIn");
 		return "template/layout";
 	}
+	
+	
+	@RequestMapping("/sign_out")
+	public String signOutVeiew(HttpSession session) {
+		session.removeAttribute("userName");
+		session.removeAttribute("userLoginId");
+		session.removeAttribute("userId");
+		
+		return "redirect:/main_view";
+	}
+
 }

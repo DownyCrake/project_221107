@@ -14,11 +14,12 @@ public class AccountController {
 			Model model) {
 		
 		Integer userId = (Integer)session.getAttribute("userId");
-//		if (userId == null) {
-//			return "redirect:/user/sign_in_view";
-//		}
+		if (userId == null) {
+			return "redirect:/user/sign_in_view";
+		}
 		
 		model.addAttribute("viewName","main/myPage");
 		return "/template/layout";
 	}
+
 }

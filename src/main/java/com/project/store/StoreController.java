@@ -28,5 +28,5 @@ public class StoreController {
 		model.addAttribute("viewName", "/store/detailView");
 		return "/template/layout";
 	}
-
+	
 }
