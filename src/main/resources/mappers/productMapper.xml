@@ -114,5 +114,23 @@
 	ORDER BY `id` DESC
  	 
   </select>
+  
+  <select id="selectProductNameAndId" resultType="com.project.product.model.Product">
+  	SELECT
+  		`id`
+  		, `productName`
+  	FROM
+  		`product`
+  </select>
+  
+  <update id="updateProductContentByProductId" parameterType="map">
+		UPDATE `product`
+ 	SET
+	 	`content` = #{content}
+		, `updatedAt` = NOW()
+	WHERE
+		`id` = #{productId}
+				  
+  </update>
  
  </mapper>

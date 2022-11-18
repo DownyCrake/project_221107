@@ -92,4 +92,12 @@ public class ProductBO {
 		return productDAO.selectProductByCategory(category);
 	}
 	
+	public List<Product> getProductNameAndId(){
+		return productDAO.selectProductNameAndId();
+	}
+	
+	public int addProductContentByProductId(int productId, String content) {
+		return productDAO.updateProductContentByProductId(productId, content);
+	}
+	
 }

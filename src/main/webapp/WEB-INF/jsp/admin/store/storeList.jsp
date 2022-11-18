@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>관리자 페이지</title>
+<title>스토어 페이지 관리</title>
 
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
@@ -16,17 +16,17 @@
 
 </head>
 <body>
-<div class="container">
+<div class="bg-secondary container">
 	<div class="mt-5">
-		<h2><b>관리자 페이지</b></h2>
-		<ul class="list-group mt-4">
-			<li  class="list-group-item btn"><a href="#">주문관리</a></li>
-			<li  class="list-group-item btn"><a href="/admin/product/list_view">제품관리</a></li>
-			<li  class="list-group-item btn"><a href="/admin/store/list_view">스토어</a></li>
-			<li  class="list-group-item btn"><a href="#">q&a</a></li>
-		</ul>
+		<h2><b>스토어 페이지 관리</b></h2>
+		
+		<a href="/admin/main_view">
+			<button class="btn">뒤로</button>
+		</a>
+		<a href="/admin/store/create_view">
+			<button class="btn">페이지 생성</button>
+		</a>
 	</div>
-
 </div>
+
 </body>
-</html>

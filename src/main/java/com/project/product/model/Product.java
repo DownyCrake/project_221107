@@ -7,6 +7,7 @@ public class Product {
 	private String productName;
 	private int price;
 	private int category;
+	private String content;
 	private String imagePath;
 	private Date createdAt;
 	private Date updatedAt;
@@ -34,6 +35,12 @@ public class Product {
 	}
 	public void setCategory(int category) {
 		this.category = category;
+	}
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
 	}
 	public String getImagePath() {
 		return imagePath;

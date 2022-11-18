@@ -34,4 +34,11 @@ public interface ProductDAO {
 	public String selectProductNameByProductId(int productId);
 		
 	public List<Product> selectProductByCategory(Integer category);
+	
+	public List<Product> selectProductNameAndId();
+	
+	public int updateProductContentByProductId(
+			@Param("productId")int productId
+			, @Param("content") String content);
+
 }
