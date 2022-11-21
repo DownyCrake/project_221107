@@ -3,11 +3,10 @@ package com.project.store;
 import java.util.List;
 
 import com.project.product.model.Product;
+import com.project.productImage.model.ProductImage;
 import com.project.stock.model.Stock;
-import com.project.store.model.ProductImage;
 
 public class StoreView {
-
 	
 	private Product product;
 	

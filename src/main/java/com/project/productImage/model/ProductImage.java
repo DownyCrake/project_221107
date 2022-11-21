@@ -1,4 +1,4 @@
-package com.project.store.model;
+package com.project.productImage.model;
 
 import java.util.Date;
 

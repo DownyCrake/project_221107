@@ -93,7 +93,7 @@ $(document).ready(function() {
 			, success:function(data){
 				if (data.code == 100) {
 					alert("제품이 등록되었습니다.");
-					location.href="/admin/product/list_view";
+					location.href="/admin/store/list_view";
 				} else {
 					alert(data.errorMessage);
 				}

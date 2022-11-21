@@ -20,7 +20,7 @@ public interface ProductDAO {
 			, @Param("direction") String direction
 			, @Param("limit") int limit);
 	
-	public Product selectProduct(int id);
+	public Product selectProductByProductId(int id);
 	
 	public int selectProductIdBySort(String sort);
 	
@@ -40,5 +40,4 @@ public interface ProductDAO {
 	public int updateProductContentByProductId(
 			@Param("productId")int productId
 			, @Param("content") String content);
-
 }

@@ -61,7 +61,7 @@ public class ProductBO {
 	}
 	
 	public Product getProductByProductId(int productId) {
-		return productDAO.selectProduct(productId);
+		return productDAO.selectProductByProductId(productId);
 	}
 	
 	public int updateProductById(int productId, String productName, int price, int category, MultipartFile file) {
@@ -100,4 +100,12 @@ public class ProductBO {
 		return productDAO.updateProductContentByProductId(productId, content);
 	}
 	
+	public int updateProductContencByProductId(int productId, String content) {
+		Product product = getProductByProductId(productId);
+		if (product == null) {
+			log.warn("[update post] 수정할 메모가 존재하지 않습니다.");
+			return 0;
+		}
+		return productDAO.updateProductContentByProductId(productId, content);
+	}
 }

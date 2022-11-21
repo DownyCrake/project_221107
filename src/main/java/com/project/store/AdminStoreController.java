@@ -23,12 +23,11 @@ public class AdminStoreController {
 		return "/admin/store/storeList";
 	}
 	
-	@RequestMapping("/create_view")
+	@RequestMapping("/update_view")
 	public String CreateIntroductionView(Model model) {
 		
 		List<Product> productList = productBO.getProductNameAndId();
 		model.addAttribute("productList",productList);
-		
-		return "/admin/store/createStore";
+		return "/admin/store/updateStore";
 	}
 }

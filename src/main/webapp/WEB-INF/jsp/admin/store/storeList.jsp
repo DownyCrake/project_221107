@@ -23,7 +23,7 @@
 		<a href="/admin/main_view">
 			<button class="btn">뒤로</button>
 		</a>
-		<a href="/admin/store/create_view">
+		<a href="/admin/store/update_view">
 			<button class="btn">페이지 생성</button>
 		</a>
 	</div>

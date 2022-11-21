@@ -62,12 +62,13 @@
  	LIMIT 1
  </select>
  
- <select id="selectProduct" resultType="com.project.product.model.Product">
+ <select id="selectProductByProductId" resultType="com.project.product.model.Product">
  	SELECT 
  		`id`
 		, `productName`
 		, `price`
 		, `category`
+		, `content`
 		, `imagePath`
  	FROM
  		`product`
@@ -112,6 +113,9 @@
 		WHERE category = #{category}
 	</if>
 	ORDER BY `id` DESC
+	<if test="category == null">
+	LIMIT 5
+	</if>
  	 
   </select>
   
@@ -132,5 +136,5 @@
 		`id` = #{productId}
 				  
   </update>
- 
+  
  </mapper>

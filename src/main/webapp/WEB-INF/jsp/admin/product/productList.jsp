@@ -24,9 +24,9 @@
 		<table class="table text-center">
 			<thead>
 				<tr>
-					<td>id</td>
-					<td>상품명</td>
-					<td></td>
+					<th>id</th>
+					<th>상품명</th>
+					<th></th>
 				</tr>
 			</thead>
 			<tbody>

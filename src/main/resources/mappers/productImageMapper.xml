@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="com.project.productImage.dao.ProductImageDAO">
+ 
+ <select id="getProductImageByProductId" parameterType="int" resultType="com.project.productImage.model.ProductImage">
+	SELECT 
+		`id`
+		, `productId`
+		, `imagePath`
+		, `createdAt`
+	FROM 
+		`product_image`
+	WHERE
+		`productId` = #{productId}
+ </select>
+ 
+ <insert id="updateProductImageByProductId" parameterType="Map">
+
+ 	INSERT	
+ 	INTO `product_image`
+ 	( 
+		`productId`,
+		`imagePath`,
+		`createdAt`
+ 	)
+ 	
+ 	VALUES
+ 		<foreach item="item" index="index" collection="java.util.List" separator=" , ">
+ 	(
+ 		#{item.productId},
+ 		#{item.imagePath},
+ 		NOW()
+ 	)	
+	</foreach>
+ </insert>
+ 
+ </mapper>

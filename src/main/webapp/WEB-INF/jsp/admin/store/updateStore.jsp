@@ -27,17 +27,17 @@
 				<div class="d-flex m-3"><span class="col-3"><h3>제품명</h3></span>
 				<select name="productName" class="form-control">
 					<c:forEach items="${productList}" var="product">
-						<option data-product-id="${product.id }">${product.productName }</option>
+						<option value="${product.id}">${product.id } : ${product.productName }</option>
 					 </c:forEach>
 				</select>
 				</div>
 				<div class="m-3"><textarea id="content" name="content" rows="10" class="form-control"></textarea></div>
 				<div class="d-flex justify-content-end my-3">
-					<input type="file" id="file" name="imgList" accept=".jpg,.jpeg,.png,.gif" multiple>
+					<input type="file" id="file" name="images" accept=".jpg,.jpeg,.png,.gif" multiple>
 				</div>
 				<div class="d-flex justify-content-between">
 					<div>
-						<a href="/admin/introduction/list_view"
+						<a href="/admin/store/list_view"
 						class="btn btn-secondary text-white m-3">목록</a>
 					</div>
 					<div>
@@ -52,7 +52,51 @@
 
 <script>
 $(document).ready(function(){ 
+	let inputFileList = new Array();
+	$('input[name=images]').on('change', function(e) {
+		　　let files = e.target.files;
+		　　let filesArr = Array.prototype.slice.call(files);
+
+		　　filesArr.forEach(function(e) { 
+		　　　　inputFileList.push(e);    
+		　　});
+		});
 	
+	$('#uploadBtn').on('click', function() {
+		
+		let productId = $('select[name=productName]').val();
+		let content = $('#content').val().trim();
+		
+		let formData = new FormData();
+		
+		formData.append('productId', productId);
+		formData.append('content', content);
+		for (let i = 0; i < inputFileList.length; i++) {
+		　　formData.append("images", inputFileList[i]);  
+		}
+		
+		$.ajax({
+			type:'POST'
+			, data: formData
+			, url: '/admin/store/update'
+			, enctype:"multipart/form-data"  // 파일 업로드를 위한 필수 설정
+			, processData:false  // 파일 업로드를 위한 필수 설정
+			, contentType:false  // 파일 업로드를 위한 필수 설정
+			
+			, success:function(data){
+				if (data.code == 100) {
+					alert("스토어에 등록되었습니다.");
+					location.href="/admin/product/list_view";
+				} else {
+					alert(data.errorMessage);
+				}
+			}
+			, error:function(data){
+				alert("ERROR");
+			}	
+		}); // ajax - end
+			
+	});// uploadBtn - click - end
 	
 	
 });
