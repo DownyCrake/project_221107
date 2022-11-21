@@ -22,7 +22,7 @@
 		<ul class="list-group mt-4">
 			<li  class="list-group-item btn"><a href="#">주문관리</a></li>
 			<li  class="list-group-item btn"><a href="/admin/product/list_view">제품관리</a></li>
-			<li  class="list-group-item btn"><a href="/admin/store/list_view">스토어</a></li>
+			<li  class="list-group-item btn"><a href="/admin/store/update_view">스토어</a></li>
 			<li  class="list-group-item btn"><a href="#">q&a</a></li>
 		</ul>
 	</div>

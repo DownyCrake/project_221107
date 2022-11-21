@@ -15,5 +15,7 @@ public interface ProductImageDAO {
 	public void insertProductImageByProductId(
 			@Param("productId") int productId
 			, @Param("imagePathList") List<String> imagePathList);
+	
+	public void deleteProductImageByProductId(int productId);
 
 }

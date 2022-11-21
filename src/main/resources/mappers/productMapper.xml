@@ -62,19 +62,21 @@
  	LIMIT 1
  </select>
  
- <select id="selectProductByProductId" resultType="com.project.product.model.Product">
- 	SELECT 
- 		`id`
-		, `productName`
-		, `price`
-		, `category`
-		, `content`
-		, `imagePath`
- 	FROM
- 		`product`
- 	WHERE
- 		`id` = #{id}
- </select>
+ <select id="selectProductByProductId" parameterType="int" resultType="com.project.product.model.Product">
+  	SELECT
+  		`id`,
+		`productName`,
+		`price`,
+		`category`,
+		`content`,
+		`imagePath`,
+		`createdAt`,
+		`updatedAt`
+	FROM
+		`product`
+	WHERE
+		`id` = #{productId}
+  </select>
  
  <update id="updateProductById" parameterType="map">
  	UPDATE `product`
@@ -136,5 +138,6 @@
 		`id` = #{productId}
 				  
   </update>
+
   
  </mapper>

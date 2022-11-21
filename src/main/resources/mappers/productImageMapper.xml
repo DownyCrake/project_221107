@@ -15,7 +15,7 @@
 		`productId` = #{productId}
  </select>
  
- <insert id="updateProductImageByProductId" parameterType="Map">
+ <insert id="insertProductImageByProductId" parameterType="Map">
 
  	INSERT	
  	INTO `product_image`
@@ -26,13 +26,19 @@
  	)
  	
  	VALUES
- 		<foreach item="item" index="index" collection="java.util.List" separator=" , ">
+ 		<foreach item="item" collection="imagePathList" separator=" , ">
  	(
- 		#{item.productId},
- 		#{item.imagePath},
+ 		#{productId},
+ 		#{item},
  		NOW()
  	)	
 	</foreach>
  </insert>
  
+ <delete id="deleteProductImageByProductId" parameterType="int">
+ 	DELETE	
+ 	FROM `product_image`
+ 	WHERE 
+ 		`productId` = #{productId}
+ </delete>
  </mapper>

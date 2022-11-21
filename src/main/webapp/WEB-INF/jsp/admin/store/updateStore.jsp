@@ -21,7 +21,7 @@
 
 <div class="container bg-light">
 	<div class="mt-5">
-		<h2><b>제품 소개 페이지 생성</b></h2>
+		<h2><b>제품 소개 페이지 관리</b></h2>
 		<div class="mt-5">
 			<form>
 				<div class="d-flex m-3"><span class="col-3"><h3>제품명</h3></span>
@@ -37,11 +37,11 @@
 				</div>
 				<div class="d-flex justify-content-between">
 					<div>
-						<a href="/admin/store/list_view"
+						<a href="/admin/main_view"
 						class="btn btn-secondary text-white m-3">목록</a>
 					</div>
 					<div>
-						<button class="btn btn-primary text-white m-3" id="uploadBtn" >상품 등록</button>
+						<button type="button" class="btn btn-primary text-white m-3" id="uploadBtn" >확인</button>
 					</div>
 				</div>
 			</form>
@@ -86,12 +86,12 @@ $(document).ready(function(){
 			, success:function(data){
 				if (data.code == 100) {
 					alert("스토어에 등록되었습니다.");
-					location.href="/admin/product/list_view";
+					location.href="/admin/main_view";
 				} else {
-					alert(data.errorMessage);
+					alert("에러. 관리자에게 문의해주세요.");
 				}
 			}
-			, error:function(data){
+			, error:function(){
 				alert("ERROR");
 			}	
 		}); // ajax - end

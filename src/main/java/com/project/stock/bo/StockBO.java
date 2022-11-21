@@ -29,5 +29,4 @@ public class StockBO {
 	public int deleteStockByStockId(int stockId) {
 		return stockDAO.deleteStockByStockId(stockId);
 	}
-	
 }

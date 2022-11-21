@@ -29,6 +29,10 @@ public class ProductImageBO {
 		return productImageDAO.getProductImageByProductId(productId);
 	}
 	
+	public void deleteProductImageByProductId(int productId) {
+		productImageDAO.deleteProductImageByProductId(productId);
+	}
+
 	public void addProductImageByProductId(int productId, List<MultipartFile> files) {
 		List<ProductImage> productimageList = getProductImageByProductId(productId);
 		if (productimageList == null) {
@@ -39,13 +43,15 @@ public class ProductImageBO {
 		for (MultipartFile file : files ) {
 			imagePath = fileManagerService.saveFileAdmin(file);
 			imagePathList.add(imagePath);
-			if (imagePath != null && productimageList != null) {
-				for (ProductImage productimage:productimageList ) {
-					fileManagerService.deleteFile(productimage.getImagePath());
-				}
 			}
-
+		if (imagePathList != null && productimageList != null) {
+			for (ProductImage productimage:productimageList ) {
+				fileManagerService.deleteFile(productimage.getImagePath());
+			}
+			deleteProductImageByProductId(productId);
 		}
 		productImageDAO.insertProductImageByProductId(productId, imagePathList);
 	}
+	
+	
 }

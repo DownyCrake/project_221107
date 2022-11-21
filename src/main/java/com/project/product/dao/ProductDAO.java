@@ -40,4 +40,5 @@ public interface ProductDAO {
 	public int updateProductContentByProductId(
 			@Param("productId")int productId
 			, @Param("content") String content);
+	
 }

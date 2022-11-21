@@ -6,16 +6,17 @@
 	
 	<div class="d-flex flex-wrap">
 		<c:forEach items="${productList}" var="product">
-			<div class="product-list-items-div w-25 text-center">
-				<div>
-					<a href="/store/product_detail?productId=${product.id}">
-						<img src="${product.imagePath }" alt="제품 썸네일" width="100%">
-					</a>
-				</div>
+			<div class="product-list-items-div w-25 text-center d-flex flex-column-reverse">
 				<div class="items-description-div ">
 					<span>${product.productName}</span><br>
 					<span>${product.price }원</span>
 				</div>
+				<div>
+					<a href="/store/product_view?productId=${product.id}">
+						<img src="${product.imagePath }" alt="제품 썸네일" width="100%">
+					</a>
+				</div>
+
 			</div>
 		</c:forEach>	
 	</div>

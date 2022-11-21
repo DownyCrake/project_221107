@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.project.product.bo.ProductBO;
 import com.project.product.model.Product;
+import com.project.store.bo.StoreBO;
 
 @RequestMapping("/store")
 @Controller
@@ -19,6 +20,9 @@ public class StoreController {
 	
 	@Autowired
 	private ProductBO productBO;
+	
+	@Autowired
+	private StoreBO storeBO;
 	
 	@RequestMapping("/product_list_view")
 	public String productListView(HttpSession session,
@@ -30,6 +34,18 @@ public class StoreController {
 		model.addAttribute("productList",productList);
 		model.addAttribute("viewName","store/listView");
 		return "/template/layout";
+	}
+	
+	@RequestMapping("/product_view")
+	public String productDetailView(int productId,
+			HttpSession session,
+			Model model) {
+		StoreView storeView = storeBO.getStoreViewByProductId(productId);
+		
+		model.addAttribute("storeView",storeView);
+		model.addAttribute("viewName","store/productView");
+		return "/template/layout";
+
 	}
 
 	

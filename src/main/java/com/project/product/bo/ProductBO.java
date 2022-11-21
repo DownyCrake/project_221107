@@ -108,4 +108,6 @@ public class ProductBO {
 		}
 		return productDAO.updateProductContentByProductId(productId, content);
 	}
+	
+
 }

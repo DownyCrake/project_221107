@@ -16,18 +16,13 @@ public class AdminStoreController {
 	
 	@Autowired
 	private ProductBO productBO;
-	
-	@RequestMapping("/list_view")
-	public String IntroductionListView() {
-		
-		return "/admin/store/storeList";
-	}
-	
+
 	@RequestMapping("/update_view")
-	public String CreateIntroductionView(Model model) {
+	public String UpdateStoreView(Model model) {
 		
 		List<Product> productList = productBO.getProductNameAndId();
 		model.addAttribute("productList",productList);
 		return "/admin/store/updateStore";
 	}
+	
 }
