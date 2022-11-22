@@ -106,6 +106,7 @@ public class ProductBO {
 			log.warn("[update post] 수정할 메모가 존재하지 않습니다.");
 			return 0;
 		}
+		
 		return productDAO.updateProductContentByProductId(productId, content);
 	}
 	

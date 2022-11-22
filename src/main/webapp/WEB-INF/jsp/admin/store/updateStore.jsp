@@ -65,7 +65,7 @@ $(document).ready(function(){
 	$('#uploadBtn').on('click', function() {
 		
 		let productId = $('select[name=productName]').val();
-		let content = $('#content').val().trim();
+		let content = $('#content').val().replace(/\n/g, "<br>");
 		
 		let formData = new FormData();
 		

@@ -24,7 +24,7 @@ public class AdminStoreRestController {
 	public Map<String, Object> updateStore(
 			@RequestParam("productId") int productId,
 			@RequestParam("content") String content,
-			@RequestParam("images") List<MultipartFile> files){
+			@RequestParam(value="images", required=false) List<MultipartFile> files){
 		Map<String, Object> result = new HashMap<>();
 		
 		storeBO.updateStoreByProductId(productId, content, files);
