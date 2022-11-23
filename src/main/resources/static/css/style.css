@@ -36,5 +36,8 @@ main {min-height:500px;}
 
 #storeProductTopImgDiv {max-width:800px;}	  
 #storeProductImgsDiv {max-width:1000px;}
-#addCartBtn {width:100%; 
+#storeCount {width:20px; font-size:10pt; border:none;}
+#storeCount:focus {outline: none;} 
+.count-box a {color:black;}
+.store-btn {width:100%; 
 	border:1px solid;}

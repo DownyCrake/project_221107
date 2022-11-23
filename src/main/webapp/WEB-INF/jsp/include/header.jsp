@@ -19,10 +19,10 @@
       		<a class="nav-link dropdown-toggle" data-toggle="dropdown" id="navbarDropdown" role="button">Store</a>
       			<ul class="dropdown-menu"  aria-labelledby="navbarDropdown">
       				 <li><a class="dropdown-item" href="/store/product_list_view">New arrivals</a></li>
-      				 <li><a class="dropdown-item" href="#">Outwear</a></li>  <!-- 카테고리 숫자로 넘김 -->
-		            <li><a class="dropdown-item" href="#">Tops</a></li>
-		            <li><a class="dropdown-item" href="#">Bottoms</a></li>
-		            <li><a class="dropdown-item" href="#">Accessories</a></li>
+      				 <li><a class="dropdown-item" href="/store/product_list_view?category=1">Outwear</a></li>  <!-- 카테고리 숫자로 넘김 -->
+		            <li><a class="dropdown-item" href="/store/product_list_view?category=2">Tops</a></li>
+		            <li><a class="dropdown-item" href="/store/product_list_view?category=3">Bottoms</a></li>
+		            <li><a class="dropdown-item" href="/store/product_list_view?category=4">Accessories</a></li>
       			</ul> 
       	</li>
       	      	<li class="nav-item dropdown">
