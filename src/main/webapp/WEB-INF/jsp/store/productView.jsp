@@ -4,29 +4,29 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <div>
 	
-	<div class="d-flex" id="topDiv">
+	<div class="d-flex " id="topDiv">
 
-		<div class="d-flex justify-content-end col-7" id="topImgDiv" >
+		<div class="d-flex justify-content-end col-7 " id="topImgDiv" >
 			<div id="storeProductTopImgDiv">
 				<img src="${storeView.product.imagePath }" width=100% alt="제품 대표 이미지">
 			</div>
 		</div>
 		
-		<div >
+		<div class="col-5 " id="topContentDiv">
 			<div class="mt-3 "><b>${storeView.product.productName }</b></div>  <!-- 제품명 -->
 			<div><span> <fmt:formatNumber value="${storeView.product.price}" type="number"/> KRW</span> </div> <!-- 가격 -->
 			<div class="mt-3 mb-3">	<!-- 사이즈 선택 -->
 			<select id="stockSelect" class="w-100">
 				<option selected disabled value="none">옵션 선택</option>
 					<c:forEach items="${storeView.stockList}" var="stock">	
-				<option value="${stock.quantity}">${stock.size}</option>
+				<option value="${stock.quantity}" data-stock-id ="${stock.id}">${stock.size}</option>
 				</c:forEach>
 			</select>
 			</div>
 			
-				<div class="d-none count-box">       <!-- 수량 선택 박스 -->
+				<div class="d-none count-box mr-2">       <!-- 수량 선택 박스 -->
 				<div class="d-flex justify-content-between">
-					<span  id="totalPrice"></span>
+					<span id="totalPrice"> </span> 
 					<div>
 						<a href="#" id="minusBtn"><span>-</span></a> 
 						<input id="storeCount" type="text" maxlength="1" value=1 class="ml-1"> 
@@ -36,7 +36,7 @@
 				</div>
 				
 				<div>
-					<button type="button" class="store-btn" id="addCartBtn">add to cart</button>
+					<button type="button" class="store-btn mt-2" id="addCartBtn">add to cart</button>
 				</div>
 				<c:if test="${not empty userId}">
 				<div>
@@ -68,16 +68,22 @@ $(document).ready(function() {
 		if (innerWidth <= "800")  {
 			$('#topDiv').removeClass('d-flex'); 
 			$('#topImgDiv').removeClass('col-7'); 
+			$('#topContentDiv').removeClass('col-5'); 
 		} else {
 			$('#topDiv').addClass('d-flex'); 
 			$('#topImgDiv').addClass('col-7'); 
+			$('#topContentDiv').addClass('col-5'); 
 		}
 	}; // 화면 조절 -end
 	
+	 let productPrice =  parseInt(${storeView.product.price});
+
 	let quantity = 0;
 	 $('#stockSelect').on('change',function() {  // 사이즈 선택 
 		 if ( $(this).val() != "none") {
 			 quantity = $('#stockSelect option:selected').val();
+			 $('#storeCount').val(1);
+			 $('#totalPrice').text(productPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') + ' KRW');
 			 $('.count-box').removeClass('d-none');  
 			return;
 		} else {
@@ -90,27 +96,54 @@ $(document).ready(function() {
 	 $('#storeCount').on('input',function() {  
 		if ( isNaN($(this).val()) ) {// 수량 조절에 숫자가 아닌 값이 들어왔을때 1로 변경 처리
 			$(this).val(1);
+			 $('#totalPrice').text(productPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') + ' KRW');
 			return; }
+
 	 });
 	 
 	 $('#plusBtn').on('click', function(){ // 플러스 버튼 
 		 let value = parseInt($('#storeCount').val());
 		 if (value < 9) {
 			 $('#storeCount').val(value + 1);
+			 let newprice = productPrice * parseInt($('#storeCount').val());
+			 $('#totalPrice').text(newprice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') + ' KRW');
+			return;
 		 }
+		 
 	 });
 	 
 	 $('#minusBtn').on('click', function(){ // 마이너스 버튼
 		 let value = parseInt($('#storeCount').val());
 		 if (value > 1) {
 			 $('#storeCount').val(value - 1);
+			 let newprice = productPrice * parseInt($('#storeCount').val());
+			 $('#totalPrice').text(newprice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') + ' KRW');
+			return;
 		 }
 	 });
 	 
-	 $('#storeCount').on('propertychange change keyup paste input',function() { 
-		alert('숫자변경');		 
+	 $('#storeCount').on('propertychange change keyup paste input',function() {
+		 let newprice = productPrice * parseInt($('#storeCount').val());
+		 $('#totalPrice').text(newprice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') + ' KRW');
 		return;
 	 });
+	 
+	 $('#addCartBtn').on('click', function() {
+		 
+		 let count = $('#storeCount').val();
+		 if ( parseInt(count) > parseInt(quantity) ) {
+			 alert('재고:' + quantity);
+			alert('카운트:' + count);
+			 alert("수량 초과");
+			 return;
+		 } 
+		let stockId = $('#stockSelect option:selected').data('stock-id');
+		alert('스톡아이디 :' + stockId);
+		alert('카운트:' + count);
+		return;
+		 
+	 }); // buynow - click- end
+	 
 
 }); // ready
 </script>
