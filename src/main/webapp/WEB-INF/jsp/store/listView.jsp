@@ -8,7 +8,7 @@
 	
 	<div class="d-flex flex-wrap">
 		<c:forEach items="${productList}" var="product">
-			<div class="product-list-items-div w-25 text-center d-flex flex-column-reverse">
+			<div class="product-list-items-div w-25 p-1 text-center d-flex flex-column-reverse">
 				<div class="items-description-div ">
 					<span>${product.productName}</span><br>
 					<span> <fmt:formatNumber value="${product.price}" type="number"/> KRW</span>

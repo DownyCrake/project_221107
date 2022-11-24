@@ -45,5 +45,10 @@ public class UserController {
 		return "redirect:/main_view";
 	}
 
+	@RequestMapping("order_view")
+	public String orderView(HttpSession session, Model model) {
+		
+		return "";
+	}
 
 }

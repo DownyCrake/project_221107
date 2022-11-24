@@ -12,9 +12,11 @@
 			</div>
 		</div>
 		
-		<div class="col-5 " id="topContentDiv">
+		<div class="col-4" id="topContentDiv">
 			<div class="mt-3 "><b>${storeView.product.productName }</b></div>  <!-- 제품명 -->
 			<div><span> <fmt:formatNumber value="${storeView.product.price}" type="number"/> KRW</span> </div> <!-- 가격 -->
+			
+			<form method="post" action="/user/order_view">
 			<div class="mt-3 mb-3">	<!-- 사이즈 선택 -->
 			<select id="stockSelect" class="w-100">
 				<option selected disabled value="none">옵션 선택</option>
@@ -28,9 +30,9 @@
 				<div class="d-flex justify-content-between">
 					<span id="totalPrice"> </span> 
 					<div>
-						<a href="#" id="minusBtn"><span>-</span></a> 
+						<a href="#" id="minusBtn" class="fix"><span>-</span></a> 
 						<input id="storeCount" type="text" maxlength="1" value=1 class="ml-1"> 
-						<a href="#" id="plusBtn"><span>+</span></a> 				
+						<a href="#" id="plusBtn" class="fix"><span>+</span></a> 				
 					</div>
 				</div>
 				</div>
@@ -43,6 +45,7 @@
 					<button type="button" class="store-btn mt-2" id="buyNowBtn">buy now</button>
 				</div>
 				</c:if>
+			</form>
 			
 			<div>${storeView.product.content }</div>
 		</div>
@@ -68,13 +71,17 @@ $(document).ready(function() {
 		if (innerWidth <= "800")  {
 			$('#topDiv').removeClass('d-flex'); 
 			$('#topImgDiv').removeClass('col-7'); 
-			$('#topContentDiv').removeClass('col-5'); 
+			$('#topContentDiv').removeClass('col-4'); 
 		} else {
 			$('#topDiv').addClass('d-flex'); 
 			$('#topImgDiv').addClass('col-7'); 
-			$('#topContentDiv').addClass('col-5'); 
+			$('#topContentDiv').addClass('col-4'); 
 		}
 	}; // 화면 조절 -end
+	
+	$(".fix").click(function(e) {	// 스크롤 방지 코드 
+			e.preventDefault();
+	});
 	
 	 let productPrice =  parseInt(${storeView.product.price});
 
@@ -128,20 +135,31 @@ $(document).ready(function() {
 		return;
 	 });
 	 
-	 $('#addCartBtn').on('click', function() {
+	 $('#addCartBtn').on('click', function(e) {
 		 
 		 let count = $('#storeCount').val();
-		 if ( parseInt(count) > parseInt(quantity) ) {
-			 alert('재고:' + quantity);
-			alert('카운트:' + count);
-			 alert("수량 초과");
+		 if ( parseInt(count) > parseInt(quantity) || parseInt(count) > 9 ) {
+			 //alert('재고:' + quantity);
+			//alert('카운트:' + count);
+			 alert("구매 가능 개수 초과");
+			 return;
+		 } else if (parseInt(count)  < 1) {
+			 alert('구매 개수을 확인해주세요');
 			 return;
 		 } 
-		let stockId = $('#stockSelect option:selected').data('stock-id');
-		alert('스톡아이디 :' + stockId);
-		alert('카운트:' + count);
-		return;
 		 
+		let stockId = $('#stockSelect option:selected').data('stock-id');
+		//alert('스톡아이디 :' + stockId);
+		//alert('카운트:' + count);
+		let productId = ${storeView.product.id};
+		
+		let formData = new FormData();
+		formData.append("productId",productId);
+		formData.append("stockId",stockId);
+		formData.append("count",count);
+		
+		
+		return;		 
 	 }); // buynow - click- end
 	 
 
