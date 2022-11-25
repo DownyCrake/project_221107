@@ -43,9 +43,9 @@ public class AdminStockRestController {
 	public Map<String, Object> updateStock(
 			 @RequestParam("stockId") int stockId
 			, @RequestParam("quantity") int quantity){
-		
+
 		Map<String, Object> result = new HashMap<>();
-		int row = stockBO.updateStockByStockId(quantity, quantity);
+		int row = stockBO.updateStockByStockId(stockId, quantity);
 		if (row > 0) {
 			result.put("code", 100);
 		} else {

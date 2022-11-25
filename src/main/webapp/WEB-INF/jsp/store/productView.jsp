@@ -16,12 +16,22 @@
 			<div class="mt-3 "><b>${storeView.product.productName }</b></div>  <!-- 제품명 -->
 			<div><span> <fmt:formatNumber value="${storeView.product.price}" type="number"/> KRW</span> </div> <!-- 가격 -->
 			
-			<form method="post" action="/user/order_view">
+			<form id="buyNowForm" method="post" action="/order/order_view"> <!--  ///////////FORM 영역///////////// -->
+			<input type="hidden" name="orderViewList[0].productId" value="${storeView.product.id}">
 			<div class="mt-3 mb-3">	<!-- 사이즈 선택 -->
-			<select id="stockSelect" class="w-100">
+			<select id="stockSelect" name="orderViewList[0].stockId" class="w-100">
 				<option selected disabled value="none">옵션 선택</option>
 					<c:forEach items="${storeView.stockList}" var="stock">	
-				<option value="${stock.quantity}" data-stock-id ="${stock.id}">${stock.size}</option>
+					
+					<c:choose>
+					<c:when test="${stock.quantity lt 1}" >      
+				<option  disabled class="text-secondary"> ${stock.size}  [품절]</option>
+					</c:when>
+					<c:otherwise>
+				<option  data-stock-quantity="${stock.quantity}" value ="${stock.id}">${stock.size}</option>
+					</c:otherwise>
+					</c:choose>
+				
 				</c:forEach>
 			</select>
 			</div>
@@ -31,7 +41,7 @@
 					<span id="totalPrice"> </span> 
 					<div>
 						<a href="#" id="minusBtn" class="fix"><span>-</span></a> 
-						<input id="storeCount" type="text" maxlength="1" value=1 class="ml-1"> 
+						<input id="storeCount" name="orderViewList[0].count" type="text" maxlength="1" value=1 class="ml-1"> 
 						<a href="#" id="plusBtn" class="fix"><span>+</span></a> 				
 					</div>
 				</div>
@@ -40,12 +50,12 @@
 				<div>
 					<button type="button" class="store-btn mt-2" id="addCartBtn">add to cart</button>
 				</div>
-				<c:if test="${not empty userId}">
+				<%-- <c:if test="${not empty userId}"> --%>
 				<div>
-					<button type="button" class="store-btn mt-2" id="buyNowBtn">buy now</button>
+					<button type="submit" class="store-btn mt-2" id="buyNowBtn">buy now</button>
 				</div>
-				</c:if>
-			</form>
+				<%-- </c:if> --%>
+			</form>								<!--  ///////////FORM 영역///////////// -->
 			
 			<div>${storeView.product.content }</div>
 		</div>
@@ -84,11 +94,16 @@ $(document).ready(function() {
 	});
 	
 	 let productPrice =  parseInt(${storeView.product.price});
-
+	 
+	 function countPrice(){
+		 let newprice = productPrice * parseInt($('#storeCount').val());
+		 $('#totalPrice').text(newprice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') + ' KRW');
+	 };
+	
 	let quantity = 0;
 	 $('#stockSelect').on('change',function() {  // 사이즈 선택 
 		 if ( $(this).val() != "none") {
-			 quantity = $('#stockSelect option:selected').val();
+			 quantity = $('#stockSelect option:selected').data('stock-quantity');
 			 $('#storeCount').val(1);
 			 $('#totalPrice').text(productPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') + ' KRW');
 			 $('.count-box').removeClass('d-none');  
@@ -103,7 +118,7 @@ $(document).ready(function() {
 	 $('#storeCount').on('input',function() {  
 		if ( isNaN($(this).val()) ) {// 수량 조절에 숫자가 아닌 값이 들어왔을때 1로 변경 처리
 			$(this).val(1);
-			 $('#totalPrice').text(productPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') + ' KRW');
+			countPrice();
 			return; }
 
 	 });
@@ -112,8 +127,7 @@ $(document).ready(function() {
 		 let value = parseInt($('#storeCount').val());
 		 if (value < 9) {
 			 $('#storeCount').val(value + 1);
-			 let newprice = productPrice * parseInt($('#storeCount').val());
-			 $('#totalPrice').text(newprice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') + ' KRW');
+			 countPrice();
 			return;
 		 }
 		 
@@ -123,43 +137,29 @@ $(document).ready(function() {
 		 let value = parseInt($('#storeCount').val());
 		 if (value > 1) {
 			 $('#storeCount').val(value - 1);
-			 let newprice = productPrice * parseInt($('#storeCount').val());
-			 $('#totalPrice').text(newprice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') + ' KRW');
-			return;
+			 countPrice();
+			return false;
 		 }
 	 });
 	 
 	 $('#storeCount').on('propertychange change keyup paste input',function() {
-		 let newprice = productPrice * parseInt($('#storeCount').val());
-		 $('#totalPrice').text(newprice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') + ' KRW');
-		return;
+		countPrice();
+		return false;
 	 });
 	 
-	 $('#addCartBtn').on('click', function(e) {
+	 $('#buyNowForm').on('submit', function(e) {
 		 
 		 let count = $('#storeCount').val();
 		 if ( parseInt(count) > parseInt(quantity) || parseInt(count) > 9 ) {
 			 //alert('재고:' + quantity);
 			//alert('카운트:' + count);
 			 alert("구매 가능 개수 초과");
-			 return;
+			 return false;
 		 } else if (parseInt(count)  < 1) {
 			 alert('구매 개수을 확인해주세요');
-			 return;
+			 return false;
 		 } 
-		 
-		let stockId = $('#stockSelect option:selected').data('stock-id');
-		//alert('스톡아이디 :' + stockId);
-		//alert('카운트:' + count);
-		let productId = ${storeView.product.id};
 		
-		let formData = new FormData();
-		formData.append("productId",productId);
-		formData.append("stockId",stockId);
-		formData.append("count",count);
-		
-		
-		return;		 
 	 }); // buynow - click- end
 	 
 
