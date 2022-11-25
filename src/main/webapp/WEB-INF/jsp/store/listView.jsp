@@ -10,7 +10,8 @@
 		<c:forEach items="${productList}" var="product">
 			<div class="product-list-items-div w-25 p-1 text-center d-flex flex-column-reverse">
 				<div class="items-description-div ">
-					<span>${product.productName}</span><br>
+					<a href="/store/product_view?productId=${product.id}">
+					<span>${product.productName}</span><br></a>
 					<span> <fmt:formatNumber value="${product.price}" type="number"/> KRW</span>
 				</div>
 				<div>
