@@ -9,6 +9,7 @@
 <div class="d-flex justify-content-center">
 	<div class="cart-div mt-5 pt-5 col-6">
 		<h1>Cart</h1>
+			<form method="post" action="/order/order_view" >
 		<table class="table border-bottom text-center mt-5 cart-table">
 			<thead>
 				<tr>
@@ -25,8 +26,8 @@
 			<tbody>
 				<c:forEach items="${cartList}" var="cart" varStatus="status">
 					<tr>
-						<td><input type="checkbox" value="${cart.cartId}"></td>
-						<td><img src="${cart.imagePath}" alt="상품 이미지"
+						<td><input type="checkbox" name="cartId" value="${cart.cartId}"></td>
+						<td class="p-0"><img src="${cart.imagePath}" alt="상품 이미지"
 							class="cart-thumbnail"></td>
 						<td>${cart.productName}</td>
 						<td>${cart.size}</td>
@@ -44,8 +45,9 @@
 			</tbody>
 		</table>
 		<div>
-			<button type="button" class="cart-oder-btn mt-5">주문하기</button>
+			<button type="submit" class="cart-oder-btn mt-5">주문하기</button>
 		</div>
+			</form>
 	</div>
 </div>
 
@@ -86,7 +88,6 @@
 			    return;
 			} else {
 				let cartId = $(this).data('cart-id');
-				alert(cartId);
 				
 				$.ajax({
 					type:'delete'
@@ -105,7 +106,7 @@
 		}); // delete btn -end
 		
 		
-		
+					
 		
 	}); // ready-end
 </script>

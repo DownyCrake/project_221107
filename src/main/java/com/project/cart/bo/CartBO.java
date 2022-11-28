@@ -62,12 +62,16 @@ public class CartBO {
 			cartView.setPrice(productBO.getPriceByProductId(productId));
 			cartView.setImagePath(productBO.getImagePathByProductId(productId));
 			cartView.setSize(stockBO.getSizeByStockId(stockId));
-			cartView.setQuantity(stockBO.getQuantityByByStockId(stockId));
+			cartView.setQuantity(stockBO.getQuantityByStockId(stockId));
 			
 			cartViewList.add(cartView);
 		}
 		
 		return cartViewList;
+	}
+	
+	public Cart getProductIdAndStockIdAndCountByCartId(int cartId) {
+		return cartDAO.selectProductIdAndStockIdAndCountByCartId(cartId);
 	}
 	
 }

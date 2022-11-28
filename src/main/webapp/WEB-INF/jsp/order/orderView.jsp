@@ -2,8 +2,10 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<div>
+<div class="">
+<h1>스톡아이디 : ${orders.orderViewList[0].stockId}</h1>
+	<div>
 
-<h1>스톡아이디 : ${orderModel.orderViewList[0].stockId}</h1>
 
+	</div>
 </div>

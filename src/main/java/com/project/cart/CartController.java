@@ -29,6 +29,7 @@ public class CartController {
 		List<CartView> cartList = cartBO.generateCartView(userId); 
 		
 		model.addAttribute("cartList",cartList); }
+		
 		model.addAttribute("viewName","/cart/cartView");
 		return "/template/layout";
 	}

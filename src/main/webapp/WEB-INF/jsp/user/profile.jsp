@@ -40,8 +40,29 @@
 			</div>	
 			<small class="text-danger">&nbsp</small>
 			<button type="submit" id="save" class="btn btn-block text-secondary" data-user-id="${user.id}">저장</button>
-	</div>
 	
+	<table border="1">
+        <tr>
+            <td width="200">우편번호</td>
+            <td><input type="text" name="zipcode" id="zipcode" size="7"
+                readonly> 
+                <input type="button" value="우편번호찾기"
+                id="findAddressBtn"></td>
+        </tr>
+        <tr>
+            <td>주소</td>
+            <td><input type="text" name="address1" id="address1" size="70" readonly>
+                </td>
+               
+        </tr>
+        <tr>
+        <td>상세주소</td>
+        <td><input type="text" name="address2" id="address2" size="70">
+        </td>
+        </tr>
+    </table>
+	
+	</div>
 </div>
 
 <script>
@@ -49,6 +70,22 @@ $(document).ready(function() {
 	let passCheck = RegExp(/^(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9]|.*[0-9]).{8,24}$/);	// 대소문자+숫자+특수문자 8~24 
 	let phoneCheck = RegExp(/^(0[2-8][0-5]?|01[01346-9])-?([1-9]{1}[0-9]{2,3})-?([0-9]{4})$/);	// 전화번호 정규식 
 	let emailCheck = RegExp(/^[a-zA-Z0-9+-_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/); // 이메일 정규식
+	
+    function findAddress() {
+		new daum.Postcode({
+        	oncomplete: function(data) {
+	            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분입니다.
+	            // 예제를 참고하여 다양한 활용법을 확인해 보세요.
+	        	 document.querySelector("#zipcode").value = data.zonecode;
+	             document.querySelector("#address1").value =  data.address;
+        	}
+    	}).open();
+	};
+	
+	$('#findAddressBtn').on('click', function() {
+		findAddress();
+	});
+	
 	
 	$('#password').blur(function() {
 		let password = $("#password").val().trim();
@@ -82,6 +119,7 @@ $(document).ready(function() {
 			passwordSubmit = false;}
 		}
 	}); // 패스워드 체크
+	
 	
 	$('#save').on('click', function() {
 		let userId = $(this).data('user-id');

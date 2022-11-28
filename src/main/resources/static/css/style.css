@@ -33,6 +33,7 @@ main {min-height:500px;}
 	
 .product-list-items-div {border:none;  
 	  aspect-ratio: 9/15; }
+.product-list-items-div a{color:black;}
 
 #storeProductTopImgDiv {max-width:800px;}	  
 #storeProductImgsDiv {max-width:1000px;}
@@ -44,7 +45,7 @@ main {min-height:500px;}
 
 .cart-div {min-width:600px; min-height:500px;}
 .cart-div .fix {color:black;}
-.cart-thumbnail {max-height:30px; }
+.cart-thumbnail {max-height:50px; }
 .oder-delete-btn {border:1px solid; background-color:white;}
 .cart-oder-btn {width:100%; 
 	border:1px solid;}

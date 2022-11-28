@@ -57,4 +57,15 @@
 
 </delete>
 
+<select id="selectProductIdAndStockIdAndCountByCartId" parameterType="int" resultType="com.project.cart.model.Cart">
+	SELECT
+		`productId`
+		,`stockId`
+		,`count`
+	FROM 
+		`cart`
+	WHERE
+		`id` = #{cartId} 
+</select>
+
 </mapper>

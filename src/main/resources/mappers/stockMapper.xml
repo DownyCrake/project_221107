@@ -63,7 +63,7 @@
  		`id` = #{stockId}
  </select>
  
-  <select id="selectQuantityByByStockId" parameterType="int" resultType="int">
+  <select id="selectQuantityByStockId" parameterType="int" resultType="int">
  	SELECT
  		`quantity`
  	FROM

@@ -16,7 +16,7 @@
 			<div class="mt-3 "><b>${storeView.product.productName }</b></div>  <!-- 제품명 -->
 			<div><span> <fmt:formatNumber value="${storeView.product.price}" type="number"/> KRW</span> </div> <!-- 가격 -->
 			
-			<form id="buyNowForm" method="post" action="/order/order_view"> <!--  ///////////FORM 영역///////////// -->
+			<form id="buyNowForm" method="post" action="/order/order_view" data-user-id="${userId}"> <!--  ///////////FORM 영역///////////// -->
 			<input type="hidden" name="orderViewList[0].productId" value="${storeView.product.id}">
 			<div class="mt-3 mb-3">	<!-- 사이즈 선택 -->
 			<select id="stockSelect" name="orderViewList[0].stockId" class="w-100">
@@ -52,7 +52,7 @@
 				</div>
 				<%-- <c:if test="${not empty userId}"> --%>
 				<div>
-					<button type="submit" class="store-btn mt-2" id="buyNowBtn" data-user-id="${userId}" >buy now</button>
+					<button type="submit" class="store-btn mt-2" id="buyNowBtn"  >buy now</button>
 				</div>
 				<%-- </c:if> --%>
 			</form>								<!--  ///////////FORM 영역///////////// -->
@@ -167,7 +167,6 @@ $(document).ready(function() {
 		 } 
 
 		 let userId = $(this).data('user-id');
-
 		 if (userId == null) {
 			 alert("로그인해주세요");
 			 return false;
@@ -197,6 +196,7 @@ $(document).ready(function() {
 			 return false;
 		 }
 		 
+
 		 if (userId == null) {
 			 alert("로그인해주세요");
 			 return false;

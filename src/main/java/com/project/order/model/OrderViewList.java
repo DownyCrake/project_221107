@@ -6,7 +6,18 @@ public class OrderViewList {
 
 	private List<OrderView> orderViewList;
 
+	private List<Integer> cartId;
 	
+	
+	
+	public List<Integer> getCartId() {
+		return cartId;
+	}
+
+	public void setCartId(List<Integer> cartId) {
+		this.cartId = cartId;
+	}
+
 	public List<OrderView> getOrderViewList() {
 		return orderViewList;
 	}

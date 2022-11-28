@@ -26,6 +26,6 @@ public interface StockDAO {
 	
 	public String selectSizeByStockId(int stockId);
 	
-	public int selectQuantityByByStockId(int stockId);
+	public int selectQuantityByStockId(int stockId);
 	
 }

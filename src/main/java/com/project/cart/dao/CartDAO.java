@@ -22,4 +22,5 @@ public interface CartDAO {
 	
 	public void deleteCart(int cartId);
 	
+	public Cart selectProductIdAndStockIdAndCountByCartId(int cartId);
 }

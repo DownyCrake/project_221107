@@ -34,8 +34,9 @@ public class StockBO {
 		return stockDAO.selectSizeByStockId(stockId);
 	}
 	
-	public int getQuantityByByStockId(int stockId) {
-		return stockDAO.selectQuantityByByStockId(stockId); 
+	public int getQuantityByStockId(int stockId) {
+		return stockDAO.selectQuantityByStockId(stockId); 
 	}
+	
 	
 }
