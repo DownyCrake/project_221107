@@ -13,7 +13,7 @@
 		<table class="table border-bottom text-center mt-5 cart-table">
 			<thead>
 				<tr>
-					<th></th>
+					<th><input type="checkbox" id="checkAllCart"></th>
 					<th></th>
 					<th>상품명</th>
 					<th>옵션</th>
@@ -26,14 +26,14 @@
 			<tbody>
 				<c:forEach items="${cartList}" var="cart" varStatus="status">
 					<tr>
-						<td><input type="checkbox" name="cartId" value="${cart.cartId}"></td>
+						<td><input type="checkbox" name="cartId" class="check-cart" value="${cart.cartId}"></td>
 						<td class="p-0"><img src="${cart.imagePath}" alt="상품 이미지"
 							class="cart-thumbnail"></td>
 						<td>${cart.productName}</td>
 						<td>${cart.size}</td>
 						<td>${cart.price}</td>
 						<td>
-						<a href="#" class="minusBtn fix">-</a> 
+						<a href="#" class="minusBtn fix mr-2">-</a> 
 						<input type="text" value="${cart.count}" class="input-count" maxlength="1" readonly> 
 						<a href="#" class="plusBtn fix" data-quantity="${cart.quantity}">+</a>
 						</td>
@@ -77,6 +77,21 @@
 			let value = parseInt(thisRow.find('td:eq(5)').find('input').val());			
 			if (value > 1) {
 				thisRow.find('td:eq(5)').find('input').val(value - 1);
+				return;
+			}
+		});
+		
+		
+		$('#checkAllCart').on('click', function() {
+			if ($(this).is(':checked')){
+			$('.check-cart').prop("checked", true);
+			return;
+			}
+		});
+		
+		$('.check-cart').on('click',function() {
+			if ($('#checkAllCart').is(':checked') ) {
+				$('#checkAllCart').prop("checked", false);
 				return;
 			}
 		});
