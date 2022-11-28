@@ -40,7 +40,7 @@
 	        	<li class="nav-item"><a class="nav-link" href="/account/mypage_view"> Account</a> </li>
 	        </c:otherwise>
         </c:choose>
-        <li class="nav-item"> <a class="nav-link" href="#"> Cart</a> </li>
+        <li class="nav-item"> <a class="nav-link" href="/cart/cart_view"> Cart</a> </li>
       </ul>
     </div>
   </div>

@@ -41,4 +41,7 @@ public interface ProductDAO {
 			@Param("productId")int productId
 			, @Param("content") String content);
 	
+	public int selectPriceByProductId(int productId);
+	
+	public String selectImagePathByProductId(int productId);
 }

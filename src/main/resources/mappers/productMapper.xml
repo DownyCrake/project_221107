@@ -138,6 +138,27 @@
 		`id` = #{productId}
 				  
   </update>
+  
+    <select id="selectPriceByProductId" parameterType="int" resultType="int">
+  	SELECT
+  		`price`
+  	FROM
+  		`product`
+  	WHERE
+  		`id` = #{productId}
+  
+  </select>
+
+
+    <select id="selectImagePathByProductId" parameterType="int" resultType="String">
+  	SELECT
+  		`imagePath`
+  	FROM
+  		`product`
+  	WHERE
+  		`id` = #{productId}
+  
+  </select>
 
   
  </mapper>

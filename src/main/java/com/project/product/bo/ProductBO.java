@@ -110,5 +110,13 @@ public class ProductBO {
 		return productDAO.updateProductContentByProductId(productId, content);
 	}
 	
-
+	
+	public int getPriceByProductId(int productId) {
+		return productDAO.selectPriceByProductId(productId); 
+	}
+	
+	public String getImagePathByProductId(int productId) {
+		return productDAO.selectImagePathByProductId(productId); 
+	}
+	
 }

@@ -48,11 +48,11 @@
 				</div>
 				
 				<div>
-					<button type="button" class="store-btn mt-2" id="addCartBtn">add to cart</button>
+					<button type="button" class="store-btn mt-2" id="addCartBtn" data-user-id="${userId}" data-product-id="${storeView.product.id}"> add to cart</button>
 				</div>
 				<%-- <c:if test="${not empty userId}"> --%>
 				<div>
-					<button type="submit" class="store-btn mt-2" id="buyNowBtn">buy now</button>
+					<button type="submit" class="store-btn mt-2" id="buyNowBtn" data-user-id="${userId}" >buy now</button>
 				</div>
 				<%-- </c:if> --%>
 			</form>								<!--  ///////////FORM 영역///////////// -->
@@ -147,7 +147,13 @@ $(document).ready(function() {
 		return false;
 	 });
 	 
-	 $('#buyNowForm').on('submit', function(e) {
+
+	 $('#buyNowForm').on('submit', function(e) {  // 바로 구매 form sub 유효성 검사
+
+		 if ($('#stockSelect option:selected').val() == 'none') {
+			 alert("사이즈를 선택해주세요");
+			 return false;
+		 }
 		 
 		 let count = $('#storeCount').val();
 		 if ( parseInt(count) > parseInt(quantity) || parseInt(count) > 9 ) {
@@ -159,9 +165,73 @@ $(document).ready(function() {
 			 alert('구매 개수을 확인해주세요');
 			 return false;
 		 } 
+
+		 let userId = $(this).data('user-id');
+
+		 if (userId == null) {
+			 alert("로그인해주세요");
+			 return false;
+		 }
 		
-	 }); // buynow - click- end
+	 }); // buynow - submit - end
 	 
+	 $('#addCartBtn').on('click', function() {	// 장바구니 넣기 클릭 
+		 
+		 if ($('#stockSelect option:selected').val() == 'none') {
+			 alert("사이즈를 선택해주세요");
+			 return false;
+		 }
+		
+	 	let userId = $(this).data('user-id');
+	 	let productId = $(this).data('product-id');
+	 	let stockId = $('#stockSelect').val();
+	 	let count =  $('#storeCount').val();
+	 	
+		 if ( parseInt(count) > parseInt(quantity) || parseInt(count) > 9 ) {
+			 //alert('재고:' + quantity);
+			//alert('카운트:' + count);
+			 alert("구매 가능 개수 초과");
+			 return false;
+		 } else if (parseInt(count)  < 1) {
+			 alert('구매 개수을 확인해주세요');
+			 return false;
+		 }
+		 
+		 if (userId == null) {
+			 alert("로그인해주세요");
+			 return false;
+		 }
+		 
+		/* alert("유저아이디:" + userId + "프로덕트아이디:" + productId + "스톡아이디:" + stockId + "카운트:" + count);
+		return; */
+		 
+ 		 $.ajax({
+			 type:'POST'
+			 , url:'/cart/add_cart'
+			 , data:{ 'userId':userId, 'productId':productId, 'stockId':stockId, 'count':count}
+			 
+			 , success:function(data){
+ 				 if (data.code == 100) {
+					 if(!confirm("장바구니로 이동하시겠습니까?")){
+						    return false;
+						}else{
+						    location.href="/cart/cart_view";
+						}
+				 }
+				 else {
+					 alert(data.errorMessage);
+				 } 
+			 }
+			 ,error:function(){
+				 alert('에러');
+			 }
+			 
+		 }); // ajax-end 
+		 
+		 
+		 
+		 
+	 });	// addCartBtn - click - end
 
 }); // ready
 </script>

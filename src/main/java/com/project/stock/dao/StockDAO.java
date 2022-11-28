@@ -23,4 +23,9 @@ public interface StockDAO {
 			, @Param("quantity") int quantity);
 	
 	public int deleteStockByStockId(int stockId);
+	
+	public String selectSizeByStockId(int stockId);
+	
+	public int selectQuantityByByStockId(int stockId);
+	
 }

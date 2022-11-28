@@ -29,4 +29,13 @@ public class StockBO {
 	public int deleteStockByStockId(int stockId) {
 		return stockDAO.deleteStockByStockId(stockId);
 	}
+	
+	public String getSizeByStockId(int stockId) {
+		return stockDAO.selectSizeByStockId(stockId);
+	}
+	
+	public int getQuantityByByStockId(int stockId) {
+		return stockDAO.selectQuantityByByStockId(stockId); 
+	}
+	
 }

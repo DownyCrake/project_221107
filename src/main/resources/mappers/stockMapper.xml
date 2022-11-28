@@ -54,4 +54,23 @@
  		`id` = #{stockId}
  </delete>
  
+ <select id="selectSizeByStockId" parameterType="int" resultType="String">
+ 	SELECT
+ 		`size`
+ 	FROM
+ 		`stock`
+ 	WHERE
+ 		`id` = #{stockId}
+ </select>
+ 
+  <select id="selectQuantityByByStockId" parameterType="int" resultType="int">
+ 	SELECT
+ 		`quantity`
+ 	FROM
+ 		`stock`
+ 	WHERE
+ 		`id` = #{stockId}
+ </select>
+ 
+ 
  </mapper>
