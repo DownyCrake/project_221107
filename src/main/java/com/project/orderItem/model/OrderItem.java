@@ -1,4 +1,4 @@
-package com.project.order.model;
+package com.project.orderItem.model;
 
 import java.util.Date;
 
@@ -9,8 +9,16 @@ public class OrderItem {
 	private int stockId;
 	private int count;
 	private int totalPrice;
+	private String state;
 	private Date createdAt;
 	private Date updatedAt;
+	
+	public String getState() {
+		return state;
+	}
+	public void setState(String state) {
+		this.state = state;
+	}
 	public int getId() {
 		return id;
 	}

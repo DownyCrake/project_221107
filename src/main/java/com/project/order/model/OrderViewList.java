@@ -4,7 +4,7 @@ import java.util.List;
 
 public class OrderViewList {
 
-	private List<OrderView> orderViewList;
+	private List<OrderViewData> orderViewList;
 
 	private List<Integer> cartId;
 	
@@ -18,11 +18,11 @@ public class OrderViewList {
 		this.cartId = cartId;
 	}
 
-	public List<OrderView> getOrderViewList() {
+	public List<OrderViewData> getOrderViewList() {
 		return orderViewList;
 	}
 
-	public void setOrderViewList(List<OrderView> orderViewList) {
+	public void setOrderViewList(List<OrderViewData> orderViewList) {
 		this.orderViewList = orderViewList;
 	}
 	

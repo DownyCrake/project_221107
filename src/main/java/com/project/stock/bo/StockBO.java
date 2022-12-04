@@ -38,5 +38,4 @@ public class StockBO {
 		return stockDAO.selectQuantityByStockId(stockId); 
 	}
 	
-	
 }

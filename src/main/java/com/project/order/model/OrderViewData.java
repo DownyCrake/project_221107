@@ -1,6 +1,6 @@
 package com.project.order.model;
 
-public class OrderView {
+public class OrderViewData {
 
 	private int productId;
 	private int stockId;

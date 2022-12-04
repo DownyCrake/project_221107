@@ -27,14 +27,25 @@ public class OrderRestController {
 			OrderData orderdata){
 		
 		Map<String, Object> result = new HashMap<>();
-		Integer userId = (Integer)session.getAttribute("userId");
 		
+		Integer userId = (Integer)session.getAttribute("userId");
 		if (ObjectUtils.isEmpty(userId) == true) {
 			result.put("errorMessage", "로그인이 해제되었습니다.");
 			return result;
 		}
-		
 		orderdata.setUserId(userId);
+		
+		orderBO.orderProcess(orderdata);
+		
+		int row = 0;
+		
+		if (row == 103) {
+			result.put("code", 103);
+			result.put("errorMessage", "구매가능 수량을 초과했습니다.");
+		} else if (row == 100) {
+			result.put("code", 100);
+		}
+		
 		
 		return result;
 	}
