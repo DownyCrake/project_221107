@@ -10,7 +10,6 @@ public class User {
 	private String name;
 	private String phoneNumber;
 	private String email;
-	private String address;
 	private Date createdAt;
 	private Date updatedAt;
 	
@@ -49,12 +48,6 @@ public class User {
 	}
 	public void setEmail(String email) {
 		this.email = email;
-	}
-	public String getAddress() {
-		return address;
-	}
-	public void setAddress(String address) {
-		this.address = address;
 	}
 	public Date getCreatedAt() {
 		return createdAt;

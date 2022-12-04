@@ -9,6 +9,14 @@ public class Product {
 	private int category;
 	private String content;
 	private String imagePath;
+	private boolean exposure;
+	
+	public boolean isExposure() {
+		return exposure;
+	}
+	public void setExposure(boolean exposure) {
+		this.exposure = exposure;
+	}
 	private Date createdAt;
 	private Date updatedAt;
 	

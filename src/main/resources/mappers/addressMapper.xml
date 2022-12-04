@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.project.address.dao.AddressDAO">
+
+<select id="selectAddressListByUserId" parameterType="int" resultType="com.project.address.model.Address">
+	SELECT 
+		`id`
+		,`userId`
+		,`recipient`
+		,`shippingAddress`
+		,`zipcode`
+		,`address1`
+		,`address2`
+		,`phoneNumber`
+		,`createdAt`
+		,`updatedAt`
+	FROM
+		`address`
+	WHERE
+		`userId` = #{userId}
+</select>
+ 
+ <insert id="insertAddress" parameterType="Map">
+ 	INSERT 
+ 	INTO `address`
+ 	(
+ 		`userId`
+		,`recipient`
+		,`shippingAddress`
+		,`zipcode`
+		,`address1`
+		,`address2`
+		,`phoneNumber`
+		,`createdAt`
+		,`updatedAt`
+ 	)
+	VALUES
+	(
+		#{userId}
+		,#{recipient}
+		,#{shippingAddress}
+		,#{zipcode}
+		,#{address1}
+		,#{address2}
+		,#{phoneNumber}
+		,NOW()
+		,NOW()
+	) 	
+ </insert>
+ 
+ <delete id="deleteAddressByAddressId" parameterType="int">
+ 	DELETE FROM `address`
+ 	WHERE
+ 		`id` = #{addressId}
+ </delete>
+ 
+ <select id="selectAddressCountByUserId" parameterType="int" resultType="int">
+ 	SELECT 
+ 		COUNT(*)
+ 	FROM
+ 		`address`
+ 	WHERE
+ 		`userId` = #{userId}
+ </select>
+
+</mapper>

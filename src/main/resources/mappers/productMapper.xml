@@ -33,6 +33,7 @@
 		, `price`
 		, `category`
 		, `imagePath`
+		, `exposure`
 	FROM
 		`product`
 		<if test="direction == null">
@@ -111,8 +112,10 @@
 		,`updatedAt`
 	FROM
 		`product`
+	WHERE
+		`exposure` = 1
 	<if test="category != null">
-		WHERE category = #{category}
+		AND category = #{category}
 	</if>
 	ORDER BY `id` DESC
 	<if test="category == null">
@@ -160,5 +163,13 @@
   
   </select>
 
+	<update id="updateExposureByProductId" parameterType="map">
+	 	UPDATE `product`
+ 	SET
+	 	`exposure` = #{exposure}
+		, `updatedAt` = NOW()
+	WHERE
+		`id` = #{productId}
+	</update>
   
  </mapper>

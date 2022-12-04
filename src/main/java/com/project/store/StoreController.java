@@ -32,7 +32,7 @@ public class StoreController {
 		List<Product> productList = productBO.getProductByCategory(category);
 		
 		model.addAttribute("productList",productList);
-		model.addAttribute("viewName","store/listView");
+		model.addAttribute("viewName","store/storeListView");
 		return "/template/layout";
 	}
 	

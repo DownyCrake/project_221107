@@ -5,6 +5,7 @@
 		<h2 class="text-secondary">My page</h2>
 		<button class="btn btn-block mb-4 mt-5">Order</button>
 		<button id="profileBtn" class="btn btn-block mb-4">Profile</button>
+		<button id="addressBtn" class="btn btn-block mb-4">Address</button>
 		<button class="btn btn-block mb-4">q&A</button>
 		<button class="btn btn-block mb-4">Review</button>
 		<a href="/user/sign_out">
@@ -21,6 +22,10 @@ $(document).ready(function() {
 		return;
 	}); // profile btn- click - end
 	
+	$('#addressBtn').on('click', function() {
+		location.href="/account/address_list_view";
+		return;
+	});
 });//ready
 
 </script>

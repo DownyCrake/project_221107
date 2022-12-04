@@ -8,8 +8,8 @@
 
 <div class="d-flex justify-content-center">
 	<div class="cart-div mt-5 pt-5 col-6">
-		<h1>Cart</h1>
-			<form method="post" action="/order/order_view" >
+		<h1 class="text-secondary">Cart</h1>
+			<form method="post" action="/order/order_view" id="cartForm" >
 		<table class="table border-bottom text-center mt-5 cart-table">
 			<thead>
 				<tr>
@@ -120,8 +120,13 @@
 			}
 		}); // delete btn -end
 		
-		
-					
+		$('#cartForm').on('submit', function() {
+			let row = $('input:checkbox[name=cartId]:checked').length;
+			if (row < 1) {
+				alert('상품을 선택해주세요.');
+			return false;
+			}
+		}); 
 		
 	}); // ready-end
 </script>

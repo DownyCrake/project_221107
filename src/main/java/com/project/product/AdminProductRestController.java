@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -58,5 +59,21 @@ public class AdminProductRestController {
 		
 		return result;
 	}
+	
+	@GetMapping("/update_exposure")
+	public Map<String, Object> updateExposure(
+			@RequestParam("productId") int productId,
+			@RequestParam("exposure") boolean exposure
+			) {
+		Map<String, Object> result = new HashMap<>();
+		int row = productBO.updateExposureByProductId(productId, exposure);
+		if (row > 0 ) {
+			result.put("code", 100);
+		}else {
+			result.put("errorMessamge", "변경에 실패했습니다. 관리자에세 문의해주세요.");
+		}
+		return result;
+	}
+	
 	
 }

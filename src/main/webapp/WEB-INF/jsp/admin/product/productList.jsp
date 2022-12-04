@@ -27,6 +27,7 @@
 					<th>id</th>
 					<th>상품명</th>
 					<th></th>
+					<th></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -35,6 +36,21 @@
 					<td>${product.id }</td>
 					<td><a href="/admin/product/detail_view?productId=${product.id }">${product.productName }</a></td>
 					<td><button class="btn stock-list-btn" data-product-id="${product.id}">재고 수정</button></td>
+					<td class="col-2">
+						<div class="exposure-check-div">
+						검색
+							<c:choose>
+							<c:when test="${product.exposure}">
+							<button type="button" name="exposure" value=false 
+							class="btn exposure-true-or-false-btn btn-success" data-product-id="${product.id}">가능</button> 
+							</c:when>
+							<c:otherwise>
+							<button type="button" name="exposure" value=true 
+							class="btn exposure-true-or-false-btn btn-danger" data-product-id="${product.id}">불가</button> 
+							</c:otherwise>
+							</c:choose>
+						</div>
+					</td>
 				</tr>
 			</c:forEach>
 			</tbody>
@@ -52,7 +68,7 @@
 			<button class="btn btn-block btn-primary text-white m-3" id="productCreateViewBtn">상품 등록</button>  
 		</div>
 	</div>
-
+	
 </div>
 <script>
 $(document).ready(function() {
@@ -67,6 +83,30 @@ $(document).ready(function() {
 		location.href='/admin/stock/detail_view?productId='+productId;
 	});
 	
+	$('.exposure-true-or-false-btn').on('click', function() {  // 검색 노출 확인 취소 체크 
+		let exposure =$(this).val();		
+		let productId = $(this).data('product-id');
+		$.ajax({
+			type:'get'
+			, data:{'productId':productId, 'exposure':exposure}
+			, url:'/admin/product/update_exposure'
+
+ 			, success:function(data) {
+				if (data.code == 100){
+					document.location.reload(true);
+					//$('.exposure-check-div').load(location.href+' .exposure-check-div');   -div만 새로고침시 연속 클릭 버튼 반응 안됨 
+					return;
+					} else {
+					alert(data.errorMessage);
+				}
+			}
+			, error:function() {
+				alert('에러');
+			}
+		});
+	}); //end
+		
+		
 }); //ready -end
 </script>
 </body>

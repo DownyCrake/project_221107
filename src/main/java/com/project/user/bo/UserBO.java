@@ -21,9 +21,8 @@ public class UserBO {
 			String password,
 			String name,
 			String phoneNumber,
-			String email,
-			String address) {
-		return userDAO.insertUser(loginId, password, name, phoneNumber, email, address);
+			String email) {
+		return userDAO.insertUser(loginId, password, name, phoneNumber, email);
 	}
 	
 	public User getUserByLoginIdAndPassword(			
@@ -41,8 +40,7 @@ public class UserBO {
 			String password,
 			String name,
 			String phoneNumber,
-			String email,
-			String address) {
-		return userDAO.updateUser(userId, password, name, phoneNumber, email, address);
+			String email) {
+		return userDAO.updateUser(userId, password, name, phoneNumber, email);
 	}
 }

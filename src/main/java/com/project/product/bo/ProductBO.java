@@ -119,4 +119,7 @@ public class ProductBO {
 		return productDAO.selectImagePathByProductId(productId); 
 	}
 	
+	public int updateExposureByProductId(int productId, boolean exposure) {
+		return productDAO.updateExposureByProductId(productId, exposure);
+	}
 }

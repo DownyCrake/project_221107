@@ -48,13 +48,12 @@ public class UserRestController {
 			@RequestParam("password") String password,
 			@RequestParam("name") String name,
 			@RequestParam("phoneNumber") String phoneNumber,
-			@RequestParam("email") String email,
-			@RequestParam(value="address", required=false) String address){
+			@RequestParam("email") String email){
 		
 		String encryptPassword = EncryptUtils.SHA256(password); // 암호화
 		
 		Map<String, Object> result = new HashMap<>();
-		int row = userBO.addUser(loginId, encryptPassword, name, phoneNumber, email, address);
+		int row = userBO.addUser(loginId, encryptPassword, name, phoneNumber, email);
 		if (row > 0) {
 			result.put("code", 100); 
 		} else {
@@ -93,14 +92,13 @@ public class UserRestController {
 			@RequestParam(value="password", required=false) String password,
 			@RequestParam("name") String name,
 			@RequestParam("phoneNumber") String phoneNumber,
-			@RequestParam("email") String email,
-			@RequestParam(value="address", required=false) String address){
+			@RequestParam("email") String email){
 		String encryptPassword = null;
 		if (password != null) {
 			encryptPassword = EncryptUtils.SHA256(password); // 암호화
 			}
 		Map<String, Object> result = new HashMap<>();
-		int row = userBO.updateUserByUserId(userId, encryptPassword, name, phoneNumber, email, address);
+		int row = userBO.updateUserByUserId(userId, encryptPassword, name, phoneNumber, email);
 		if (row > 0) {
 			result.put("code", 100); 
 		} else {

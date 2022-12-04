@@ -44,4 +44,9 @@ public interface ProductDAO {
 	public int selectPriceByProductId(int productId);
 	
 	public String selectImagePathByProductId(int productId);
+	
+	public int updateExposureByProductId(
+			@Param("productId") int productId, 
+			@Param("exposure") boolean exposure);
+	
 }

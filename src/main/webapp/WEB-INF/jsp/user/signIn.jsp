@@ -54,5 +54,14 @@ $(document).ready(function() {
 		
 	});//signInBtn- click - end
 	
+	
+	$('#password').on("keyup", function (e) {  // 비밀번호에서 엔터로 로그인 
+	      if (e.keyCode === 13) {
+	          e.preventDefault();
+	          $('#signInBtn').click();
+	        }
+	      });
+	
+	
 }); // ready
 </script>

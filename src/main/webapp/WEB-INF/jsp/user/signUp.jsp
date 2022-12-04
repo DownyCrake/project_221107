@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 
 <div class="d-flex justify-content-center  p-5">
-	<form id="signUpForm" method="post" class="sign-up-box mt-5" action="/user/sign_up">
+	<form id="signUpForm" method="post" class="input-box mt-5" action="/user/sign_up">
 			<div class="form-group d-flex m-0">
 				<input type="text" id="loginId" name="loginId" class="form-control " maxlength='16' placeholder="아이디 입력">
 			</div>	
@@ -33,10 +33,6 @@
 				<input type="text" id="email" name="email" class="form-control" placeholder="이메일">
 			</div>	
 			<small id="emailCheckText" class="text-danger d-none">유효한 이메일을 입력해 주세요.</small>
-			<small class="text-danger">&nbsp</small>
-			<div class="form-group m-0">
-				<input type="text" id="address" name="address" class="form-control" placeholder="주소">
-			</div>	
 			<small class="text-danger">&nbsp</small>
 			<button type="submit" id="signUpBtn" class="btn btn-block text-secondary">회원가입</button>
 	</form>
@@ -144,7 +140,6 @@ $(document).ready(function(){
 		let name = $("#name").val().trim();
 		let phoneNumber = $('#phoneNumber').val().trim();
 		let email = $("#email").val().trim();
-		let address = $('#address').val().trim();
 		
 		if (loginId.length < 1)	{
 			alert("아이디를 입력하세요");	

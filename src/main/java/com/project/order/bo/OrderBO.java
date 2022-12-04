@@ -6,6 +6,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.project.address.bo.AddressBO;
+import com.project.address.model.Address;
 import com.project.cart.bo.CartBO;
 import com.project.cart.model.Cart;
 import com.project.order.model.OrderView;
@@ -24,6 +26,9 @@ public class OrderBO {
 	
 	@Autowired 
 	private CartBO cartBO;
+	
+	@Autowired
+	private AddressBO addressBO;
 	
 	public OrderViewList generateOrderView(OrderViewList orderList) {
 		
@@ -79,4 +84,7 @@ public class OrderBO {
 		return orderViewList;
 	}
 	
+	public List<Address> getAddressListByUserId(int userId){
+		return addressBO.getAddressListByUserId(userId);
+	}
 }

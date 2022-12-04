@@ -22,7 +22,6 @@
 		`name`,
 		`phoneNumber`,
 		`email`,
-		`address`,
 		`createdAt`,
 		`updatedAt`
 	)
@@ -33,7 +32,6 @@
 		#{name},
 		#{phoneNumber},
 		#{email},
-		#{address},
 		NOW(),
 		NOW()
 	)
@@ -48,7 +46,6 @@
 		`name`,
 		`phoneNumber`,
 		`email`,
-		`address`,
 		`createdAt`,
 		`updatedAt`
 	FROM
@@ -67,7 +64,6 @@
 		`name`,
 		`phoneNumber`,
 		`email`,
-		`address`,
 		`createdAt`,
 		`updatedAt`
 	FROM
@@ -86,7 +82,6 @@
 		`name` = #{name},
 		`phoneNumber`= #{phoneNumber},
 		`email` = #{email},
-		`address`= #{address},
 		`updatedAt` = NOW()
 	WHERE
 		`id` = #{userId}
