@@ -72,5 +72,13 @@
  		`id` = #{stockId}
  </select>
  
+ <update id="updateQuantityByStockIdAndCount" parameterType="map" keyProperty="quantity">
+ 	UPDATE `stock`
+ 	SET
+ 		`quantity` = `quantity` - #{count}
+ 	WHERE
+ 		`id` = #{stockId}
+ 
+ </update>
  
  </mapper>

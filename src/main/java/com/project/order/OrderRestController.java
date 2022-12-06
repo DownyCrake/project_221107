@@ -35,17 +35,15 @@ public class OrderRestController {
 		}
 		orderdata.setUserId(userId);
 		
-		orderBO.orderProcess(orderdata);
+		String row = orderBO.orderProcess(orderdata);
 		
-		int row = 0;
-		
-		if (row == 103) {
-			result.put("code", 103);
+		if (row == "over") {
+			result.put("code", 111);
 			result.put("errorMessage", "구매가능 수량을 초과했습니다.");
-		} else if (row == 100) {
+		} else {
 			result.put("code", 100);
+			result.put("orderNumber",row);
 		}
-		
 		
 		return result;
 	}

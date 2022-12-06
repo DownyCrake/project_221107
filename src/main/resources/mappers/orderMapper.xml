@@ -31,4 +31,44 @@
 	)	
 	
  </insert>
+ 
+ <select id="selectOrderByOrderNumber" parameterType="map" resultType="com.project.order.model.Order">
+ 	SELECT
+		id
+		,orderNumber
+		,userId
+		,recipient
+		,zipcode
+		,address1
+		,address2
+		,phoneNumber
+		,createdAt
+		,updatedAt
+	FROM
+		`order`
+	 WHERE
+	 	`orderNumber` = #{orderNumber}
+	 	AND
+	 	`userId` = #{userId}
+	 		
+ </select>
+ 
+ <select id="selectOrderIdListByUserId" parameterType="int" resultType="int">
+ 	SELECT
+ 		`id`
+ 	FROM
+ 		`order`
+ 	WHERE
+ 		`userId` = #{userId}
+
+ </select>
+ 
+ <select id="selectOrderNumberByOrderId" parameterType="int" resultType="String">
+ SELECT
+ 		`orderNumber`
+ 	FROM
+ 		`order`
+ 	WHERE
+ 		`id` = #{orderId}
+ </select>
  </mapper>

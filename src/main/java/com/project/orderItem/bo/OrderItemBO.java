@@ -1,5 +1,7 @@
 package com.project.orderItem.bo;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,4 +17,9 @@ public class OrderItemBO {
 	public int addOrderItem(OrderItem oi) {
 		return orderItemDAO.addOrderItem(oi); 
 	}
+	
+	public List<OrderItem> getOrderItemByOrderId(int orderId) {
+		return orderItemDAO.selectOrderItemByOrderId(orderId);
+	}
+	
 }

@@ -3,7 +3,7 @@
 <div class="d-flex justify-content-center">
 	<div class="my-page-box mt-5 pt-5 mb-5">
 		<h2 class="text-secondary">My page</h2>
-		<button class="btn btn-block mb-4 mt-5">Order</button>
+		<button id="orderHistoryBtn" class="btn btn-block mb-4 mt-5">Order</button>
 		<button id="profileBtn" class="btn btn-block mb-4">Profile</button>
 		<button id="addressBtn" class="btn btn-block mb-4">Address</button>
 		<button class="btn btn-block mb-4">q&A</button>
@@ -26,6 +26,14 @@ $(document).ready(function() {
 		location.href="/account/address_list_view";
 		return;
 	});
+	
+	
+	$('#orderHistoryBtn').on('click', function() {
+		location.href="/order/order_history_view";
+		return;
+	}); 
+	
+	
 });//ready
 
 </script>

@@ -57,4 +57,10 @@ main {min-height:500px;}
 	
 .input-address-manual-div {min-width:600px;}
 .addr-radio-div {width:120px;}
-	
+
+.order-history-table thead{height:40px;
+border-top:2px solid black;
+border-bottom:1px solid #aaaaaa;}
+
+.order-history-table tbody tr {
+	border-bottom:1px solid #f8f8f8;}

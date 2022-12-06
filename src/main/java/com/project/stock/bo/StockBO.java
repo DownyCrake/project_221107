@@ -38,4 +38,8 @@ public class StockBO {
 		return stockDAO.selectQuantityByStockId(stockId); 
 	}
 	
+	public int deductQuantityByStockIdAndCount(int stockId, int count) {
+		return stockDAO.updateQuantityByStockIdAndCount(stockId, count);
+	}
+	
 }

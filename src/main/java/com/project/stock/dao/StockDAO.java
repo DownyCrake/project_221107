@@ -28,4 +28,8 @@ public interface StockDAO {
 	
 	public int selectQuantityByStockId(int stockId);
 	
+	public int updateQuantityByStockIdAndCount(
+			@Param("stockId") int stockId
+			, @Param("count") int count);
+	
 }

@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.ObjectUtils;
 
 import com.project.address.bo.AddressBO;
 import com.project.address.model.Address;
@@ -16,6 +17,7 @@ import com.project.order.model.Order;
 import com.project.order.model.OrderData;
 import com.project.order.model.OrderViewData;
 import com.project.order.model.OrderViewList;
+import com.project.order.model.orderResultData;
 import com.project.orderItem.bo.OrderItemBO;
 import com.project.orderItem.model.OrderItem;
 import com.project.product.bo.ProductBO;
@@ -42,6 +44,7 @@ public class OrderBO {
 	@Autowired
 	private OrderItemBO orderItemBO;
 	
+
 	public OrderViewList generateOrderView(OrderViewList orderList) {
 		
 		OrderViewList orderViewList = new OrderViewList();
@@ -102,7 +105,7 @@ public class OrderBO {
 	
 	
 	@Transactional
-	public int orderProcess(OrderData data) {		// 결제 과정 구현 - 수량 체크 - 데이터 삽입 - 재고 차감 - 카트 삭제 
+	public String orderProcess(OrderData data) {		// 결제 과정 구현 - 수량 체크 - 데이터 삽입 - 재고 차감 - 카트 삭제 
 		
 		int itemCount = data.getOrderItemList().size();		// 수량체크
 		for (int i = 0; i < itemCount; i++) {
@@ -110,12 +113,11 @@ public class OrderBO {
 			int stockId = data.getOrderItemList().get(i).getStockId();
 			int quantity = stockBO.getQuantityByStockId(stockId);
 			if (count > quantity){
-				return 103;
+				return "over"; // 수량 초과 반환
 			}
 		}		// 수량체크 - end
 		int userId = data.getUserId();
-		
-		String orderNumber = Integer.toString(userId) + System.currentTimeMillis();
+		String orderNumber = ((Integer.toString(userId) + System.currentTimeMillis()));
 		
 		Order order = new Order();
 		
@@ -128,7 +130,7 @@ public class OrderBO {
 		order.setPhoneNumber(data.getPhoneNumber());
 		
 		int orderCheck =  orderDAO.addOrder(order);		// 주문서 작성 - orderId 반환
-		if (orderCheck == 0) {
+		if (orderCheck < 1) {
 	        try {
 	            throw new Exception("예외를 강제로 발생시켰습니다.");  
 	        } catch (Exception e)    {
@@ -146,13 +148,13 @@ public class OrderBO {
 			oidata.setStockId(oi.getStockId());
 			oidata.setCount(oi.getCount());
 			oidata.setTotalPrice(oi.getTotalPrice());
-			oidata.setState("상품 준비중");
+			oidata.setState("상품준비중");
 			orderItems.add(oidata);
 		}
 		
 		for (OrderItem oi : orderItems) {
 			int check = orderItemBO.addOrderItem(oi);
-			if (check == 0) {
+			if (check < 1) {
 		        try {
 		            throw new Exception("예외를 강제로 발생시켰습니다.");  
 		        } catch (Exception e)    {
@@ -161,11 +163,83 @@ public class OrderBO {
 		}
 		
 		// 재고 차감 
-		
+		for (int i = 0; i < itemCount; i++) {
+			int count = data.getOrderItemList().get(i).getCount();
+			int stockId = data.getOrderItemList().get(i).getStockId();
+			
+			stockBO.deductQuantityByStockIdAndCount(stockId, count);
+			int quantity = stockBO.getQuantityByStockId(stockId);
+			if (quantity < 0){
+		        try {
+		            throw new Exception("예외를 강제로 발생시켰습니다.");  
+		        } catch (Exception e)    {
+		        }
+			}
+		}		// 수량체크 - end
 		
 		// 카트 삭제
+		if (ObjectUtils.isEmpty(data.getCartId()) == false) {
+			for (int cartId : data.getCartId()) {
+				cartBO.deleteCart(cartId);
+			}
+		}
+		return orderNumber;
+	}
+	
+	public Order getOrderByOrderNumber(String orderNumber, int userId) {
+		return orderDAO.selectOrderByOrderNumber(orderNumber, userId); 
+	}
+	
+	public List<orderResultData> generateOrderResultViewData(int orderId){
+		List<OrderItem> oil = orderItemBO.getOrderItemByOrderId(orderId);
+		List<orderResultData> ovdl = new ArrayList<>();
+		for (OrderItem oi : oil) {
+			orderResultData ovd = new orderResultData(); 
+			int productId = oi.getProductId();
+			ovd.setProductName(productBO.getProductNameByProductId(productId));
+			int stockId = oi.getStockId();
+			ovd.setSize(stockBO.getSizeByStockId(stockId));
+			
+			ovd.setCount(oi.getCount());
+			ovd.setTotalPrice(oi.getTotalPrice());
+			ovdl.add(ovd);
+		}
+		return ovdl;
+	}
+	
+	public List<Integer> getOrderIdListByUserId(int uerId){
+		return orderDAO.selectOrderIdListByUserId(uerId);
+	}
+	
+	public String getOrderNumberByOrderId(int orderId) {
+		return orderDAO.selectOrderNumberByOrderId(orderId);
+	}
+	
+	public List<orderResultData> generateUserOrderHistory(int userId){
 		
+		List<orderResultData> ovdl = new ArrayList<>();
+		List<Integer> oderIdList = getOrderIdListByUserId(userId);
 		
-		return 100;
+		for (int orderId : oderIdList) {
+			List<OrderItem> oil = orderItemBO.getOrderItemByOrderId(orderId);
+			
+			for (OrderItem oi : oil) {
+				orderResultData ovd = new orderResultData();
+				ovd.setOrderId(orderId);
+				String orderNumber = orderDAO.selectOrderNumberByOrderId(orderId);
+				ovd.setOrderNumber(orderNumber);
+				int productId = oi.getProductId();
+				ovd.setProductName(productBO.getProductNameByProductId(productId));
+				int stockId = oi.getStockId();
+				ovd.setSize(stockBO.getSizeByStockId(stockId));
+				ovd.setCount(oi.getCount());
+				ovd.setTotalPrice(oi.getTotalPrice());
+				ovd.setState(oi.getState());
+				ovd.setCreatedAt(oi.getCreatedAt());
+				ovdl.add(ovd);
+			}
+		}
+		
+		return ovdl;
 	}
 }

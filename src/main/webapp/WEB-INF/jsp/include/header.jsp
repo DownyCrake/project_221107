@@ -40,7 +40,9 @@
 	        	<li class="nav-item"><a class="nav-link" href="/account/mypage_view"> Account</a> </li>
 	        </c:otherwise>
         </c:choose>
+        <c:if test="${not empty userId}">
         <li class="nav-item"> <a class="nav-link" href="/cart/cart_view"> Cart</a> </li>
+        </c:if>
       </ul>
     </div>
   </div>

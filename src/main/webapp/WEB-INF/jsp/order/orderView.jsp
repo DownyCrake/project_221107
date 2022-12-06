@@ -84,6 +84,7 @@
 		<thead>
 			<tr>
 				<th class="col-6">상품 정보</th>
+				<th>사이즈</th>
 				<th>수량</th>
 				<th>주문 금액</th>
 			</tr>
@@ -103,7 +104,10 @@
 					${order.productName }
 				</td>
 				<td>
-					${order.count }
+					 ${order.size}
+				</td>
+				<td>
+					${order.count } 개
 				</td>
 				<td>
 					<fmt:formatNumber value="${order.totalprice }" type="number"/> 원
@@ -215,23 +219,28 @@ $(document).ready(function(){
 		data['orderItemList['+i+'].productId'] = $('input[name=productId]').eq(i).val();
 		data['orderItemList['+i+'].stockId'] = $('input[name=stockId]').eq(i).val();
 		data['orderItemList['+i+'].count'] = $('input[name=count]').eq(i).val();
-		data['orderItemList['+i+'].totalprice'] = $('input[name=totalprice]').eq(i).val();
+		data['orderItemList['+i+'].totalPrice'] = $('input[name=totalprice]').eq(i).val();
 		}
-		/* console.log(data); */
-		
+		 /* console.log(data); */ 
 		$.ajax({
 			url: "/order/create",
 			data: data,
 			type: 'POST',
 			success:function(data){
-				alert('test');
+				if (data.code == 111) {
+					alert(data.errorMessage);
+				} else if (data.code == 100) {
+					alert('결제 성공');
+					location.href="/order/order_result_view?orderNumber=" + data.orderNumber;
+				} else {
+					alert(data.errorMessage);
+				}
 			}
 			, error:function(){
 				alert('에러발생');
 			}
 			
 		}); // ajax - end
-		
 	});
 	
 });//ready-end

@@ -29,4 +29,22 @@
 		)
  </insert>
  
+ <select id="selectOrderItemByOrderId" parameterType="int" resultType="com.project.orderItem.model.OrderItem">
+ 	SELECT
+ 		id
+		,orderId
+		,productId
+		,stockId
+		,count
+		,totalPrice
+		,state
+		,createdAt
+		,updatedAt
+	FROM
+		`order_item`
+	WHERE
+		`orderId` = #{orderId}
+ 
+ </select>
+ 
  </mapper>

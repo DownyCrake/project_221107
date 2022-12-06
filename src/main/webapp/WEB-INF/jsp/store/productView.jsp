@@ -167,7 +167,7 @@ $(document).ready(function() {
 		 } 
 
 		 let userId = $(this).data('user-id');
-		 if (userId == null) {
+		 if (userId == '') {
 			 alert("로그인해주세요");
 			 return false;
 		 }
@@ -197,7 +197,7 @@ $(document).ready(function() {
 		 }
 		 
 
-		 if (userId == null) {
+		 if (userId == '') {
 			 alert("로그인해주세요");
 			 return false;
 		 }
