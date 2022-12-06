@@ -22,4 +22,7 @@ public class OrderItemBO {
 		return orderItemDAO.selectOrderItemByOrderId(orderId);
 	}
 	
+	public int updateOrderItemStateByOrderItemIdAndChangeValue(int orderItemId, String changeValue) {
+		return orderItemDAO.updateOrderItemStateByOrderItemIdAndChangeValue(orderItemId, changeValue);
+	}
 }

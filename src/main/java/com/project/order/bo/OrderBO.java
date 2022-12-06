@@ -13,6 +13,7 @@ import com.project.address.model.Address;
 import com.project.cart.bo.CartBO;
 import com.project.cart.model.Cart;
 import com.project.order.dao.OrderDAO;
+import com.project.order.model.AdminOrderManagementData;
 import com.project.order.model.Order;
 import com.project.order.model.OrderData;
 import com.project.order.model.OrderViewData;
@@ -131,10 +132,7 @@ public class OrderBO {
 		
 		int orderCheck =  orderDAO.addOrder(order);		// 주문서 작성 - orderId 반환
 		if (orderCheck < 1) {
-	        try {
-	            throw new Exception("예외를 강제로 발생시켰습니다.");  
-	        } catch (Exception e)    {
-	        }
+	            throw new RuntimeException("order 에러. 예외를 강제로 발생시켰습니다.");  
 		}
 		
 		int orderId = order.getId();
@@ -155,10 +153,7 @@ public class OrderBO {
 		for (OrderItem oi : orderItems) {
 			int check = orderItemBO.addOrderItem(oi);
 			if (check < 1) {
-		        try {
-		            throw new Exception("예외를 강제로 발생시켰습니다.");  
-		        } catch (Exception e)    {
-		        }
+		        	throw new RuntimeException("orderItems 에러. 예외를 강제로 발생시켰습니다.");  
 			}
 		}
 		
@@ -170,10 +165,7 @@ public class OrderBO {
 			stockBO.deductQuantityByStockIdAndCount(stockId, count);
 			int quantity = stockBO.getQuantityByStockId(stockId);
 			if (quantity < 0){
-		        try {
-		            throw new Exception("예외를 강제로 발생시켰습니다.");  
-		        } catch (Exception e)    {
-		        }
+		        	throw new RuntimeException("재고 수량 부족. 예외를 강제로 발생시켰습니다.");  
 			}
 		}		// 수량체크 - end
 		
@@ -229,6 +221,7 @@ public class OrderBO {
 				String orderNumber = orderDAO.selectOrderNumberByOrderId(orderId);
 				ovd.setOrderNumber(orderNumber);
 				int productId = oi.getProductId();
+				ovd.setProductId(productId);
 				ovd.setProductName(productBO.getProductNameByProductId(productId));
 				int stockId = oi.getStockId();
 				ovd.setSize(stockBO.getSizeByStockId(stockId));
@@ -241,5 +234,50 @@ public class OrderBO {
 		}
 		
 		return ovdl;
+	}
+	
+	public List<Order> getAllOrderList(){
+		return orderDAO.selectAllOrderList();
+	}
+	
+	public List<AdminOrderManagementData> generateAdminOrderManagementPageData(){
+		List<AdminOrderManagementData> aomdList = new ArrayList<>();
+		
+		List<Order> orderList = getAllOrderList();
+		for (Order order : orderList) {
+			
+			List<OrderItem> oiList = orderItemBO.getOrderItemByOrderId(order.getId());
+			for (OrderItem oi: oiList) {
+			AdminOrderManagementData aomd = new AdminOrderManagementData();
+			aomd.setOrderId(order.getId());
+			aomd.setOrderNumber(order.getOrderNumber());
+			aomd.setUserId(order.getUserId());
+			aomd.setRecipient(order.getRecipient());
+			aomd.setZipcode(order.getZipcode());
+			aomd.setAddress1(order.getAddress1());
+			aomd.setAddress2(order.getAddress2());
+			aomd.setPhoneNumber(order.getPhoneNumber());
+			aomd.setCreatedAt(order.getCreatedAt());
+			
+			aomd.setOrderItemId(oi.getId());
+			int productId = oi.getProductId();
+			aomd.setProductId(productId);
+			String productName = productBO.getProductNameByProductId(productId);
+			aomd.setProductName(productName);
+			int stockId = oi.getStockId();
+			aomd.setSize(stockBO.getSizeByStockId(stockId));
+			aomd.setCount(oi.getCount());
+			aomd.setTotalPrice(oi.getTotalPrice());
+			aomd.setState(oi.getState());
+			
+			aomdList.add(aomd);
+			}
+		}
+		
+		return aomdList;
+	}
+	
+	public int updateOrderItemStateByOrderItemIdAndChangeValue(int orderItemId, String changeValue) {
+		return orderItemBO.updateOrderItemStateByOrderItemIdAndChangeValue(orderItemId, changeValue);
 	}
 }

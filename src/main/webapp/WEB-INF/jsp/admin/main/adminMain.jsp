@@ -20,7 +20,7 @@
 	<div class="mt-5">
 		<h2><b>관리자 페이지</b></h2>
 		<ul class="list-group mt-4">
-			<li  class="list-group-item btn"><a href="#">주문관리</a></li>
+			<li  class="list-group-item btn"><a href="/admin/order/order_list_view">주문관리</a></li>
 			<li  class="list-group-item btn"><a href="/admin/product/list_view">제품관리</a></li>
 			<li  class="list-group-item btn"><a href="/admin/store/update_view">스토어</a></li>
 			<li  class="list-group-item btn"><a href="#">q&a</a></li>

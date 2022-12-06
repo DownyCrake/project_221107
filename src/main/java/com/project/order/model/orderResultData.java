@@ -7,6 +7,7 @@ public class orderResultData {
 	private int orderId;
 	private String orderNumber;
 	private String productName;
+	private int productId;
 	private String size;
 	private int count;
 	private int totalPrice;
@@ -14,6 +15,12 @@ public class orderResultData {
 	private Date createdAt;
 	
 	
+	public int getProductId() {
+		return productId;
+	}
+	public void setProductId(int productId) {
+		this.productId = productId;
+	}
 	public String getOrderNumber() {
 		return orderNumber;
 	}

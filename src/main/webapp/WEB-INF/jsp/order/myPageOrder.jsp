@@ -24,28 +24,48 @@
 				<c:forEach items="${orvdl}" var="orderItem">
 					<tr>
 						 <td>
-							 ${orderItem.productName }<br>
-							 ${orderItem.size }
+						 
+						 <a href="/store/product_view?productId=${orderItem.productId}">
+						 ${orderItem.productName }</a>
+							 <br>
+							 <small class="text-secondary">${orderItem.size }</small>
 						 </td>
 						 <td>
-							 ${orderItem.createdAt }
+						 <fmt:formatDate value="${orderItem.createdAt }" pattern="yyyy년 MM월 dd일"/>
+							 
 						 </td>
 						 <td>
 							 ${orderItem.orderNumber }
 						 </td>
 						 <td>
 							${orderItem.totalPrice }<br>
-							 ${orderItem.count }개
+							 <small class="text-secondary">${orderItem.count }개</small>
 						 </td>
 						 <td>
 							 ${orderItem.state }
+							 <c:set var="state" value="${orderItem.state }"/>
+							 <c:choose>
+							 
+							 
+							 <c:when test="${state eq '상품준비중'}">
+							 	<button  type="button" class="btn">주문 취소</button>
+							 </c:when>
+							 <c:when test="${state eq '배송완료'}">
+							 	<button  type="button" class="btn">구매 확정</button>
+							 </c:when>
+							 <c:when test="${state eq '구매확정'}">
+							 	<button  type="button" class="btn">리뷰 작성</button>
+							 </c:when>
+							 
+							 </c:choose>
 						 </td>
 					</tr>			
 				</c:forEach>
 				</tbody>
 			</table>
 		</div>
-	
+		
+		<a href="/account/mypage_view" type="button" class="btn bg-secondary text-white mt-5">뒤로</a>
 	</div>
 </div>
 

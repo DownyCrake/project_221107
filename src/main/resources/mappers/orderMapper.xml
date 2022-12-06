@@ -71,4 +71,20 @@
  	WHERE
  		`id` = #{orderId}
  </select>
+ 
+ <select id="selectAllOrderList" resultType="com.project.order.model.Order">
+ SELECT
+		id
+		,orderNumber
+		,userId
+		,recipient
+		,zipcode
+		,address1
+		,address2
+		,phoneNumber
+		,createdAt
+		,updatedAt
+	FROM
+		`order`
+ </select>
  </mapper>

@@ -19,4 +19,6 @@ public interface OrderDAO {
 	public List<Integer> selectOrderIdListByUserId(int uerId);
 	
 	public String selectOrderNumberByOrderId(int orderId);
+	
+	public List<Order> selectAllOrderList();
 }

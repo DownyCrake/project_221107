@@ -41,7 +41,7 @@
 			</div>
 		</div>			
 	<div class="d-flex mt-3 ">
-		<a type="button" href="" class="btn form-control border m-5 bg-secondary text-white">주문 상세 페이지로</a>
+		<a type="button" href="/order/order_history_view" class="btn form-control border m-5 bg-secondary text-white">주문 상세 페이지로</a>
 		<a type="button" href="/main_view" class="btn form-control border m-5 bg-light text-dark">메인 페이지로 </a>
 	</div>
 	</div>
