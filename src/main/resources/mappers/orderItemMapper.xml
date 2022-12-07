@@ -55,4 +55,13 @@
  		`id` = #{orderItemId}
  
  </update>
+ 
+ <update id="cancleOrderItemByOrderItemIdAndCount" parameterType="int">
+ 	UPDATE	`order_item`
+ 	SET
+ 		`state` = '주문취소'
+ 	WHERE
+ 		`id` = #{orderItemId}
+ 
+ </update>
  </mapper>

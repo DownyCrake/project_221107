@@ -64,7 +64,9 @@ border-bottom:1px solid #aaaaaa;}
 
 .order-history-table tbody tr {
 	border-bottom:1px solid #f8f8f8;}
-	
+.order-history-table button {
+	border:1px solid;border-radius: 0; }
+
 .admin-order-management-table thead{height:40px;
 border-top:2px solid black;
 border-bottom:1px solid #aaaaaa;}

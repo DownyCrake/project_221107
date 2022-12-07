@@ -31,7 +31,7 @@ public class AdminStockController {
 		model.addAttribute("stockList",stockList);
 		model.addAttribute("productName",productName);
 		model.addAttribute("productId",productId);
-		return "admin/stock/stockDetail"; 
+		return "admin/stock/adminStockDetail"; 
 	}
 	
 }

@@ -24,12 +24,6 @@ public class OrderController {
 	@Autowired
 	private OrderBO orderBO;
 	
-	@Autowired
-	private OrderItemBO orderItemBO;
-	
-	@Autowired
-	private ProductBO productBO;
-	
 	@RequestMapping("/order_view")
 	public String orderView( HttpSession session, Model model,
 			OrderViewList orderViewList) {

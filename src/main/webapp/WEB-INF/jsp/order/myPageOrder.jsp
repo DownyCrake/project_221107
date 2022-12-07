@@ -48,13 +48,20 @@
 							 
 							 
 							 <c:when test="${state eq '상품준비중'}">
-							 	<button  type="button" class="btn">주문 취소</button>
+							 	<button  type="button" class="btn cancle-order-btn" value="주문취소" 
+							 	data-order-item-id="${ orderItem.orderItemId}">주문취소</button>
 							 </c:when>
 							 <c:when test="${state eq '배송완료'}">
-							 	<button  type="button" class="btn">구매 확정</button>
+							 	<button  type="button" class="btn change-order-state-btn" value="구매확정"
+							 	data-stock-id="${orderItem.stockId }"
+							 	data-count="${orderItem.count}"
+							 	data-order-item-id="${ orderItem.orderItemId}">구매확정</button>
 							 </c:when>
 							 <c:when test="${state eq '구매확정'}">
-							 	<button  type="button" class="btn">리뷰 작성</button>
+							 	<button  type="button" <c:set var="id" value="${ orderItem.orderItemId}"/>
+							 	class="btn orderhistory-write-review-btn bg-dark text-white" 
+							 	data-order-item-id="${ orderItem.orderItemId}" >
+							 	리뷰 작성</button>
 							 </c:when>
 							 
 							 </c:choose>
@@ -70,6 +77,51 @@
 </div>
 
 <script>
-
-
+$(document).ready(function() {
+	$('.change-order-state-btn').on('click', function() {  // 주문 상태 변경 버튼 클릭
+		let orderItemId = $(this).data('order-item-id');
+		let changeValue = $(this).val();
+		// alert(orderItemId + '&' + changeValue);
+		
+		$.ajax({
+			type:'PUT'
+			, url:'/order/order_item_update'
+			, data:{'orderItemId':orderItemId, 'changeValue':changeValue}
+			, success:function(data){
+				if (data.code == 100){
+					document.location.reload(true);
+				} else {
+					alert(data.errorMessage);
+				}
+			}
+			, error:function(){
+				alert('error');
+			}
+		}); // ajax - end
+	});
+	
+	$('.cancle-order-btn').on('click', function() {  // 주문 취소 클릭
+		let orderItemId = $(this).data('order-item-id');
+		let stockId = $(this).data('stock-id');
+		let count = $(this).data('count');
+		// alert(orderItemId + '&' + changeValue);
+		
+		$.ajax({
+			type:'PUT'
+			, url:'/order/order_item_cancle'
+			, data:{'orderItemId':orderItemId, 'stockId':stockId, 'count':count}
+			, success:function(data){
+				if (data.code == 100){
+					document.location.reload(true);
+				} else {
+					alert(data.errorMessage);
+				}
+			}
+			, error:function(){
+				alert('error');
+			}
+		}); // ajax - end
+	});
+	
+}); //ready - end
 </script>

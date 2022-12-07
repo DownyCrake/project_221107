@@ -8,6 +8,8 @@ public class orderResultData {
 	private String orderNumber;
 	private String productName;
 	private int productId;
+	private int orderItemId;
+	private int stockId;
 	private String size;
 	private int count;
 	private int totalPrice;
@@ -15,6 +17,18 @@ public class orderResultData {
 	private Date createdAt;
 	
 	
+	public int getStockId() {
+		return stockId;
+	}
+	public void setStockId(int stockId) {
+		this.stockId = stockId;
+	}
+	public int getOrderItemId() {
+		return orderItemId;
+	}
+	public void setOrderItemId(int orderItemId) {
+		this.orderItemId = orderItemId;
+	}
 	public int getProductId() {
 		return productId;
 	}

@@ -50,6 +50,8 @@
 	 	`orderNumber` = #{orderNumber}
 	 	AND
 	 	`userId` = #{userId}
+	 ORDER BY 
+	 	`id` DESC
 	 		
  </select>
  
@@ -60,6 +62,8 @@
  		`order`
  	WHERE
  		`userId` = #{userId}
+ 	ORDER BY 
+	 	`id` DESC
 
  </select>
  
@@ -72,7 +76,7 @@
  		`id` = #{orderId}
  </select>
  
- <select id="selectAllOrderList" resultType="com.project.order.model.Order">
+ <select id="selectOrderList" resultType="com.project.order.model.Order">
  SELECT
 		id
 		,orderNumber
@@ -85,6 +89,30 @@
 		,createdAt
 		,updatedAt
 	FROM
-		`order`
+		`order`<if test="direction == null">
+			ORDER BY `id` DESC 
+		</if>
+		<if test="direction == 'next'">
+			<![CDATA[
+			WHERE `id` < #{standardId}
+			]]>
+			ORDER BY `id` DESC 
+		</if>
+		<if test="direction == 'prev'">
+			<![CDATA[
+			WHERE `id` > #{standardId}
+			ORDER BY `id` ASC 
+			]]>
+		</if>
+		 LIMIT ${limit}
+ </select>
+ 
+  <select id="selectOrderIdBySort" resultType="int">
+ 	SELECT
+ 		`id`
+ 	FROM
+ 		`order`
+ 	ORDER BY `id` ${sort} 
+ 	LIMIT 1
  </select>
  </mapper>

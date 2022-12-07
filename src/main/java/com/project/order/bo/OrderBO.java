@@ -1,6 +1,7 @@
 package com.project.order.bo;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,7 @@ import com.project.order.model.orderResultData;
 import com.project.orderItem.bo.OrderItemBO;
 import com.project.orderItem.model.OrderItem;
 import com.project.product.bo.ProductBO;
+import com.project.product.model.Product;
 import com.project.stock.bo.StockBO;
 
 @Service
@@ -190,6 +192,7 @@ public class OrderBO {
 			int productId = oi.getProductId();
 			ovd.setProductName(productBO.getProductNameByProductId(productId));
 			int stockId = oi.getStockId();
+			ovd.setStockId(stockId);
 			ovd.setSize(stockBO.getSizeByStockId(stockId));
 			
 			ovd.setCount(oi.getCount());
@@ -222,6 +225,7 @@ public class OrderBO {
 				ovd.setOrderNumber(orderNumber);
 				int productId = oi.getProductId();
 				ovd.setProductId(productId);
+				ovd.setOrderItemId(oi.getId());
 				ovd.setProductName(productBO.getProductNameByProductId(productId));
 				int stockId = oi.getStockId();
 				ovd.setSize(stockBO.getSizeByStockId(stockId));
@@ -236,14 +240,40 @@ public class OrderBO {
 		return ovdl;
 	}
 	
-	public List<Order> getAllOrderList(){
-		return orderDAO.selectAllOrderList();
+	private static final int POST_MAX_SIZE = 2;
+
+	public List<Order> getOrderList(Integer prevId, Integer nextId ){
+		Integer standardId = null;
+		String direction = null;
+		
+		if (prevId != null) { // 이전 클릭 
+			standardId = prevId;
+			direction = "prev";
+			List<Order> orderList = orderDAO.selectOrderList(standardId, direction, POST_MAX_SIZE);
+			Collections.reverse(orderList);
+			return orderList;
+		} else if (nextId != null) { // 다음 클릭
+			standardId = nextId;
+			direction = "next";
+		}
+		
+		return orderDAO.selectOrderList(standardId, direction, POST_MAX_SIZE);
 	}
 	
-	public List<AdminOrderManagementData> generateAdminOrderManagementPageData(){
+	public boolean isLastPage(Integer nextId) { //next 방향의 끝인가
+		int productId = orderDAO.selectOrderIdBySort("ASC");
+		return productId == nextId;
+	}
+
+	public boolean isFirstPage(Integer prevId) { //next 방향의 끝인가
+		int productId = orderDAO.selectOrderIdBySort("DESC");
+		return productId == prevId;
+	}
+	
+	public List<AdminOrderManagementData> generateAdminOrderManagementPageData(Integer prevId, Integer nextId ){
 		List<AdminOrderManagementData> aomdList = new ArrayList<>();
 		
-		List<Order> orderList = getAllOrderList();
+		List<Order> orderList = getOrderList(prevId, nextId );
 		for (Order order : orderList) {
 			
 			List<OrderItem> oiList = orderItemBO.getOrderItemByOrderId(order.getId());
@@ -279,5 +309,17 @@ public class OrderBO {
 	
 	public int updateOrderItemStateByOrderItemIdAndChangeValue(int orderItemId, String changeValue) {
 		return orderItemBO.updateOrderItemStateByOrderItemIdAndChangeValue(orderItemId, changeValue);
+	}
+	
+	public int cancleOrderItemByOrderItemIdAndCount(int orderItemId, int stockId, int count) {
+		int orderCancleResult = orderItemBO.cancleOrderItemByOrderItemIdAndCount(orderItemId);
+		if ( orderCancleResult < 1) {
+			return 0;
+		}
+		int deductStock = stockBO.deductQuantityByStockIdAndCount(stockId, count);
+		if ( deductStock < 1) {
+			return 0;
+		}
+		return 1;
 	}
 }

@@ -22,7 +22,7 @@ public class AdminStoreController {
 		
 		List<Product> productList = productBO.getProductNameAndId();
 		model.addAttribute("productList",productList);
-		return "/admin/store/updateStore";
+		return "/admin/store/adminUpdateStore";
 	}
 	
 }

@@ -25,4 +25,8 @@ public class OrderItemBO {
 	public int updateOrderItemStateByOrderItemIdAndChangeValue(int orderItemId, String changeValue) {
 		return orderItemDAO.updateOrderItemStateByOrderItemIdAndChangeValue(orderItemId, changeValue);
 	}
+	
+	public int cancleOrderItemByOrderItemIdAndCount(int orderItemId) {
+		return orderItemDAO.cancleOrderItemByOrderItemIdAndCount(orderItemId);
+	}
 }

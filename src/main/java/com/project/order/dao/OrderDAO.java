@@ -20,5 +20,9 @@ public interface OrderDAO {
 	
 	public String selectOrderNumberByOrderId(int orderId);
 	
-	public List<Order> selectAllOrderList();
+	public List<Order> selectOrderList(@Param("standardId") Integer standardId
+			, @Param("direction") String direction
+			, @Param("limit") int limit);
+	
+	public int selectOrderIdBySort(String sort);
 }

@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -45,6 +46,38 @@ public class OrderRestController {
 			result.put("orderNumber",row);
 		}
 		
+		return result;
+	}
+	
+	@PutMapping("/order_item_update")
+	public Map<String, Object> changeOrderItemState(
+			int orderItemId, String changeValue){
+		Map<String, Object> result = new HashMap<>();
+		
+		int row = orderBO.updateOrderItemStateByOrderItemIdAndChangeValue(orderItemId, changeValue);
+		
+		if (row > 0) {
+			result.put("code", 100);
+		} else {
+			result.put("errorMessage", "배송상태 변경 실패. 관리자에게 문의해주세요.");
+		}
+
+		return result;
+	}
+	
+	@PutMapping("/order_item_cancle")
+	public Map<String, Object> cancleOrder(
+			int orderItemId, int stockId, int count){
+		Map<String, Object> result = new HashMap<>();
+		
+		int row = orderBO.cancleOrderItemByOrderItemIdAndCount(orderItemId, stockId, count);
+		
+		if (row > 0) {
+			result.put("code", 100);
+		} else {
+			result.put("errorMessage", "주문 취소 실패. 관리자에게 문의해주세요.");
+		}
+
 		return result;
 	}
 }

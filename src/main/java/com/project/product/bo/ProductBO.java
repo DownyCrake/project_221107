@@ -18,7 +18,7 @@ public class ProductBO {
 	
 	private Logger log = LoggerFactory.getLogger(this.getClass());
 
-	private static final int POST_MAX_SIZE = 10;
+	private static final int POST_MAX_SIZE = 2;
 
 	@Autowired
 	private FileManagerService fileManagerService;

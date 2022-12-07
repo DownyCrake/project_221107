@@ -39,7 +39,7 @@
 				<c:set var="orderId" value="0"/>
 				
 				<c:forEach items="${orderList}" var="order">
-					<tr <c:if test="${orderId ne order.orderId}"> class="border-top"</c:if> >
+					<tr <c:if test="${orderId ne order.orderId}"> class="border-top "</c:if> >
 						 <td>
 						 	${order.orderNumber}
 						 </td>
@@ -75,28 +75,25 @@
 						 </td>
 						 <td>
 						 <div
-						 <c:choose>
-						 <c:when test="${order.state eq '주문취소'}"> class="bg-danger" </c:when>
-						 <c:when test="${order.state eq '환불요청'}"> class="bg-danger" </c:when>
-						 </c:choose>
+						 <c:if test="${order.state eq '상품준비중'}"> class="bg-success" </c:if>
 						 >
 						 	${order.state}
 						 </div>
-						 	<select class="admin-state-change-selector" data-order-item-id="${order.orderItemId}">
-						 		<option>
+						 	<select class="admin-state-change-selector 
+						 	<c:if test="${order.state eq '주문취소'}"> d-none </c:if>
+						 	<c:if test="${order.state eq '구매확정'}"> d-none </c:if>
+						 	" data-order-item-id="${order.orderItemId}"
+						 	>
+						 		<option <c:if test="${order.state eq '상품준비중'}"> selected </c:if>>
 						 			상품준비중
 						 		</option>
-						 		<option>
+						 		<option <c:if test="${order.state eq '배송중'}"> selected </c:if>>
 						 			배송중
 						 		</option>
-						 		<option>
+						 		<option <c:if test="${order.state eq '배송완료'}"> selected </c:if>>
 						 			배송완료
 						 		</option>
-						 		<option>
-						 			환불완료
-						 		</option>
 						 	</select>
-						 	<span class="test">d</span>
 						 </td>
 						 
 				<c:set var="orderId" value="${order.orderId }"/>
@@ -104,6 +101,14 @@
 				</c:forEach>
 				</tbody>
 			</table>
+			<div class="d-flex justify-content-center">
+				<c:if test="${prevId ne 0 }">
+					<a href="/admin/order/order_list_view?prevId=${prevId}" class="mr-5"> &lt;&lt;이전 </a>
+				</c:if>
+				<c:if test="${nextId ne 0 }">
+					<a href="/admin/order/order_list_view?nextId=${nextId}"> 다음&gt;&gt; </a>
+				</c:if>
+			</div>
 		</div>
 		
 		</div>
@@ -117,7 +122,21 @@ $(document).ready(function() {
 		let orderItemId = $(this).data('order-item-id');
 		let changeValue = $(this).val();
 		
-		
+		$.ajax({
+			type:'PUT'
+			, url:'/admin/order/order_item_update'
+			, data:{'orderItemId':orderItemId, 'changeValue':changeValue}
+			, success:function(data){
+				if (data.code == 100){
+					document.location.reload(true);
+				} else {
+					alert(data.errorMessage);
+				}
+			}
+			, error:function(){
+				alert('error');
+			}
+		}); // ajax - end
 	});
 	
 }); //ready -end

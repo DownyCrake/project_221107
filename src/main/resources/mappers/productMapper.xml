@@ -12,6 +12,7 @@
 		,price
 		,category
 		,imagePath
+		,exposure
 		,createdAt
 		,updatedAt
 	)
@@ -21,12 +22,13 @@
 		, #{price}
 		, #{category}
 		, #{imagePath}
+		, 1
 		, NOW()
 		, NOW()
  	)
  </insert>
  
- <select id="selectProductList" resultType="com.project.product.model.Product">
+ <select id="selectProductList" parameterType="map" resultType="com.project.product.model.Product">
  	SELECT 
 	 	`id`
 	 	, `productName`
@@ -41,13 +43,13 @@
 		</if>
 		<if test="direction == 'next'">
 			<![CDATA[
-			AND `id` < #{standardId}
+			WHERE `id` < #{standardId}
 			]]>
 			ORDER BY `id` DESC 
 		</if>
 		<if test="direction == 'prev'">
 			<![CDATA[
-			AND `id` > #{standardId}
+			WHERE `id` > #{standardId}
 			ORDER BY `id` ASC 
 			]]>
 		</if>

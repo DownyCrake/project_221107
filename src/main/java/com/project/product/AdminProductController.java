@@ -44,13 +44,13 @@ public class AdminProductController {
 		model.addAttribute("prevId", prevId);
 		model.addAttribute("nextId", nextId);
 		model.addAttribute("productList", productList);
-		return "admin/product/productList";
+		return "admin/product/adminProductList";
 	}
 	
 	@RequestMapping("create_view")
 	public String productCreateView(Model model) {
 		
-		return "admin/product/productCreate";
+		return "admin/product/adminProductCreate";
 	}
 	
 	@RequestMapping("detail_view")
@@ -60,7 +60,7 @@ public class AdminProductController {
 		
 		Product product = productBO.getProductByProductId(productId);
 		model.addAttribute("product",product);
-		return "admin/product/productDetail";
+		return "admin/product/adminProductDetail";
 	}
 	
 }

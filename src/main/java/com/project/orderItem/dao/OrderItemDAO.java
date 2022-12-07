@@ -15,6 +15,8 @@ public interface OrderItemDAO {
 	public List<OrderItem> selectOrderItemByOrderId(int orderId);
 	
 	public int updateOrderItemStateByOrderItemIdAndChangeValue(
-			@Param("orderId")int orderItemId, 
+			@Param("orderItemId")int orderItemId, 
 			@Param("changeValue") String changeValue);
+	
+	public int cancleOrderItemByOrderItemIdAndCount(int orderItemId);
 }
