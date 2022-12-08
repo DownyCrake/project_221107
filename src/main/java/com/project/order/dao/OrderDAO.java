@@ -25,4 +25,6 @@ public interface OrderDAO {
 			, @Param("limit") int limit);
 	
 	public int selectOrderIdBySort(String sort);
+	
+	public int selectUserIdByOrderId(int orderId);
 }

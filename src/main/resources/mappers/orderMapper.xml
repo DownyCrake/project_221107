@@ -115,4 +115,14 @@
  	ORDER BY `id` ${sort} 
  	LIMIT 1
  </select>
+ 
+ <select id="selectUserIdByOrderId" parameterType="int" resultType="int">
+ 	SELECT
+ 		`userId`
+ 	FROM
+ 		`order`
+ 	WHERE
+ 		`id` = #{orderId}
+ 
+ </select>
  </mapper>

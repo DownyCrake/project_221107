@@ -15,8 +15,16 @@ public class orderResultData {
 	private int totalPrice;
 	private String state;
 	private Date createdAt;
+	private boolean reviewCheck;
 	
 	
+	
+	public boolean isReviewCheck() {
+		return reviewCheck;
+	}
+	public void setReviewCheck(boolean reviewCheck) {
+		this.reviewCheck = reviewCheck;
+	}
 	public int getStockId() {
 		return stockId;
 	}

@@ -233,6 +233,7 @@ public class OrderBO {
 				ovd.setCount(oi.getCount());
 				ovd.setTotalPrice(oi.getTotalPrice());
 				ovd.setState(oi.getState());
+				ovd.setReviewCheck(oi.isReviewCheck());
 				ovd.setCreatedAt(oi.getCreatedAt());
 				ovdl.add(ovd);
 			}
@@ -323,5 +324,9 @@ public class OrderBO {
 			return 0;
 		}
 		return 1;
+	}
+	
+	public int getUserIdByOrderId(int orderId) {
+		return orderDAO.selectUserIdByOrderId(orderId);
 	}
 }

@@ -58,11 +58,19 @@
 							 	<button  type="button" class="btn change-order-state-btn" value="구매확정"
 							 	data-order-item-id="${ orderItem.orderItemId}">구매확정</button>
 							 </c:when>
-							 <c:when test="${state eq '구매확정'}">
-							 	<button  type="button" <c:set var="id" value="${ orderItem.orderItemId}"/>
+							 <c:when test="${state eq '구매확정' && orderItem.reviewCheck == false}">
+							 
+							 	<form method="post" action="/review/write_view">
+							 	<input type="hidden" name="orderId" value="${orderItem.orderId}"> 
+							 	<input type="hidden" name="orderItemId" value="${orderItem.orderItemId}"> 
+							 	<input type="hidden" name="productName" value="${orderItem.productName}"> 
+							 	<input type="hidden" name="productId" value="${orderItem.productId}"> 
+							 	<button type="submit" 
+							 	<c:set var="id" value="${orderItem.orderItemId}"/>
 							 	class="btn orderhistory-write-review-btn bg-dark text-white" 
 							 	data-order-item-id="${ orderItem.orderItemId}" >
 							 	리뷰 작성</button>
+							 	</form>
 							 </c:when>
 							 
 							 </c:choose>

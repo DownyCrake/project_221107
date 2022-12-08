@@ -38,6 +38,7 @@
 		,count
 		,totalPrice
 		,state
+		,reviewCheck
 		,createdAt
 		,updatedAt
 	FROM
@@ -51,6 +52,11 @@
  	UPDATE	`order_item`
  	SET
  		`state` = #{changeValue}
+ 		, `updatedAt` = NOW()
+ 		<if test="changeValue == '구매확정'">
+ 		, `reviewCheck` = 0 
+ 		</if>
+ 		
  	WHERE
  		`id` = #{orderItemId}
  
@@ -60,6 +66,7 @@
  	UPDATE	`order_item`
  	SET
  		`state` = '주문취소'
+ 		, `updatedAt` = NOW()
  	WHERE
  		`id` = #{orderItemId}
  

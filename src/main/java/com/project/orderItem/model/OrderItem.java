@@ -10,9 +10,16 @@ public class OrderItem {
 	private int count;
 	private int totalPrice;
 	private String state;
+	private boolean reviewCheck;
 	private Date createdAt;
 	private Date updatedAt;
 	
+	public boolean isReviewCheck() {
+		return reviewCheck;
+	}
+	public void setReviewCheck(boolean reviewCheck) {
+		this.reviewCheck = reviewCheck;
+	}
 	public String getState() {
 		return state;
 	}
