@@ -228,6 +228,7 @@ public class OrderBO {
 				ovd.setOrderItemId(oi.getId());
 				ovd.setProductName(productBO.getProductNameByProductId(productId));
 				int stockId = oi.getStockId();
+				ovd.setStockId(stockId);
 				ovd.setSize(stockBO.getSizeByStockId(stockId));
 				ovd.setCount(oi.getCount());
 				ovd.setTotalPrice(oi.getTotalPrice());
@@ -312,11 +313,12 @@ public class OrderBO {
 	}
 	
 	public int cancleOrderItemByOrderItemIdAndCount(int orderItemId, int stockId, int count) {
-		int orderCancleResult = orderItemBO.cancleOrderItemByOrderItemIdAndCount(orderItemId);
+		int orderCancleResult = orderItemBO.cancleOrderItemByOrderItemId(orderItemId);
 		if ( orderCancleResult < 1) {
 			return 0;
 		}
-		int deductStock = stockBO.deductQuantityByStockIdAndCount(stockId, count);
+		int cancleCount = (-1) * count;
+		int deductStock = stockBO.deductQuantityByStockIdAndCount(stockId, cancleCount);
 		if ( deductStock < 1) {
 			return 0;
 		}

@@ -18,5 +18,5 @@ public interface OrderItemDAO {
 			@Param("orderItemId")int orderItemId, 
 			@Param("changeValue") String changeValue);
 	
-	public int cancleOrderItemByOrderItemIdAndCount(int orderItemId);
+	public int cancleOrderItemByOrderItemId(int orderItemId);
 }

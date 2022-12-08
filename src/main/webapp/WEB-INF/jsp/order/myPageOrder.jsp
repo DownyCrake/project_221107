@@ -22,6 +22,7 @@
 				<tbody>
 				
 				<c:forEach items="${orvdl}" var="orderItem">
+				
 					<tr>
 						 <td>
 						 
@@ -38,7 +39,7 @@
 							 ${orderItem.orderNumber }
 						 </td>
 						 <td>
-							${orderItem.totalPrice }<br>
+							<fmt:formatNumber value="${orderItem.totalPrice }" type="number"/>원<br>
 							 <small class="text-secondary">${orderItem.count }개</small>
 						 </td>
 						 <td>
@@ -49,12 +50,12 @@
 							 
 							 <c:when test="${state eq '상품준비중'}">
 							 	<button  type="button" class="btn cancle-order-btn" value="주문취소" 
+							 	data-stock-id="${orderItem.stockId }"
+							 	data-count="${orderItem.count }"
 							 	data-order-item-id="${ orderItem.orderItemId}">주문취소</button>
 							 </c:when>
 							 <c:when test="${state eq '배송완료'}">
 							 	<button  type="button" class="btn change-order-state-btn" value="구매확정"
-							 	data-stock-id="${orderItem.stockId }"
-							 	data-count="${orderItem.count}"
 							 	data-order-item-id="${ orderItem.orderItemId}">구매확정</button>
 							 </c:when>
 							 <c:when test="${state eq '구매확정'}">
@@ -66,7 +67,8 @@
 							 
 							 </c:choose>
 						 </td>
-					</tr>			
+					</tr>	
+							
 				</c:forEach>
 				</tbody>
 			</table>
@@ -104,8 +106,8 @@ $(document).ready(function() {
 		let orderItemId = $(this).data('order-item-id');
 		let stockId = $(this).data('stock-id');
 		let count = $(this).data('count');
-		// alert(orderItemId + '&' + changeValue);
-		
+		//alert(orderItemId + '&' + stockId + '&' + count);
+
 		$.ajax({
 			type:'PUT'
 			, url:'/order/order_item_cancle'
