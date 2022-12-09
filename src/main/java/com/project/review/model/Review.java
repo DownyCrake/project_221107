@@ -4,20 +4,20 @@ import java.util.Date;
 
 public class Review {
 
-	private int orderItemId;
+	private int id;		// 수동생성. orderItemId 와 일치하게
 	private int userId;
 	private int productId;
 	private String content;
-	private String imagePath;
+	private int point;
 	private Date createdAt;
 	private Date updatedAt;
 	
-	
-	public int getOrderItemId() {
-		return orderItemId;
+
+	public int getId() {
+		return id;
 	}
-	public void setOrderItemId(int orderItemId) {
-		this.orderItemId = orderItemId;
+	public void setId(int id) {
+		this.id = id;
 	}
 	public int getUserId() {
 		return userId;
@@ -37,11 +37,11 @@ public class Review {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public String getImagePath() {
-		return imagePath;
+	public int getPoint() {
+		return point;
 	}
-	public void setImagePath(String imagePath) {
-		this.imagePath = imagePath;
+	public void setPoint(int point) {
+		this.point = point;
 	}
 	public Date getCreatedAt() {
 		return createdAt;
