@@ -28,7 +28,7 @@
       	      	<li class="nav-item dropdown">
       		<a class="nav-link dropdown-toggle" data-toggle="dropdown" id="navbarDropdown2" role="button">Community</a>
       			<ul class="dropdown-menu"  aria-labelledby="navbarDropdown2">
-      				 <li><a class="dropdown-item" href="#">Q&A</a></li>
+      				 <li><a class="dropdown-item" href="/board/list_view">Q&A</a></li>
 		            <li><a class="dropdown-item" href="#">Review</a></li>
       			</ul> 
       	</li>

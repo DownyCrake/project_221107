@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="com.project.qna.dao.QnADAO">
+ 
+ <insert id="insertQuestion" parameterType="map">
+	INSERT 
+	INTO `qna`
+	(
+		userId,
+		userName,
+		subject,
+		content,
+		secret,
+		createdAt,
+		updatedAt
+	) 
+	VALUES
+	(
+		#{userId},
+		#{userName},
+		#{subject},
+		#{content},
+		#{secret},
+		NOW(),
+		NOW()
+	) 
+ 
+ </insert>
+
+<select id="selectQnAbyPostId" resultType="com.project.qna.model.QnA">
+		SELECT
+		id,
+		userId,
+		userName,
+		subject,
+		content,
+		secret,
+		reply,
+		createdAt,
+		updatedAt
+	FROM
+		`qna`
+	WHERE
+		`id` = #{postId}
+		
+</select>
+
+<select id="selectQnAList" resultType="com.project.qna.model.QnA">
+	SELECT
+		id,
+		userId,
+		userName,
+		subject,
+		content,
+		secret,
+		reply,
+		createdAt,
+		updatedAt
+	FROM
+		`qna`
+	ORDER BY `id` DESC;
+	
+</select> 
+ </mapper>

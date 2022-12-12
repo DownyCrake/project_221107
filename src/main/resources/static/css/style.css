@@ -98,3 +98,11 @@ border-bottom:1px solid #aaaaaa;}
 	height:35px;
 	border:1px solid;border-radius: 0;
 } 
+
+.board-div .write-qna-btn{
+	height:35px;
+	border:1px solid;border-radius: 0;
+}
+.board-qna-list-div {
+	border-top: 1px solid;
+}
