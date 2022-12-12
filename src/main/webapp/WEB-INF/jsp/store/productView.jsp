@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <div>
 	
 	<div class="d-flex " id="topDiv">
@@ -66,6 +67,37 @@
 			<c:forEach items="${storeView.imageList}" var="Images">
 				<img src="${Images.imagePath }" width=100% class="m-2">
 			</c:forEach>
+		</div>
+	</div>
+	<div id="productReviewDiv" class="w-100 d-flex justify-content-center">
+		<div class="col-10 mt-5">
+			<div class="text-secondary">
+				<h4 >Reivew</h4>
+				<hr>
+				<h5 class="text-right" >
+					총점 <fmt:formatNumber value="${storeView.avgPoint}" pattern=".0" />
+				<hr>
+				</h5>
+			</div>			
+			<div class="text-secondary">
+				<c:forEach items="${storeView.reviewList }" var="review">
+					<c:set value="${review.userName}" var="reviewname"/>
+					<div class="d-flex justify-content-between">
+						${fn:substring(reviewname,0,1)} ** 님 
+						<span>
+							<fmt:formatDate value="${review.createdAt}" pattern="yyyy.MM.dd"/>
+						</span>						
+					</div>
+					<br> 
+					<div class="d-flex justify-content-between">
+						${review.content}
+						<span>
+							<c:forEach var="i"  begin="1" end="${review.point}">★</c:forEach> 
+						</span>
+					</div>
+					<hr>
+				</c:forEach>
+			</div>		
 		</div>
 	</div>
 

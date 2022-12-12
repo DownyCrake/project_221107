@@ -6,6 +6,7 @@ public class Review {
 
 	private int id;		// 수동생성. orderItemId 와 일치하게
 	private int userId;
+	private String userName;
 	private int productId;
 	private String content;
 	private int point;
@@ -13,6 +14,12 @@ public class Review {
 	private Date updatedAt;
 	
 
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
 	public int getId() {
 		return id;
 	}

@@ -60,8 +60,23 @@ $(document).ready(function() {
 			location.href="/user/sign_in_view";
 			return;
 		}
-		
-		
+		$.ajax({
+			type:'post'
+			, data: {'orderItemId':orderItemId, 'userId':userId, 'productId':productId,
+				'content':content, 'point':point}
+			, url: '/review/create'
+			
+			, success:function(data){
+				if (data.code == 100){
+					location.href='/order/order_history_view';
+				} else {
+					alert(data.errorMessage);
+				}
+			}
+			, error:function(){
+				alert('error');
+			}
+		}); // ajax - end
 		
 	});
 	

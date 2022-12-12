@@ -71,4 +71,13 @@
  		`id` = #{orderItemId}
  
  </update>
+ 
+ <update id="updateReviewCheckByOrderItemId" parameterType="int">
+ 	UPDATE	`order_item`
+ 	SET
+ 		`reviewCheck` = true
+ 	WHERE
+ 		`id` = #{orderItemId}
+ 
+ </update>
  </mapper>

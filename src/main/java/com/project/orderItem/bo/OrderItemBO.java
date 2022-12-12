@@ -29,4 +29,8 @@ public class OrderItemBO {
 	public int cancleOrderItemByOrderItemId(int orderItemId) {
 		return orderItemDAO.cancleOrderItemByOrderItemId(orderItemId);
 	}
+	
+	public int updateReviewCheckByOrderItemId(int orderItemId) {
+		return orderItemDAO.updateReviewCheckByOrderItemId(orderItemId);
+	}
 }

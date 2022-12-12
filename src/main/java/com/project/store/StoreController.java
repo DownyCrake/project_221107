@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.project.product.bo.ProductBO;
 import com.project.product.model.Product;
 import com.project.store.bo.StoreBO;
+import com.project.store.model.StoreView;
 
 @RequestMapping("/store")
 @Controller

@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <div class="d-flex justify-content-center">
-	<div class=" col-8">
+	<div class=" col-9">
 		<div class="m-4">
 		<h2>주문내역 조회</h2>	
 		</div>	
@@ -12,11 +12,12 @@
 			<table class="w-100 text-center order-history-table">
 				<thead>			
 					<tr>
-						<th>상품 정보</th>
-						<th>주문 일자</th>
-						<th>주문 번호</th>
-						<th>주문 금액</th>
-						<th>주문 상태</th>
+						<th class="col-3">상품 정보</th>
+						<th class="col-2">주문 일자</th>
+						<th class="col-2">주문 번호</th>
+						<th class="col-2">주문 금액</th>
+						<th class="col-2">주문 상태</th>
+						<th class="col-1"></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -43,7 +44,9 @@
 							 <small class="text-secondary">${orderItem.count }개</small>
 						 </td>
 						 <td>
-							 ${orderItem.state }
+							${orderItem.state }
+						</td>
+						<td>	
 							 <c:set var="state" value="${orderItem.state }"/>
 							 <c:choose>
 							 
@@ -69,7 +72,7 @@
 							 	<c:set var="id" value="${orderItem.orderItemId}"/>
 							 	class="btn orderhistory-write-review-btn bg-dark text-white" 
 							 	data-order-item-id="${ orderItem.orderItemId}" >
-							 	리뷰 작성</button>
+							 	리뷰작성</button>
 							 	</form>
 							 </c:when>
 							 

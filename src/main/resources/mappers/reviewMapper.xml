@@ -4,4 +4,47 @@
  
 <mapper namespace="com.project.review.dao.ReviewDAO">
 
+<insert id="insertReview" parameterType="map">
+	INSERT 
+	INTO `review`
+	(
+		id
+		,productId
+		,userId
+		,userName
+		,content
+		,point
+		,createdAt
+		,updatedAt
+	)
+	VALUES
+	(
+		#{orderItemId}
+		,#{productId}
+		,#{userId}
+		,#{userName}
+		,#{content}
+		,#{point}
+		,NOW()
+		,NOW()
+	)
+
+</insert>
+
+<select id="selectReviewByProductId" parameterType="int" resultType="com.project.review.model.Review">
+	SELECT
+		`id`
+		,`productId`
+		,`userId`
+		,`userName`
+		,`content`
+		,`point`
+		,`createdAt`
+	FROM
+		`review`
+	WHERE
+		`productId` = #{productId} 
+
+</select>
+
 </mapper>

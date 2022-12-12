@@ -10,9 +10,11 @@ import com.project.product.bo.ProductBO;
 import com.project.product.model.Product;
 import com.project.productImage.bo.ProductImageBO;
 import com.project.productImage.model.ProductImage;
+import com.project.review.bo.ReviewBO;
+import com.project.review.model.Review;
 import com.project.stock.bo.StockBO;
 import com.project.stock.model.Stock;
-import com.project.store.StoreView;
+import com.project.store.model.StoreView;
 
 @Service
 public class StoreBO {
@@ -25,6 +27,9 @@ public class StoreBO {
 	
 	@Autowired
 	private ProductImageBO productImageBO;
+	
+	@Autowired
+	private ReviewBO reviewBO;
 	
 	public void updateStoreByProductId(int productId, String content, List<MultipartFile> files) {
 		productBO.updateProductContencByProductId(productId, content);
@@ -45,6 +50,12 @@ public class StoreBO {
 		
 		List<ProductImage> productimageList = productImageBO.getProductImageByProductId(productId);
 		storeView.setImageList(productimageList);
+		
+		List<Review> reviewList = reviewBO.getReviewByProductId(productId);
+		
+		storeView.setReviewList(reviewList);
+		
+		storeView.setTotalPoint(reviewList);
 		
 		return storeView;
 	}
