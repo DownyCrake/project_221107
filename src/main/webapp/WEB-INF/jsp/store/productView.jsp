@@ -75,7 +75,9 @@
 				<h4 >Reivew</h4>
 				<hr>
 				<h5 class="text-right" >
+					<c:if test="${not empty storeView.reviewList}">
 					총점 <fmt:formatNumber value="${storeView.avgPoint}" pattern=".0" />
+					</c:if>
 				<hr>
 				</h5>
 			</div>			

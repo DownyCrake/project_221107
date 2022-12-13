@@ -4,15 +4,15 @@
 <div class="d-flex justify-content-center">
 	<div class="mt-5 write-question-div col-8">
 		<h3 class="text-dark">Q & A</h3>
-		<input type="text" class="form-control mt-5 col-10" id="questionSubject" placeholder="제목" maxlength=100>
-		<textarea class="form-control col-10 mt-4" id="questionContent" rows=6 maxlength=1000></textarea>
+		<input type="text" class="form-control mt-5 " id="questionSubject" placeholder="제목" maxlength=100>
+		<textarea class="form-control  mt-4" id="questionContent" rows=6 cols=20 maxlength=1000 wrap="hard"></textarea>
 		<div class="d-flex align-items-center mt-2">
 			<span class="text-secondary font-weight-bold">비밀글 설정</span>
 			<input type="radio" name="secret" class="ml-5" value="false" checked>&nbsp;공개
 			<input type="radio" name="secret" class="ml-3" value="true">&nbsp;비공개
 		</div>
-		<button type="button" class="form-control col-10 mt-3 board-button bg-secondary text-light" id="uploadQeustion">등록</button>
-		<a href="/board/list_view" type="button" class="form-control col-10 mt-2 text-center text-dark board-button">목록</a>
+		<button type="button" class="form-control  mt-3 board-button bg-secondary text-light" id="uploadQeustion">등록</button>
+		<a href="/board/list_view" type="button" class="form-control  mt-2 text-center text-dark board-button">목록</a>
 	</div>
 </div>
 

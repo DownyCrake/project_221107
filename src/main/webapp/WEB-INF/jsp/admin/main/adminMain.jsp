@@ -23,7 +23,7 @@
 			<li  class="list-group-item btn"><a href="/admin/order/order_list_view">주문관리</a></li>
 			<li  class="list-group-item btn"><a href="/admin/product/list_view">제품관리</a></li>
 			<li  class="list-group-item btn"><a href="/admin/store/update_view">스토어</a></li>
-			<li  class="list-group-item btn"><a href="#">q&a</a></li>
+			<li  class="list-group-item btn"><a href="/admin/qna/list_view">q&a</a></li>
 		</ul>
 	</div>
 

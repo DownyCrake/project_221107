@@ -103,6 +103,18 @@ border-bottom:1px solid #aaaaaa;}
 	height:35px;
 	border:1px solid;border-radius: 0;
 }
+.board-div .write-qna-btn:hover{
+	color:black; background-color:#f0f0f0;
+}
 .board-qna-list-div {
 	border-top: 1px solid;
+	font-size:15px;
+}
+
+.board-qna-detail-subject-div {
+		border-top: 2px solid;
+		border-bottom: 1px solid;
+}
+.qna-detail-button {
+	border:1px solid; border-radius:0;
 }

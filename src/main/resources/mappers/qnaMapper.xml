@@ -63,4 +63,15 @@
 	ORDER BY `id` DESC;
 	
 </select> 
+
+<update id="updateReplyByPostId" parameterType="map">
+	UPDATE
+		`qna`
+	SET
+		`reply` = #{reply}
+		, `updatedAt` = NOW()
+	WHERE
+		`id` = #{postId}
+
+</update>
  </mapper>

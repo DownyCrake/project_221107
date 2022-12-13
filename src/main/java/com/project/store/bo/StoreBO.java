@@ -53,10 +53,10 @@ public class StoreBO {
 		
 		List<Review> reviewList = reviewBO.getReviewByProductId(productId);
 		
-		storeView.setReviewList(reviewList);
-		
-		storeView.setTotalPoint(reviewList);
-		
+		if (reviewList.size() > 0) {
+			storeView.setReviewList(reviewList);
+			storeView.setAvgPoint(reviewList);
+		}
 		return storeView;
 	}
 }

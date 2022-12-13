@@ -21,4 +21,7 @@ public interface QnADAO {
 	
 	public List<QnA> selectQnAList();
 	
+	public int updateReplyByPostId(
+			@Param("postId") int postId,
+			@Param("reply") String reply);
 }

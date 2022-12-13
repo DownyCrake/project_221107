@@ -19,7 +19,7 @@ public class StoreView {
 
 	private float avgPoint;
 	
-	public void setTotalPoint(List<Review> reviewList) {
+	public void setAvgPoint(List<Review> reviewList) {
 		int sumPoint = 0; 
 		float num = 0;
 		for (int i = 0; i < reviewList.size(); i++) {

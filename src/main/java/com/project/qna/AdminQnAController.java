@@ -14,38 +14,40 @@ import com.project.qna.bo.QnABO;
 import com.project.qna.model.QnA;
 
 @Controller
-@RequestMapping("/board")
-public class QnAController {
-	
+@RequestMapping("/admin")
+public class AdminQnAController {
+
 	@Autowired
 	private QnABO qnaBO;
 	
-	@RequestMapping("/write_question_view")
-	public String writeQuestionView(HttpSession session, Model model) {
-		
-		model.addAttribute("viewName","/board/createQuestion");
-		return "/template/layout";
-	}
-	
-	@RequestMapping("/list_view")
-	public String qnaListView(HttpSession session, Model model) {
+	@RequestMapping("/qna/list_view")
+	public String AdminQnAListView(Model model) {
 		
 		List<QnA> qnaList = new ArrayList<>(); 
 		qnaList = qnaBO.getQnAList();
 		model.addAttribute("qnaList",qnaList);
 		
-		model.addAttribute("viewName","/board/qnaListView");
-		return "/template/layout";
+		return "/admin/qna/adminQnAListView";
 	}
 	
-	@RequestMapping("/qna_view")
-	public String qnaDetailView(HttpSession session, Model model, int postId) {
+	@RequestMapping("/qna/question_view")
+	public String QnaDetailView(Model model, int postId) {
 
 		QnA qna = new QnA(); 
 		qna = qnaBO.getQnAbyPostId(postId);
 		model.addAttribute("qna",qna);
-		model.addAttribute("viewName","/board/qnaDetail");
-		return "/template/layout";
+		
+		return "/admin/qna/adminQnADetailView";
+	}
+	
+	@RequestMapping("/qna/write_answer_view")
+	public String WriteAnswerView(Model model, int postId) {
+		
+		QnA qna = new QnA(); 
+		qna = qnaBO.getQnAbyPostId(postId);
+		model.addAttribute("qna",qna);
+		
+		return "/admin/qna/adminWriteAnswerView";
 	}
 	
 }

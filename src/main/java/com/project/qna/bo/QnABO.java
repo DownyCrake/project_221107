@@ -27,4 +27,7 @@ public class QnABO {
 		return qnaDAO.selectQnAList();
 	}
 	
+	public int updateReplyByPostId(int postId, String reply){
+		return qnaDAO.updateReplyByPostId(postId, reply);
+	}
 }
