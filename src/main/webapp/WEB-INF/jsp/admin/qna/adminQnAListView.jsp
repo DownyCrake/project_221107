@@ -40,8 +40,7 @@
 					<div class="d-flex justify-content-between border-bottom mt-3">
 						<div>
 							<span class="col-1">${qna.id}</span>
-							<c:set value="${qna.userName}" var="name" />
-							<span class="col-1"> ${fn:substring(name,0,1)} ** </span> 
+							<span class="col-1"> id>${qna.userId} / name>${qna.userName} </span> 
 							<a href="/admin/qna/question_view?postId=${qna.id}" class="qna-post col-8">
 								<c:set value="${qna.subject}" var="subject" />
 								${fn:substring(subject,0,25)}

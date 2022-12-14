@@ -25,7 +25,7 @@ public class StoreController {
 
 	@RequestMapping("/product_list_view")
 	public String productListView(HttpSession session, Model model,
-			@RequestParam(value = "product", required = false) Integer category) {
+			@RequestParam(value = "category", required = false) Integer category) {
 
 		List<Product> productList = new ArrayList<>();
 		productList = storeBO.getProductByCategory(category);

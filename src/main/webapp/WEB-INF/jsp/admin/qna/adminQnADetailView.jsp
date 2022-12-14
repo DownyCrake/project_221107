@@ -34,7 +34,7 @@
 		<div class="board-qna-detail-subject-div mt-5 p-2">
 			<div><b class="mr-3">[제목]</b>	${qna.subject }</div>
 			<div class="d-flex justify-content-between">
-			<div class="mt-2"> <b class="mr-1">[작성자]</b>	${qna.userName }</div>
+			<div class="mt-2"> <b class="mr-1">[id]</b>${qna.userId} <b>[name]</b>${qna.userName }</div>
 			<div>	<fmt:formatDate value="${qna.createdAt}" pattern="yyyy-MM-dd HH:mm"/></div>
 			</div>
 		</div>

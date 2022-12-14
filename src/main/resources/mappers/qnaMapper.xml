@@ -74,4 +74,23 @@
 		`id` = #{postId}
 
 </update>
+
+<select id="selectQnAListByUserId" parameterType="int" resultType="com.project.qna.model.QnA">
+	SELECT
+		id,
+		userId,
+		userName,
+		subject,
+		content,
+		secret,
+		reply,
+		createdAt,
+		updatedAt
+	FROM
+		`qna`
+	WHERE
+		`userId` = #{uesrId}
+	ORDER BY `id` DESC;
+	
+</select> 
  </mapper>

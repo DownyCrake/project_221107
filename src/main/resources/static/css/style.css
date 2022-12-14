@@ -2,7 +2,7 @@
 
 a {text-decoration:none !important;}
 
-main {}
+main {min-height:300px;}
 
 .dropdown:hover .dropdown-menu {
     display: block;

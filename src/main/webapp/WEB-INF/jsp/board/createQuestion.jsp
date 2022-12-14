@@ -11,7 +11,7 @@
 			<input type="radio" name="secret" class="ml-5" value="false" checked>&nbsp;공개
 			<input type="radio" name="secret" class="ml-3" value="true">&nbsp;비공개
 		</div>
-		<button type="button" class="form-control  mt-3 board-button bg-secondary text-light" id="uploadQeustion">등록</button>
+		<button type="button" class="form-control  mt-3 board-button bg-secondary text-light" id="uploadQeustion" data-user-id="${userId }">등록</button>
 		<a href="/board/list_view" type="button" class="form-control  mt-2 text-center text-dark board-button">목록</a>
 	</div>
 </div>
@@ -29,6 +29,13 @@ $(document).ready(function() {
 		}
 		if (content == ''){
 			alert('내용을 입력해 주세요.');
+			return;
+		}
+		
+		let userId = $(this).data('user-id');
+		if (userId == ''){
+			alert('로그인 해주세요.');
+			location.href="/user/sign_in_view";
 			return;
 		}
 		

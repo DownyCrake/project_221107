@@ -58,4 +58,20 @@ public class QnAController {
 		return "/template/layout";
 	}
 	
+	@RequestMapping("/user_qna_view")
+	public String userQnAListView(HttpSession session, Model model) {
+		
+		Integer userId = (Integer)session.getAttribute("userId");
+		if (userId == null) {
+			model.addAttribute("viewName","/account/mypage_view");
+			return "/template/layout";
+		}
+		List<QnA> qnaList = new ArrayList<>(); 
+		qnaList = qnaBO.getQnAListByUserId(userId);
+		model.addAttribute("qnaList",qnaList);
+		
+		model.addAttribute("viewName","/board/userQnAList");
+		return "/template/layout";
+	}
+	
 }

@@ -6,8 +6,7 @@
 		<button  class="btn btn-block mb-4 mt-5 order-history-btn">Order</button>
 		<button  class="btn btn-block mb-4 profile-btn">Profile</button>
 		<button  class="btn btn-block mb-4 address-btn">Address</button>
-		<button class="btn btn-block mb-4 qna-view-btn">q&A</button>
-		<button class="btn btn-block mb-4">Review</button>
+		<button class="btn btn-block mb-4 qna-view-btn" data-user-id="${userId }">q&A</button>
 		<a href="/user/sign_out">
 			<button class="btn btn-block mb-4 ">Logout</button>
 		</a>
@@ -34,8 +33,12 @@ $(document).ready(function() {
 	}); 
 	
 	$('.qna-view-btn').on('click', function() {
-		location.href="/board/list_view";
-		return; 
+		let userId = $(this).data('user-id');
+		if (userId == ''){
+			return;
+		}
+		location.href="/board/user_qna_view";
+		return;
 	});
 	
 	

@@ -30,4 +30,9 @@ public class QnABO {
 	public int updateReplyByPostId(int postId, String reply){
 		return qnaDAO.updateReplyByPostId(postId, reply);
 	}
+	
+	public List<QnA> getQnAListByUserId(int userId){
+		return qnaDAO.selectQnAListByUserId(userId);
+	}
+
 }

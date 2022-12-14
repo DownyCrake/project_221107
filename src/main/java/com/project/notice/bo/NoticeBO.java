@@ -33,4 +33,10 @@ public class NoticeBO {
 	public int deleteNoticeById(int noticeId) {
 		return noticeDAO.deleteNoticeById(noticeId);
 	}
+	
+	/*
+	 * public List<Notice> getNoticeListByCategoryId(int CategoryId){
+	 * 
+	 * }
+	 */
 }
