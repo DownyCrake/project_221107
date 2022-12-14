@@ -1,5 +1,6 @@
 package com.project.store.bo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,4 +60,13 @@ public class StoreBO {
 		}
 		return storeView;
 	}
+	
+	public List<Product> getProductByCategory(Integer category) {
+		return productBO.getProductByCategory(category);
+	}
+
+	public List<Product> getProductBykeyword(String keyword) {
+		return productBO.getProductBykeyword(keyword);
+	}
+		
 }

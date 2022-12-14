@@ -126,6 +126,25 @@
  	 
   </select>
   
+    <select id="selectProductBykeyword" parameterType="String" resultType="com.project.product.model.Product">
+ 	SELECT
+ 		`id`
+ 		,`productName`
+		,`price`
+		,`category`
+		,`imagePath`
+		,`createdAt`
+		,`updatedAt`
+	FROM
+		`product`
+	WHERE
+		`productName` LIKE CONCAT('%', #{keyword},'%') AND
+		`exposure` = 1
+	ORDER BY `id` DESC
+ 	 
+  </select>
+  
+  
   <select id="selectProductNameAndId" resultType="com.project.product.model.Product">
   	SELECT
   		`id`

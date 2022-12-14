@@ -50,4 +50,14 @@ public class AdminQnAController {
 		return "/admin/qna/adminWriteAnswerView";
 	}
 	
+	@RequestMapping("/qna/answer_view")
+	public String QnaAnswerView(Model model, int postId) {
+
+		QnA qna = new QnA(); 
+		qna = qnaBO.getQnAbyPostId(postId);
+		model.addAttribute("qna",qna);
+		
+		return "/admin/qna/adminQnAAnswerDetailView";
+	}
+	
 }

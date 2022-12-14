@@ -7,7 +7,9 @@
 <div class="d-flex justify-content-center">
 	<div class="board-div col-8 mt-5">
 		<h3 class="text-dark m-3">Q&A</h3>
+		<c:if test="${not empty userId}">
 		<a href="/board/write_question_view" class="form-control mt-4 mb-4 text-center write-qna-btn" type="button">글쓰기</a>
+		</c:if>
 		<div class="board-qna-list-div pt-3">
 
 			<c:forEach items="${qnaList}" var="qna">
@@ -31,14 +33,19 @@
 				</div>
 				</div>
 				<c:if test="${not empty qna.reply }">
-					<div class="d-flex mt-3 border-bottom">
-						<div class="col-1"></div>
+					<div class="d-flex mt-3 border-bottom justify-content-between">
+						<div class="d-flex col-10">
+							<div class="col-1"></div>
+							<div>
+								<span class="">Re]</span>
+								<a href="#" class="answer-post col-8 text-dark"
+								data-post-id="${qna.id}" data-secret="${qna.secret }"
+								data-login-user-id="${userId}" data-post-user-id="${qna.userId }"> 
+									${fn:substring(subject,0,23)} </a>
+							</div>
+						</div>
 						<div>
-							<span class="">Re]</span>
-							<a href="#" class="answer-post col-8 text-dark"
-							data-post-id="${qna.id}" data-secret="${qna.secret }"
-							data-login-user-id="${userId}" data-post-user-id="${qna.userId }"> 
-								${fn:substring(subject,0,23)} </a>
+							<fmt:formatDate value="${qna.updatedAt }" pattern="yyyy-MM-dd"/>
 						</div>
 					</div>
 				</c:if>
@@ -77,7 +84,7 @@ $(document).ready(function() {
 				return;
 			}
 		}
-		location.href='/board/answer_view?postId='+postId;
+		location.href='/board/reply_view?postId='+postId;
 	});// answer-post - end
 	
 	

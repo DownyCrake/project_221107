@@ -2,7 +2,7 @@
 
 a {text-decoration:none !important;}
 
-main {min-height:500px;}
+main {}
 
 .dropdown:hover .dropdown-menu {
     display: block;
@@ -117,4 +117,20 @@ border-bottom:1px solid #aaaaaa;}
 }
 .qna-detail-button {
 	border:1px solid; border-radius:0;
+}
+
+.search-dropdown {
+	/* position: relative; */
+	display: inline-block;
+}
+
+.search-dropdown-content {
+	display: none;
+	position: absolute;
+	left:70vw;
+	top:80px;
+}
+
+.search-product-input {
+	width:23vw;
 }

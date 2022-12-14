@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>관리자 QnA 리스트</title>
+<title>관리자 공지 리스트</title>
 
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -33,39 +33,25 @@
 
 	<div class="d-flex justify-content-center">
 		<div class="board-div col-8 mt-5">
-			<h3 class="text-dark m-3">Q&A</h3>
+			<h3 class="text-dark m-3">Notice</h3>
+			<a href="/admin/notice/create_notice_view"
+				class="form-control mt-4 mb-4 text-center write-qna-btn"
+				type="button">공지작성</a>
 			<div class="board-qna-list-div pt-3">
 
-				<c:forEach items="${qnaList}" var="qna">
+				<c:forEach items="${noticeList}" var="notice">
 					<div class="d-flex justify-content-between border-bottom mt-3">
 						<div>
-							<span class="col-1">${qna.id}</span>
-							<c:set value="${qna.userName}" var="name" />
-							<span class="col-1"> ${fn:substring(name,0,1)} ** </span> 
-							<a href="/admin/qna/question_view?postId=${qna.id}" class="qna-post col-8">
-								<c:set value="${qna.subject}" var="subject" />
+							<span class="col-1">${notice.id}</span>
+							<a href="/admin/notice/datail_view?noticeId=${notice.id}" class="qna-post col-8">
+								<c:set value="${notice.subject}" var="subject" />
 								${fn:substring(subject,0,25)}
 							</a>
-							<c:if test="${qna.secret }">
-								<img src="/static/img/lock.png"
-									alt="https://www.flaticon.com/kr/free-icons/- title=맹꽁이 자물쇠 아이콘 맹꽁이 자물쇠 아이콘  제작자: Pixel perfect - Flaticon">
-							</c:if>
 						</div>
 						<div>
-							<fmt:formatDate value="${qna.createdAt }" pattern="yyyy-MM-dd" />
+							<fmt:formatDate value="${notice.createdAt }" pattern="yyyy-MM-dd" />
 						</div>
 					</div>
-					<c:if test="${not empty qna.reply }">
-						<div class="d-flex mt-3 border-bottom">
-							<div class="col-2"></div>
-							<div>
-								<span class="">답변] </span>
-								<a href="/admin/qna/answer_view?postId=${qna.id}" class="qna-post col-8">
-								${fn:substring(subject,0,23)}
-								</a>
-							</div>
-						</div>
-					</c:if>
 				</c:forEach>
 
 				<a href="/admin/main_view"><button type="button" class="mt-5 qna-detail-button">뒤로</button></a>

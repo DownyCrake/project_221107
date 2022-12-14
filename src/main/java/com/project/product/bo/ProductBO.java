@@ -91,6 +91,10 @@ public class ProductBO {
 	public List<Product> getProductByCategory(Integer category) {
 		return productDAO.selectProductByCategory(category);
 	}
+
+	public List<Product> getProductBykeyword(String keyword) {
+		return productDAO.selectProductBykeyword(keyword);
+	}
 	
 	public List<Product> getProductNameAndId(){
 		return productDAO.selectProductNameAndId();

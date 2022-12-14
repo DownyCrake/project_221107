@@ -1,5 +1,6 @@
 package com.project.store;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -18,36 +19,41 @@ import com.project.store.model.StoreView;
 @RequestMapping("/store")
 @Controller
 public class StoreController {
-	
-	@Autowired
-	private ProductBO productBO;
-	
+
 	@Autowired
 	private StoreBO storeBO;
-	
+
 	@RequestMapping("/product_list_view")
-	public String productListView(HttpSession session,
-			Model model,
-			@RequestParam(value="category", required=false) Integer category ) {
-		
-		List<Product> productList = productBO.getProductByCategory(category);
-		
-		model.addAttribute("productList",productList);
-		model.addAttribute("viewName","store/storeListView");
+	public String productListView(HttpSession session, Model model,
+			@RequestParam(value = "product", required = false) Integer category) {
+
+		List<Product> productList = new ArrayList<>();
+		productList = storeBO.getProductByCategory(category);
+		model.addAttribute("productList", productList);
+		model.addAttribute("viewName", "store/storeListView");
 		return "/template/layout";
 	}
-	
+
 	@RequestMapping("/product_view")
-	public String productDetailView(int productId,
-			HttpSession session,
-			Model model) {
+	public String productDetailView(int productId, HttpSession session, Model model) {
 		StoreView storeView = storeBO.getStoreViewByProductId(productId);
-		
-		model.addAttribute("storeView",storeView);
-		model.addAttribute("viewName","store/productView");
+
+		model.addAttribute("storeView", storeView);
+		model.addAttribute("viewName", "store/productView");
 		return "/template/layout";
 
 	}
 
 	
+	  
+	 @RequestMapping("/search_list_view") 
+	 public String productListView(HttpSession session, 
+			 Model model, String keyword ) {
+		 List<Product> productList = new ArrayList<>(); 
+		 productList = storeBO.getProductBykeyword(keyword);
+	  
+		 model.addAttribute("productList",productList);
+		 model.addAttribute("viewName","store/searchListView"); 
+		 return "/template/layout"; }
+	 
 }

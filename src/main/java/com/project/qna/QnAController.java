@@ -48,4 +48,14 @@ public class QnAController {
 		return "/template/layout";
 	}
 	
+	@RequestMapping("/reply_view")
+	public String AnswerDetailView(HttpSession session, Model model, int postId) {
+
+		QnA qna = new QnA(); 
+		qna = qnaBO.getQnAbyPostId(postId);
+		model.addAttribute("qna",qna);
+		model.addAttribute("viewName","/board/answerDetail");
+		return "/template/layout";
+	}
+	
 }

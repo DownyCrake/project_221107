@@ -35,6 +35,8 @@ public interface ProductDAO {
 		
 	public List<Product> selectProductByCategory(Integer category);
 	
+	public List<Product> selectProductBykeyword(String keyword);
+	
 	public List<Product> selectProductNameAndId();
 	
 	public int updateProductContentByProductId(

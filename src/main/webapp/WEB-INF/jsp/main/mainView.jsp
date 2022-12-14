@@ -2,5 +2,5 @@
     pageEncoding="UTF-8"%>
 
 <div>
-	MAIN TEST
+	<img src="/static/img/main_img.jpg" width="100%">
 </div>

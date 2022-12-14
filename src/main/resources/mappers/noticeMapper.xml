@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="com.project.notice.dao.NoticeDAO">
+ 
+ <insert id="insertNotice" parameterType="map">
+ 	INSERT
+ 	INTO `notice`
+ 	(
+ 	subject,
+	content,
+	createdAt,
+	updatedAt
+ 	)
+ 	VALUES
+ 	(
+ 	#{subject},
+	#{content},
+	NOW(),
+	NOW()
+ 	)
+ 
+ </insert>
+ 
+ <select id="selectNoticeList" resultType="com.project.notice.model.Notice">
+ 	SELECT
+	 	id
+		,subject
+		,content
+		,createdAt
+		,updatedAt
+	FROM
+		`notice`
+	ORDER BY `id` DESC		
+ </select> 
+ 
+ <select id="selectNoticeByNoticeId" parameterType="int" resultType="com.project.notice.model.Notice">
+  	SELECT
+	 	id
+		,subject
+		,content
+		,createdAt
+		,updatedAt
+	FROM
+		`notice`
+	WHERE
+		`id` = #{noticeId}
+ </select>
+ 
+ <update id="updateNotice" parameterType="map">
+ 	UPDATE
+ 		`notice`
+ 	SET
+ 		subject = #{subject}
+		,content = #{content}
+		,updatedAt = NOW()
+	WHERE
+		`id` = #{noticeId}
+ </update>
+ 
+ <delete id="deleteNoticeById" parameterType="int">
+ 	DELETE
+ 	FROM 
+ 		`notice`
+ 	WHERE
+ 		`id` = #{noticeId}
+ 
+ </delete>
+ </mapper>
