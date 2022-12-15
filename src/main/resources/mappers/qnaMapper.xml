@@ -93,4 +93,34 @@
 	ORDER BY `id` DESC;
 	
 </select> 
+
+ <select id="selectCurrentQnAId" resultType="int">
+ 	SELECT
+ 		`id`
+ 	FROM
+ 		`qna`
+ 	ORDER BY `id` DESC
+ 	LIMIT 1
+ </select>
+ 
+ <select id="selectQnAListByQnAIdAndPageSize" parameterType="map" resultType="com.project.qna.model.QnA">
+	SELECT
+		id,
+		userId,
+		userName,
+		subject,
+		content,
+		secret,
+		reply,
+		createdAt,
+		updatedAt
+	FROM
+		`qna`	
+		<![CDATA[
+			WHERE `id` BETWEEN  #{qnaId} - #{pageSize} + 1 AND #{qnaId}
+		]]>
+	ORDER BY `id` DESC;
+	
+</select> 
+ 
  </mapper>

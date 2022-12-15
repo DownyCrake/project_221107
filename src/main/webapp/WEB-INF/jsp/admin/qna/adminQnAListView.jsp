@@ -36,7 +36,7 @@
 			<h3 class="text-dark m-3">Q&A</h3>
 			<div class="board-qna-list-div pt-3">
 
-				<c:forEach items="${qnaList}" var="qna">
+				<c:forEach items="${qnaData.qnaList}" var="qna">
 					<div class="d-flex justify-content-between border-bottom mt-3">
 						<div>
 							<span class="col-1">${qna.id}</span>
@@ -66,7 +66,18 @@
 						</div>
 					</c:if>
 				</c:forEach>
-
+				<div class="d-flex justify-content-center mt-5 align-items-center">
+				
+				<c:if test="${! qnaData.firstSection }">
+					<a href="/admin/qna/list_view?page=${qnaData.prePage}" class="prev-page-link m-2"><b>이전 </b> </a>
+				</c:if>
+				<c:forEach items="${qnaData.pageNumberList }" var="pages">
+					<a href="/admin/qna/list_view?page=${pages}" class="text-dark m-2"><b>${pages}</b></a>
+				</c:forEach>
+				<c:if test="${! qnaData.lastSection }">
+					<a href="/admin/qna/list_view?page=${qnaData.nextPage}" class="next-page-link m-2"> <b>다음</b> </a>
+				</c:if>
+				</div>
 				<a href="/admin/main_view"><button type="button" class="mt-5 qna-detail-button">뒤로</button></a>
 			</div>
 

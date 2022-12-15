@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
+import com.project.notice.model.Notice;
 import com.project.qna.model.QnA;
 
 @Repository
@@ -26,4 +27,11 @@ public interface QnADAO {
 			@Param("reply") String reply);
 	
 	public List<QnA> selectQnAListByUserId(int userId);
+	
+	public int selectCurrentQnAId();
+	
+	public List<QnA> selectQnAListByQnAIdAndPageSize(
+			@Param("qnaId") int postId, 
+			@Param("pageSize") int pageSize);
+
 }

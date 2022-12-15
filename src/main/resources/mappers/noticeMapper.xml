@@ -66,4 +66,29 @@
  		`id` = #{noticeId}
  
  </delete>
+ 
+ <select id="selectCurrentNoticeId" resultType="int">
+ 	SELECT
+ 		`id`
+ 	FROM
+ 		`notice`
+ 	ORDER BY `id` DESC
+ 	LIMIT 1
+ </select>
+ 
+  <select id="selectNoticeListByNoticeIdAndPageSize" parameterType="map" resultType="com.project.notice.model.Notice">
+ 	SELECT
+	 	id
+		,subject
+		,content
+		,createdAt
+		,updatedAt
+	FROM
+		`notice`
+	<![CDATA[
+			WHERE `id` BETWEEN  #{noticeId} - #{pageSize} + 1 AND #{noticeId}
+		]]>
+	ORDER BY `id` DESC		
+	
+ </select> 
  </mapper>

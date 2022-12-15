@@ -38,7 +38,7 @@
 							<div class="col-1"></div>
 							<div>
 								<span class="">Re]</span>
-								<a href="#" class="answer-post col-8 text-dark"
+								<a href="/board/qna_view?postId=${qna.id}" class="answer-post col-8 text-dark"
 								data-post-id="${qna.id}" data-secret="${qna.secret }"
 								data-login-user-id="${userId}" data-post-user-id="${qna.userId }"> 
 									${fn:substring(subject,0,23)} </a>

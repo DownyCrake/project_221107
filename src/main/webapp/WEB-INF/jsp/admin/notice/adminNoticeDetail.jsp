@@ -42,7 +42,7 @@
 			
 			<a href="/admin/notice/update_view?noticeId=${notice.id}"><button class="btn qna-detail-button form-control">수정</button></a>
 			<button class="delete-notice-btn form-control mt-2 bg-danger" data-notice-id="${notice.id }">삭제</button>
-			<a href="/admin/notice/list_view"><button class="btn qna-detail-button form-control mt-2">목록</button></a>
+			<a href="/admin/notice/list_view?page=${page}"><button class="btn qna-detail-button form-control mt-2">목록</button></a>
 		</div>
 	</div>
 </div>

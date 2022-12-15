@@ -20,7 +20,7 @@
 					<span class="col-1">
 					${fn:substring(name,0,1)} **
 					</span>	
-					<a href="#" class="qna-post col-8 text-dark"
+					<a href="/board/qna_view?postId=${qna.id}" class="qna-post col-8 text-dark"
 					data-post-id="${qna.id}" data-secret="${qna.secret }"
 					data-login-user-id="${userId}" data-post-user-id="${qna.userId }"> 
 					<c:set value="${qna.subject}" var="subject"/>

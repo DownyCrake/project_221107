@@ -24,4 +24,10 @@ public interface NoticeDAO {
 			@Param("content") String content);
 	
 	public int deleteNoticeById(int noticeId);
+	
+	public int selectCurrentNoticeId();
+	
+	public List<Notice> selectNoticeListByNoticeIdAndPageSize(
+			@Param("noticeId") int postId, 
+			@Param("pageSize") int pageSize);
 }

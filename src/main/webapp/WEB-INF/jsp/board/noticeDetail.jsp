@@ -17,7 +17,7 @@
 			<pre>${notice.content }</pre>
 		</div>
 		<div class="border-top mt-5 p-3">
-			<a href="/notice/list_view"><button class="btn qna-detail-button">목록</button></a>
+			<a href="/notice/list_view?page=${page}"><button class="btn qna-detail-button">목록</button></a>
 		</div>
 	</div>
 </div>
