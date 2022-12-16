@@ -9,6 +9,7 @@ import com.project.order.bo.OrderBO;
 import com.project.orderItem.bo.OrderItemBO;
 import com.project.review.dao.ReviewDAO;
 import com.project.review.model.Review;
+import com.project.store.model.StoreView;
 
 @Service
 public class ReviewBO {
@@ -38,5 +39,27 @@ public class ReviewBO {
 	
 	public List<Review> getReviewByProductId(int productId){
 		return reviewDAO.selectReviewByProductId(productId);
+	}
+	
+	public int countReviewByProductId(int productId){
+		return reviewDAO.countReviewByProductId(productId);
+	}
+	
+	public List<Integer> getReviewPointByProductId(int productId){
+		return reviewDAO.selectReviewPointByProductId(productId);
+	}
+	
+	public List<Review> getReviewByProductIdAndPage(int productId, int page, int pageSize){
+		int start = (page - 1) * pageSize;
+		return reviewDAO.selectReviewByProductIdAndPage(productId, start, pageSize);
+	}
+	
+	public StoreView changeReviewListByPageAndProductId(int productId, int page) {
+		
+		List<Review> review = getReviewByProductIdAndPage(productId, page, 3);
+		StoreView storeData = new StoreView();
+		storeData.setReviewList(review);
+		
+		return storeData;
 	}
 }

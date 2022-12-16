@@ -19,4 +19,14 @@ public interface ReviewDAO {
 			@Param("point") int point); 
 	
 	public List<Review> selectReviewByProductId(int productId);
+
+	public int countReviewByProductId(int productId);
+	
+	public List<Integer> selectReviewPointByProductId(int productId);
+	
+	public List<Review> selectReviewByProductIdAndPage(
+			@Param("productId") int productId, 
+			@Param("start")int start, 
+			@Param("size")int pageSize);
+	
 }

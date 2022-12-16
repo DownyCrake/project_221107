@@ -12,7 +12,7 @@
 		</c:if>
 		<div class="board-qna-list-div pt-3">
 
-			<c:forEach items="${qnaList}" var="qna">
+			<c:forEach items="${qnaData.qnaList}" var="qna">
 				<div class="d-flex justify-content-between border-bottom mt-4">
 					<div>
 					<span class="col-1">${qna.id}</span>
@@ -50,7 +50,19 @@
 					</div>
 				</c:if>
 			</c:forEach>
-
+		</div>
+		
+		<div class="d-flex justify-content-center mt-5 align-items-center">
+		
+			<c:if test="${! qnaData.firstSection }">
+				<a href="/board/list_view?page=${qnaData.prePage}" class="prev-page-link m-2 text-dark"><b>이전 </b> </a>
+			</c:if>
+			<c:forEach items="${qnaData.pageNumberList }" var="pages">
+				<a href="/board/list_view?page=${pages}" class="text-dark m-2"><b>${pages}</b></a>
+			</c:forEach>
+			<c:if test="${! qnaData.lastSection }">
+				<a href="/board/list_view?page=${qnaData.nextPage}" class="next-page-link m-2 text-dark"> <b>다음</b> </a>
+			</c:if>
 		</div>
 		
 	</div>

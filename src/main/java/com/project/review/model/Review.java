@@ -9,7 +9,7 @@ public class Review {
 	private String userName;
 	private int productId;
 	private String content;
-	private int point;
+	private Integer point;
 	private Date createdAt;
 	private Date updatedAt;
 	
@@ -44,10 +44,10 @@ public class Review {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public int getPoint() {
+	public Integer getPoint() {
 		return point;
 	}
-	public void setPoint(int point) {
+	public void setPoint(Integer point) {
 		this.point = point;
 	}
 	public Date getCreatedAt() {

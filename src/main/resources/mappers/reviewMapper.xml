@@ -47,4 +47,41 @@
 
 </select>
 
+<select id="countReviewByProductId" parameterType="int" resultType="int">
+	SELECT
+		count(*)
+	FROM
+		`review`
+	WHERE
+		`productId` = #{productId} 
+</select>
+
+<select id="selectReviewPointByProductId" parameterType="int" resultType="int">
+	SELECT
+		`point`
+	FROM
+		`review`
+	WHERE
+		`productId` = #{productId} 
+</select>
+
+<select id="selectReviewByProductIdAndPage" parameterType="map" resultType="com.project.review.model.Review">
+	SELECT
+		`id`
+		,`productId`
+		,`userId`
+		,`userName`
+		,`content`
+		,`point`
+		,`createdAt`
+	FROM
+		`review`
+	WHERE
+		`productId` = #{productId} 
+
+	ORDER BY `id` DESC
+	LIMIT #{start}, #{size}
+
+</select>
+
 </mapper>

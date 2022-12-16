@@ -25,7 +25,7 @@ public class FileManagerService {
 		public String saveFile(String userLoginId, MultipartFile file) {
 			// 파일 디렉토리 예) marobiana_1620546874/sun.png  아이디_시간/파일명  한글파일명 불가>난수로 변경
 			String directoryName = userLoginId + "_" +System.currentTimeMillis() + "/";
-			String filePath = FILE_UPLOAD_PATH + directoryName; // "C:\\Users\\user\\Desktop\\Jaehyun\\sns\\workspace\\images/marobiana_1620546874/"
+			String filePath = FILE_UPLOAD_PATH + directoryName; // "C:\\Users\\user\\Desktop\\Jaehyun\\project\\workspcae\\images/marobiana_1620546874/"
 		
 			File directory = new File(filePath);
 			if (directory.mkdir() == false ) {

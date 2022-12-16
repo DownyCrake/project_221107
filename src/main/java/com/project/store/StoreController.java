@@ -11,8 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.project.product.bo.ProductBO;
 import com.project.product.model.Product;
+import com.project.review.bo.ReviewBO;
 import com.project.store.bo.StoreBO;
 import com.project.store.model.StoreView;
 
@@ -22,6 +22,9 @@ public class StoreController {
 
 	@Autowired
 	private StoreBO storeBO;
+	
+	@Autowired
+	private ReviewBO reviewBO;
 
 	@RequestMapping("/product_list_view")
 	public String productListView(HttpSession session, Model model,
@@ -35,8 +38,9 @@ public class StoreController {
 	}
 
 	@RequestMapping("/product_view")
-	public String productDetailView(int productId, HttpSession session, Model model) {
-		StoreView storeView = storeBO.getStoreViewByProductId(productId);
+	public String productDetailView(int productId, HttpSession session, Model model
+			,@RequestParam(value="reviewPage", required=false, defaultValue="1")int reviewPage) {
+		StoreView storeView = storeBO.getStoreViewByProductId(productId, reviewPage);
 
 		model.addAttribute("storeView", storeView);
 		model.addAttribute("viewName", "store/productView");
@@ -54,6 +58,15 @@ public class StoreController {
 	  
 		 model.addAttribute("productList",productList);
 		 model.addAttribute("viewName","store/searchListView"); 
-		 return "/template/layout"; }
+		 return "/template/layout"; 
+	}
+	 
+		@RequestMapping("/change")
+		public String changeStoreReview(Model model, int productId, int page){
+			StoreView storeData = new StoreView();
+			storeData = storeBO.changeReviewListByPageAndProductId(productId, page);
+			model.addAttribute("storeView",storeData);
+			return "/review/storeReviewView";
+		}
 	 
 }

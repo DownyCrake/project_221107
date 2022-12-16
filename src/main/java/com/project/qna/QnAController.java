@@ -9,9 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.project.qna.bo.QnABO;
 import com.project.qna.model.QnA;
+import com.project.qna.model.QnAViewData;
 
 @Controller
 @RequestMapping("/board")
@@ -28,12 +30,23 @@ public class QnAController {
 	}
 	
 	@RequestMapping("/list_view")
-	public String qnaListView(HttpSession session, Model model) {
+	public String qnaListView(HttpSession session, Model model,
+		@RequestParam(value="page", required=false, defaultValue="1") int page) {
+			
+		QnAViewData qnaData = new QnAViewData();
 		
-		List<QnA> qnaList = new ArrayList<>(); 
-		qnaList = qnaBO.getQnAList();
-		model.addAttribute("qnaList",qnaList);
-		
+		int totalPostNum = qnaBO.getCurrentQnAId();
+		int totalPageNum = qnaBO.calculateTotalPageNum(totalPostNum);
+		if (page > totalPageNum ) {
+			return "redirect:/admin/qna/list_view?page="+totalPageNum;
+		};
+		if (page < 1) {
+			return "redirect:/admin/qna/list_view?page="+1;
+		}
+			
+		qnaData = qnaBO.getQnAListByPage(page, totalPostNum, totalPageNum);
+		model.addAttribute("qnaData",qnaData);
+
 		model.addAttribute("viewName","/board/qnaListView");
 		return "/template/layout";
 	}

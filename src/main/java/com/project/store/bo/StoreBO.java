@@ -40,7 +40,9 @@ public class StoreBO {
 		}
 	}
 	
-	public StoreView getStoreViewByProductId(int productId) {
+	private static final int pageSize = 3;
+
+	public StoreView getStoreViewByProductId(int productId, int reviewPage) {
 		StoreView storeView = new StoreView();
 		
 		Product product = productBO.getProductByProductId(productId);
@@ -52,11 +54,14 @@ public class StoreBO {
 		List<ProductImage> productimageList = productImageBO.getProductImageByProductId(productId);
 		storeView.setImageList(productimageList);
 		
-		List<Review> reviewList = reviewBO.getReviewByProductId(productId);
+		int reviewNum = reviewBO.countReviewByProductId(productId);
+		List<Review> selectedReviewList = reviewBO.getReviewByProductIdAndPage(productId, reviewPage, pageSize);
 		
-		if (reviewList.size() > 0) {
-			storeView.setReviewList(reviewList);
-			storeView.setAvgPoint(reviewList);
+		if (reviewNum > 0) {
+			storeView.setReviewList(selectedReviewList);
+			List<Integer> reviewponts = reviewBO.getReviewPointByProductId(productId);
+			storeView.setAvgPoint(reviewponts);
+			storeView.setReviewPages( (reviewNum - 1) / pageSize + 1 );
 		}
 		return storeView;
 	}
@@ -67,6 +72,10 @@ public class StoreBO {
 
 	public List<Product> getProductBykeyword(String keyword) {
 		return productBO.getProductBykeyword(keyword);
+	}
+	
+	public StoreView changeReviewListByPageAndProductId(int productId, int page) {
+		return reviewBO.changeReviewListByPageAndProductId(productId, page);
 	}
 		
 }

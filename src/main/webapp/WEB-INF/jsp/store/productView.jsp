@@ -76,12 +76,15 @@
 				<hr>
 				<h5 class="text-right" >
 					<c:if test="${not empty storeView.reviewList}">
-					총점 <fmt:formatNumber value="${storeView.avgPoint}" pattern=".0" />
+					<c:forEach begin="1" end="${storeView.avgPoint}">★ </c:forEach> 
+					
+					<fmt:formatNumber value="${storeView.avgPoint}" pattern=".0" />
 					</c:if>
 				<hr>
 				</h5>
 			</div>			
-			<div class="text-secondary">
+ 			<div class="text-secondary" id="storeReviewDiv">
+			<div id="textdivforreview">
 				<c:forEach items="${storeView.reviewList }" var="review">
 					<c:set value="${review.userName}" var="reviewname"/>
 					<div class="d-flex justify-content-between">
@@ -94,21 +97,48 @@
 					<div class="d-flex justify-content-between">
 						${review.content}
 						<span>
-							<c:forEach var="i"  begin="1" end="${review.point}">★</c:forEach> 
+							<c:forEach var="star"  begin="1" end="${review.point}">★</c:forEach> 
 						</span>
 					</div>
 					<hr>
 				</c:forEach>
-			</div>		
+			</div>
+				<div class="d-flex justify-content-center" id="e">
+					<c:set var="reviewPage" value="1"/>
+					<form method="post" id="storeReviewChangerTestForm">
+					<input type="hidden" name="productId" value="${storeView.product.id}">
+					<c:forEach begin="1" end="${storeView.reviewPages }">
+					 <b class="m-2"><button type="button" class="review-page-move bg-white" data-page-num="${reviewPage}">${reviewPage}</button></b>
+					 <c:set var="reviewPage" value="${reviewPage + 1 }"/>
+					</c:forEach>
+					</form>
+				</div>
+			</div> 		
 		</div>
 	</div>
-
 
 </div>
 
 <script>
 
 $(document).ready(function() {
+	
+	$('.review-page-move').on('click', function(e){
+		let = productId = $('input[name=productId]').val();
+		let page = $(this).data('page-num');
+	    $.ajax({
+	        url: "/store/change",
+	        data: {'productId':productId, 'page':page},
+	        type:"POST",
+	        cache: false
+	    }).done(function (data) {
+	         $("#textdivforreview").replaceWith(data);
+	    });
+			
+	});
+	
+	
+	
 	
 	window.onresize = function(event){ // 화면 크기 조절 반응
 		let innerWidth = window.innerWidth;
@@ -261,9 +291,6 @@ $(document).ready(function() {
 			 }
 			 
 		 }); // ajax-end 
-		 
-		 
-		 
 		 
 	 });	// addCartBtn - click - end
 

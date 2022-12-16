@@ -21,7 +21,6 @@ public class NoticeController {
 
 	@Autowired
 	private NoticeBO noticeBO;
-	
 	/*
 	@RequestMapping("/list_view")
 	public String noticeListView(HttpSession session, Model model) {

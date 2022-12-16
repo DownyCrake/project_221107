@@ -27,15 +27,15 @@
 		</div>
 				<div class="d-flex justify-content-center mt-5 align-items-center">
 				
-				<c:if test="${! noticeData.firstSection }">
-					<a href="/notice/list_view?page=${noticeData.prePage}" class="prev-page-link m-2 text-dark"><b>이전 </b> </a>
-				</c:if>
-				<c:forEach items="${noticeData.pageNumberList }" var="pages">
-					<a href="/notice/list_view?page=${pages}" class="text-dark m-2"><b>${pages}</b></a>
-				</c:forEach>
-				<c:if test="${! noticeData.lastSection }">
-					<a href="/notice/list_view?page=${noticeData.nextPage}" class="next-page-link m-2 text-dark"> <b>다음</b> </a>
-				</c:if>
+					<c:if test="${! noticeData.firstSection }">
+						<a href="/notice/list_view?page=${noticeData.prePage}" class="prev-page-link m-2 text-dark"><b>이전 </b> </a>
+					</c:if>
+					<c:forEach items="${noticeData.pageNumberList }" var="pages">
+						<a href="/notice/list_view?page=${pages}" class="text-dark m-2"><b>${pages}</b></a>
+					</c:forEach>
+					<c:if test="${! noticeData.lastSection }">
+						<a href="/notice/list_view?page=${noticeData.nextPage}" class="next-page-link m-2 text-dark"> <b>다음</b> </a>
+					</c:if>
 				</div>
 		<div class="mt-5">
 		
