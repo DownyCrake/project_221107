@@ -54,9 +54,9 @@ public class ReviewBO {
 		return reviewDAO.selectReviewByProductIdAndPage(productId, start, pageSize);
 	}
 	
-	public StoreView changeReviewListByPageAndProductId(int productId, int page) {
+	public StoreView changeReviewListByPageAndProductId(int productId, int page, int pageSize ) {
 		
-		List<Review> review = getReviewByProductIdAndPage(productId, page, 3);
+		List<Review> review = getReviewByProductIdAndPage(productId, page, pageSize);
 		StoreView storeData = new StoreView();
 		storeData.setReviewList(review);
 		

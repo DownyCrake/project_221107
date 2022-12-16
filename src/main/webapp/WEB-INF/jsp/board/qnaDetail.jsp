@@ -17,7 +17,7 @@
 			<pre>${qna.content }</pre>
 		</div>
 		<div class="border-top mt-5 p-3">
-			<a href="/board/list_view"><button class="btn qna-detail-button">목록</button></a>
+			<a href="javascript:history.back();"><button class="btn qna-detail-button">뒤로</button></a>
 		</div>
 	</div>
 </div>

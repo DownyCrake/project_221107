@@ -42,6 +42,8 @@
 								data-post-id="${qna.id}" data-secret="${qna.secret }"
 								data-login-user-id="${userId}" data-post-user-id="${qna.userId }"> 
 									${fn:substring(subject,0,23)} </a>
+								<c:if test="${qna.secret }"><img src="/static/img/lock.png" alt="https://www.flaticon.com/kr/free-icons/- title=맹꽁이 자물쇠 아이콘 맹꽁이 자물쇠 아이콘  제작자: Pixel perfect - Flaticon"></c:if>
+								
 							</div>
 						</div>
 						<div>
@@ -79,7 +81,7 @@ $(document).ready(function() {
 			let loginUserId = $(this).data('login-user-id');
 			if (postUserId != loginUserId ){
 				alert('비밀글입니다.');
-				return;
+				return false;
 			}
 		}
 		location.href='/board/qna_view?postId='+postId;
@@ -93,7 +95,7 @@ $(document).ready(function() {
 			let loginUserId = $(this).data('login-user-id');
 			if (postUserId != loginUserId ){
 				alert('비밀글입니다.');
-				return;
+				return false;
 			}
 		}
 		location.href='/board/reply_view?postId='+postId;

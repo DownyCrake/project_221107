@@ -22,9 +22,6 @@ public class StoreController {
 
 	@Autowired
 	private StoreBO storeBO;
-	
-	@Autowired
-	private ReviewBO reviewBO;
 
 	@RequestMapping("/product_list_view")
 	public String productListView(HttpSession session, Model model,

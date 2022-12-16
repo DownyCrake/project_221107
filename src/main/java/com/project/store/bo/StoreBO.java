@@ -75,7 +75,7 @@ public class StoreBO {
 	}
 	
 	public StoreView changeReviewListByPageAndProductId(int productId, int page) {
-		return reviewBO.changeReviewListByPageAndProductId(productId, page);
+		return reviewBO.changeReviewListByPageAndProductId(productId, page , pageSize);
 	}
 		
 }
