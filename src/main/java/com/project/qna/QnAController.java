@@ -35,8 +35,8 @@ public class QnAController {
 			
 		QnAViewData qnaData = new QnAViewData();
 		
-		int totalPostNum = qnaBO.getCurrentQnAId();
-		int totalPageNum = qnaBO.calculateTotalPageNum(totalPostNum);
+		Integer totalPostNum = qnaBO.getCurrentQnAId();
+		Integer totalPageNum = qnaBO.calculateTotalPageNum(totalPostNum);
 		if (page > totalPageNum ) {
 			return "redirect:/admin/qna/list_view?page="+totalPageNum;
 		};

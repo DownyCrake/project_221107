@@ -28,7 +28,7 @@ public class AccountController {
 	@RequestMapping("/profile_view")
 	public String profileView(HttpSession session, Model model) {
 		
-		int userId = (int)session.getAttribute("userId");
+		Integer userId = (int)session.getAttribute("userId");
 		User user = userBO.getUserByuserId(userId);
 		model.addAttribute("user", user);
 		model.addAttribute("viewName", "/user/profile");

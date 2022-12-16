@@ -1,10 +1,5 @@
 package com.project.notice;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -53,8 +48,8 @@ public class NoticeController {
 		
 		NoticeViewData noticeData = new NoticeViewData();
 		
-		int totalPostNum = noticeBO.getCurrentNoticeId();
-		int totalPageNum = noticeBO.calculateTotalPageNum(totalPostNum);
+		Integer totalPostNum = noticeBO.getCurrentNoticeId();
+		Integer totalPageNum = noticeBO.calculateTotalPageNum(totalPostNum);
 		if (page > totalPageNum ) {
 			return "redirect:/admin/notice/list_view?page="+totalPageNum;
 		};
