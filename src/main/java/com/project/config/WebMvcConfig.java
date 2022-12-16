@@ -19,7 +19,7 @@ public class WebMvcConfig implements WebMvcConfigurer{
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry
 		.addResourceHandler("/images/**")  // 웹주소   http://localhost/ ~~
-		.addResourceLocations("file:///" + FileManagerService.FILE_UPLOAD_PATH);  // 맥은 file:/  슬래시 1개  실제 파일 주소
+		.addResourceLocations("file://" + FileManagerService.FILE_UPLOAD_PATH);  // 맥은 file:/  슬래시 1개  실제 파일 주소
 	}
 	
 	@Override
