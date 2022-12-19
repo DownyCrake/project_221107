@@ -23,12 +23,12 @@ public class ProductImageBO {
 
 	@Autowired
 	private FileManagerService fileManagerService;
-	
+
 	public List<ProductImage> getProductImageByProductId(int productId) {
-		
+
 		return productImageDAO.getProductImageByProductId(productId);
 	}
-	
+
 	public void deleteProductImageByProductId(int productId) {
 		productImageDAO.deleteProductImageByProductId(productId);
 	}
@@ -39,19 +39,18 @@ public class ProductImageBO {
 			log.warn("[update post] 수정할 메모가 존재하지 않습니다.");
 		}
 		String imagePath = null;
-		List<String >imagePathList = new ArrayList<>();
-		for (MultipartFile file : files ) {
+		List<String> imagePathList = new ArrayList<>();
+		for (MultipartFile file : files) {
 			imagePath = fileManagerService.saveFileAdmin(file);
 			imagePathList.add(imagePath);
-			}
+		}
 		if (imagePathList != null && productimageList != null) {
-			for (ProductImage productimage:productimageList ) {
+			for (ProductImage productimage : productimageList) {
 				fileManagerService.deleteFile(productimage.getImagePath());
 			}
 			deleteProductImageByProductId(productId);
 		}
 		productImageDAO.insertProductImageByProductId(productId, imagePathList);
 	}
-	
-	
+
 }

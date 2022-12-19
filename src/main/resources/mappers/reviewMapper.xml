@@ -47,7 +47,7 @@
 
 </select>
 
-<select id="countReviewByProductId" parameterType="int" resultType="int">
+<select id="countReviewByProductId" parameterType="int" resultType="Integer">
 	SELECT
 		count(*)
 	FROM
@@ -56,7 +56,7 @@
 		`productId` = #{productId} 
 </select>
 
-<select id="selectReviewPointByProductId" parameterType="int" resultType="int">
+<select id="selectReviewPointByProductId" parameterType="int" resultType="Integer">
 	SELECT
 		`point`
 	FROM

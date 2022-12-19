@@ -28,7 +28,7 @@ public interface QnADAO {
 	
 	public List<QnA> selectQnAListByUserId(int userId);
 	
-	public int selectCurrentQnAId();
+	public Integer selectCurrentQnAId();
 	
 	public List<QnA> selectQnAListByQnAIdAndPageSize(
 			@Param("qnaId") int postId, 

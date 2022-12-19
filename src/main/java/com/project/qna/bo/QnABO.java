@@ -42,7 +42,7 @@ public class QnABO {
 	private static final int pageSize = 3;
 	private static final int sectionSize = 4;
 	
-	public int getCurrentQnAId() {
+	public Integer getCurrentQnAId() {
 		return qnaDAO.selectCurrentQnAId();
 	}
 	

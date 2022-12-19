@@ -39,7 +39,7 @@ public class NoticeBO {
 	private static final int pageSize = 3;
 	private static final int sectionSize = 4;
 	
-	public int getCurrentNoticeId() {
+	public Integer getCurrentNoticeId() {
 		return noticeDAO.selectCurrentNoticeId();
 	}
 	

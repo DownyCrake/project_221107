@@ -41,7 +41,7 @@ public class ReviewBO {
 		return reviewDAO.selectReviewByProductId(productId);
 	}
 	
-	public int countReviewByProductId(int productId){
+	public Integer countReviewByProductId(int productId){
 		return reviewDAO.countReviewByProductId(productId);
 	}
 	

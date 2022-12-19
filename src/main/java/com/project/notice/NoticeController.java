@@ -49,6 +49,7 @@ public class NoticeController {
 		NoticeViewData noticeData = new NoticeViewData();
 		
 		Integer totalPostNum = noticeBO.getCurrentNoticeId();
+		if (totalPostNum != null) {
 		Integer totalPageNum = noticeBO.calculateTotalPageNum(totalPostNum);
 		if (page > totalPageNum ) {
 			return "redirect:/admin/notice/list_view?page="+totalPageNum;
@@ -58,7 +59,7 @@ public class NoticeController {
 		}
 			
 		noticeData = noticeBO.getNoticeListByPage(page, totalPostNum, totalPageNum);
-		
+		}
 		model.addAttribute("noticeData",noticeData);
 		model.addAttribute("viewName","/board/noticeList");
 		return "/template/layout";

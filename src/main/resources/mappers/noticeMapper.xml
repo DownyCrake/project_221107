@@ -67,7 +67,7 @@
  
  </delete>
  
- <select id="selectCurrentNoticeId" resultType="int">
+ <select id="selectCurrentNoticeId" resultType="Integer">
  	SELECT
  		`id`
  	FROM

@@ -24,6 +24,7 @@ public class AdminQnAController {
 		QnAViewData qnaData = new QnAViewData();
 		
 		Integer totalPostNum = qnaBO.getCurrentQnAId();
+		if (totalPostNum != null) {
 		Integer totalPageNum = qnaBO.calculateTotalPageNum(totalPostNum);
 		if (page > totalPageNum ) {
 			return "redirect:/admin/qna/list_view?page="+totalPageNum;
@@ -33,7 +34,9 @@ public class AdminQnAController {
 		}
 		
 		qnaData = qnaBO.getQnAListByPage(page, totalPostNum, totalPageNum);
+		}
 		model.addAttribute("qnaData",qnaData);
+		
 		
 		return "/admin/qna/adminQnAListView";
 	}

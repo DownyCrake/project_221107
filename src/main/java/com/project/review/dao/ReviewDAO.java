@@ -20,7 +20,7 @@ public interface ReviewDAO {
 	
 	public List<Review> selectReviewByProductId(int productId);
 
-	public int countReviewByProductId(int productId);
+	public Integer countReviewByProductId(int productId);
 	
 	public List<Integer> selectReviewPointByProductId(int productId);
 	
